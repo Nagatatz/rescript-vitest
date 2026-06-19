@@ -251,6 +251,9 @@ external getMockedSystemTime: unit => option<Date.t> = "getMockedSystemTime"
 /** The real wall-clock time in epoch milliseconds, ignoring fake timers. */
 @module("vitest") @scope("vi") external getRealSystemTime: unit => float = "getRealSystemTime"
 
+/** Set how fake timers advance: `"manual"`, `"nextTimerAsync"`, or `"interval"`. */
+@module("vitest") @scope("vi") external setTimerTickMode: string => unit = "setTimerTickMode"
+
 // ============================================================================
 // Waiting
 // ============================================================================

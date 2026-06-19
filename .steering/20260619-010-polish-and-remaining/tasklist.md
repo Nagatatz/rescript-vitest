@@ -4,41 +4,41 @@
 |---|---|
 | 機能名 | 仕上げ（ドキュメント＋残繰延） (Phase 10) |
 | 作成日 | 2026-06-19 |
-| 進捗 | 0 / 13 完了 |
+| 進捗 | 13 / 13 完了 |
 
 ## フェーズ1: 準備
 
-- [ ] `EnterWorktree` で worktree (`polish-remaining`) を作成し、`git merge main --ff-only` で同期する
+- [x] `EnterWorktree` で worktree (`polish-remaining`) を作成し、`git merge main --ff-only` で同期する
 
 ## フェーズ2: 実装（タスク4 — 繰延バインディング）
 
-- [ ] `toMatchFileSnapshot` を `src/Vitest.res` に追加
-- [ ] `testSkipIfAsync` / `testRunIfAsync` と `it.*` 変種（todo/concurrent/each/fails/sequential/skipIf/runIf）を追加
-- [ ] `module Expect.Not`（否定 asymmetric）を追加
-- [ ] `setTimerTickMode` を `src/Vi.res` に追加
+- [x] `toMatchFileSnapshot` を `src/Vitest.res` に追加
+- [x] `testSkipIfAsync` / `testRunIfAsync` と `it.*` 変種（todo/concurrent/each/fails/sequential/skipIf/runIf）を追加
+- [x] `module Expect.Not`（否定 asymmetric）を追加
+- [x] `setTimerTickMode` を `src/Vi.res` に追加
 
 ## フェーズ3: テスト
 
-- [ ] 上記バインディングのドッグフードテストを追加（toMatchFileSnapshot のスナップショット生成物を commit）
-- [ ] `pnpm build` が型エラーなしで通ることを確認
-- [ ] `pnpm test` が全件パスすることを確認（不在 API はスモークで検出し非対応へ切替）
+- [x] 上記バインディングのドッグフードテストを追加（toMatchFileSnapshot のスナップショット生成物を commit）
+- [x] `pnpm build` が型エラーなしで通ることを確認
+- [x] `pnpm test` が全件パスすることを確認（97 passed / 3 expected fail / 7 skipped / 1 todo。setTimerTickMode 含め全 API が 4.1.9 に存在）
 
 ## フェーズ4: ドキュメント
 
-- [ ] タスク2: README 冒頭 Features サマリ更新 ＋ 詳細リストに新バインディング追記
-- [ ] タスク3: sphinx `user/quickstart.md` / `user/configuration.md` を拡充
-- [ ] sphinx 日本語 `.po` を `make update-po` → 記入 → `make build-ja` で検証
-- [ ] `sphinx-docs/user/changelog.md` Unreleased に Phase 10 分を追記（EN/JA）
+- [x] タスク2: README 冒頭 Features サマリ更新 ＋ 詳細リストに新バインディング追記
+- [x] タスク3: sphinx `user/quickstart.md` / `user/configuration.md` を拡充
+- [x] sphinx 日本語 `.po` を `make update-po` → 記入 → `make build-ja` で検証
+- [x] `sphinx-docs/user/changelog.md` Unreleased に Phase 10 分を追記（EN/JA）
 
 ## フェーズ5: 仕上げ
 
-- [ ] コミット（論理単位で `✨`/`📝`）後、main へのマージ可否を確認 → 承認後マージ・worktree クリーンアップ
+- [x] コミット（論理単位で `✨`/`📝`）後、main へのマージ可否を確認 → 承認後マージ・worktree クリーンアップ
 
 ## 完了条件
 
-- [ ] すべてのタスクが完了していること
-- [ ] ビルドが成功すること
-- [ ] 受け入れ条件をすべて満たしていること
+- [x] すべてのタスクが完了していること
+- [x] ビルドが成功すること
+- [x] 受け入れ条件をすべて満たしていること
 
 ---
 

@@ -303,3 +303,42 @@ describe("Expect — assertion guards, soft, poll, unreachable", () => {
     expect(() => Expect.unreachableWithMessage("should not happen"))->toThrow
   })
 })
+
+describe("Expect — negated asymmetric matchers", () => {
+  test("Not.arrayContaining / objectContaining", () => {
+    expect([1, 2, 3])->toEqual(Expect.Not.arrayContaining([9]))
+    expect({"a": 1})->toEqual(Expect.Not.objectContaining({"b": 2}))
+  })
+
+  test("Not.stringContaining / stringMatching", () => {
+    expect("hello")->toEqual(Expect.Not.stringContaining("xyz"))
+    expect("hello")->toEqual(Expect.Not.stringMatching("[0-9]"))
+    expect("hello")->toEqual(Expect.Not.stringMatchingRegExp(%re("/[0-9]/")))
+  })
+
+  test("Not.closeTo", () => {
+    expect(2.5)->toEqual(Expect.Not.closeTo(2.0))
+    expect(2.5)->toEqual(Expect.Not.closeToWithPrecision(2.0, 2))
+  })
+})
+
+describe("Vitest — it modifiers", () => {
+  itEach([1, 2])("it-each case %i is positive", n => expect(n > 0)->toBeTruthy)
+  itFails("it.fails passes because the body fails", () => expect(1)->toBe(2))
+  itSequential("it.sequential runs", () => expect(1)->toBe(1))
+  itSkipIf(true)("it.skipIf skips when true", () => expect(1)->toBe(2))
+  itRunIf(false)("it.runIf skips when false", () => expect(1)->toBe(2))
+  itTodo("it.todo placeholder")
+  itConcurrent("it.concurrent runs", async () => expect(1)->toBe(1))
+})
+
+describe("Vitest — async conditional tests", () => {
+  testSkipIfAsync(true)("async test skipped when condition is true", async () => expect(1)->toBe(2))
+  testRunIfAsync(true)("async test runs when condition is true", async () => expect(1)->toBe(1))
+})
+
+describe("Expect — file snapshot", () => {
+  testAsync("toMatchFileSnapshot writes/compares an external snapshot", async () => {
+    await expect("file snapshot content\n")->toMatchFileSnapshot("./__file_snapshots__/sample.txt")
+  })
+})

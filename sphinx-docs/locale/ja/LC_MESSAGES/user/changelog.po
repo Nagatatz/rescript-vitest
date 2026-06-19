@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 18:12+0900\n"
+"POT-Creation-Date: 2026-06-19 18:45+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -161,14 +161,44 @@ msgid ""
 "Assertion guards and special assertions (`Expect` module): `assertions`, "
 "`hasAssertions`, `soft`, `poll`, `unreachable`, `unreachableWithMessage`."
 msgstr ""
-"アサーションガードと特殊アサーション（`Expect` モジュール）: `assertions`、"
-"`hasAssertions`、`soft`、`poll`、`unreachable`、`unreachableWithMessage`。"
+"アサーションガードと特殊アサーション（`Expect` モジュール）: "
+"`assertions`、`hasAssertions`、`soft`、`poll`、`unreachable`、`unreachableWithMessage`。"
+
+#: ../../user/changelog.md:27
+msgid "File snapshot matcher: `toMatchFileSnapshot`."
+msgstr "ファイルスナップショットマッチャー: `toMatchFileSnapshot`。"
 
 #: ../../user/changelog.md:28
+msgid ""
+"Negated asymmetric matchers (`Expect.Not` module): `arrayContaining`, "
+"`objectContaining`, `stringContaining`, `stringMatching`, "
+"`stringMatchingRegExp`, `closeTo`, `closeToWithPrecision`."
+msgstr ""
+"否定 asymmetric マッチャー（`Expect.Not` モジュール）: `arrayContaining`、"
+"`objectContaining`、`stringContaining`、`stringMatching`、"
+"`stringMatchingRegExp`、`closeTo`、`closeToWithPrecision`。"
+
+#: ../../user/changelog.md:29
+msgid ""
+"`it` modifiers: `itTodo`, `itConcurrent`, `itEach`, `itFails`, "
+"`itSequential`, `itSkipIf`, `itRunIf`."
+msgstr ""
+"`it` 修飾子: `itTodo`、`itConcurrent`、`itEach`、`itFails`、"
+"`itSequential`、`itSkipIf`、`itRunIf`。"
+
+#: ../../user/changelog.md:30
+msgid "Async-body conditional tests: `testSkipIfAsync`, `testRunIfAsync`."
+msgstr "async body の条件付きテスト: `testSkipIfAsync`、`testRunIfAsync`。"
+
+#: ../../user/changelog.md:31
+msgid "Fake-timer tick mode: `setTimerTickMode`."
+msgstr "フェイクタイマーの tick モード: `setTimerTickMode`。"
+
+#: ../../user/changelog.md:33
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:32
+#: ../../user/changelog.md:37
 msgid "Fixed"
 msgstr "修正"
 

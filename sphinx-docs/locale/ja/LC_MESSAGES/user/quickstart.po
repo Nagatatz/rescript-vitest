@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"POT-Creation-Date: 2026-06-19 18:45+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -25,8 +25,9 @@ msgid "Quick Start"
 msgstr "クイックスタート"
 
 #: ../../user/quickstart.md:3
-msgid "This guide walks you through your first experience after installation."
-msgstr "このガイドでは、インストール後の最初の操作を順を追って説明します。"
+#, fuzzy
+msgid "This guide walks you through writing and running your first test."
+msgstr "このガイドでは、最初のテストの記述と実行を順を追って説明します。"
 
 #: ../../user/quickstart.md:5
 msgid "Prerequisites"
@@ -37,18 +38,58 @@ msgid "Completed [Installation](installation.md)"
 msgstr "[インストール](installation.md)が完了していること"
 
 #: ../../user/quickstart.md:9
-msgid "Getting Started"
-msgstr "はじめに"
+msgid "Write a test"
+msgstr "テストを書く"
 
-#: ../../user/quickstart.md:13
+#: ../../user/quickstart.md:11
+msgid ""
+"ReScript compiles `*.res` in source to `*.res.js`, and Vitest runs the "
+"compiled output. Create `__tests__/Example_test.res`:"
+msgstr ""
+"ReScript は in-source で `*.res` を `*.res.js` にコンパイルし、Vitest はその"
+"コンパイル結果を実行します。`__tests__/Example_test.res` を作成します:"
+
+#: ../../user/quickstart.md:28
+msgid ""
+"`open Vitest` brings `describe` / `test` / `expect` and the matchers into"
+" scope. Matchers are *faithful*: they throw on failure, exactly like "
+"Vitest itself."
+msgstr ""
+"`open Vitest` で `describe` / `test` / `expect` とマッチャーがスコープに入ります。"
+"マッチャーは *faithful* で、Vitest 本体と同様に失敗時に例外を投げます。"
+
+#: ../../user/quickstart.md:31
+msgid "Use mocks and spies"
+msgstr "モック・スパイを使う"
+
+#: ../../user/quickstart.md:33
+msgid "Mocks, spies and fake timers live in the `Vi` module:"
+msgstr "モック・スパイ・フェイクタイマーは `Vi` モジュールにあります:"
+
+#: ../../user/quickstart.md:46
+msgid "Run"
+msgstr "実行する"
+
+#: ../../user/quickstart.md:53
+msgid ""
+"Use `pnpm watch` and `pnpm test:watch` in parallel for a fast feedback "
+"loop, or `pnpm test:coverage` for a coverage report."
+msgstr ""
+"高速なフィードバックループには `pnpm watch` と `pnpm test:watch` を並行実行し、"
+"カバレッジレポートには `pnpm test:coverage` を使います。"
+
+#: ../../user/quickstart.md:56
 msgid "What's Next?"
 msgstr "次のステップ"
 
-#: ../../user/quickstart.md:15
+#: ../../user/quickstart.md:58
 msgid "[Configuration](configuration.md) — Customize settings"
 msgstr "[設定](configuration.md) — 設定をカスタマイズする"
 
-#: ../../user/quickstart.md:16
+#: ../../user/quickstart.md:59
 msgid "[Changelog](changelog.md) — See what's new"
 msgstr "[変更履歴](changelog.md) — 最新情報を確認する"
+
+#~ msgid "Getting Started"
+#~ msgstr "はじめに"
 
