@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"POT-Creation-Date: 2026-06-19 22:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -37,18 +37,95 @@ msgid "Description"
 msgstr "説明"
 
 #: ../../dev/building.md
-msgid "<!-- e.g. `npm run build` -->"
-msgstr "<!-- 例: `npm run build` -->"
+msgid "`pnpm build`"
+msgstr ""
 
 #: ../../dev/building.md
-msgid "<!-- Build the project -->"
-msgstr "<!-- プロジェクトをビルドする -->"
+msgid "Compile `.res` sources to in-source `.res.js` (ESM) via `rescript build`"
+msgstr "`rescript build` で `.res` ソースをインソースの `.res.js`（ESM）にコンパイルする"
 
-#: ../../dev/building.md:9
+#: ../../dev/building.md
+msgid "`pnpm clean && pnpm build`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Clean rebuild (removes the previous `lib/` and `.res.js` output)"
+msgstr "クリーンリビルド（以前の `lib/` と `.res.js` 出力を削除する）"
+
+#: ../../dev/building.md
+msgid "`pnpm test`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid ""
+"Run the dogfood tests with `vitest run` against the compiled "
+"`__tests__/**/*_test.res.js`"
+msgstr ""
+"コンパイル済みの `__tests__/**/*_test.res.js` に対して `vitest run` でドッグフー"
+"ドテストを実行する"
+
+#: ../../dev/building.md:11
 msgid "Output"
 msgstr "出力"
 
 #: ../../dev/building.md:13
+msgid ""
+"The ReScript compiler emits in-source output: each `src/Foo.res` produces"
+" a sibling `src/Foo.res.js` (ESM). The compiler's intermediate artifacts "
+"live under `lib/`. Both `*.res.js` and `lib/` are build products and are "
+"`.gitignore`-d."
+msgstr ""
+"ReScript コンパイラはインソースで出力します。各 `src/Foo.res` は隣接する "
+"`src/Foo.res.js`（ESM）を生成します。コンパイラの中間生成物は `lib/` 配下に置か"
+"れます。`*.res.js` と `lib/` はいずれもビルド成果物であり、`.gitignore` 対象で"
+"す。"
+
+#: ../../dev/building.md:17
+msgid "Build Flow"
+msgstr "ビルドフロー"
+
+#: ../../dev/building.md:19
+msgid ""
+"`pnpm build` → `rescript build` compiles `src/**/*.res` and "
+"`__tests__/**/*.res` to in-source `.res.js`."
+msgstr ""
+"`pnpm build` → `rescript build` が `src/**/*.res` と `__tests__/**/*.res` をイン"
+"ソースの `.res.js` にコンパイルします。"
+
+#: ../../dev/building.md:21
+msgid ""
+"`pnpm test` → `vitest run` executes the compiled "
+"`__tests__/**/*_test.res.js`."
+msgstr ""
+"`pnpm test` → `vitest run` がコンパイル済みの `__tests__/**/*_test.res.js` を実"
+"行します。"
+
+#: ../../dev/building.md:23
+msgid ""
+"Tests run against compiled JavaScript, so a build must precede the test "
+"run (`pnpm test` assumes the latest `pnpm build`)."
+msgstr ""
+"テストはコンパイル済みの JavaScript に対して実行されるため、テスト実行の前にビ"
+"ルドが必要です（`pnpm test` は最新の `pnpm build` を前提とします）。"
+
+#: ../../dev/building.md:26
 msgid "CI Pipeline"
 msgstr "CI パイプライン"
+
+#: ../../dev/building.md:28
+msgid ""
+"Continuous integration builds the bindings and runs the dogfood test "
+"suite on every push and pull request, ensuring the bindings stay faithful"
+" to the Vitest 4 API. See the workflows under `.github/workflows/`."
+msgstr ""
+"継続的インテグレーションは、push とプルリクエストのたびにバインディングをビルド"
+"し、ドッグフードテストスイートを実行することで、バインディングが Vitest 4 API "
+"に faithful であり続けることを保証します。`.github/workflows/` 配下のワークフ"
+"ローを参照してください。"
+
+#~ msgid "<!-- e.g. `npm run build` -->"
+#~ msgstr "<!-- 例: `npm run build` -->"
+
+#~ msgid "<!-- Build the project -->"
+#~ msgstr "<!-- プロジェクトをビルドする -->"
 

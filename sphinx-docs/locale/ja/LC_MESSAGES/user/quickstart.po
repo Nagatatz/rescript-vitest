@@ -25,7 +25,6 @@ msgid "Quick Start"
 msgstr "クイックスタート"
 
 #: ../../user/quickstart.md:3
-#, fuzzy
 msgid "This guide walks you through writing and running your first test."
 msgstr "このガイドでは、最初のテストの記述と実行を順を追って説明します。"
 

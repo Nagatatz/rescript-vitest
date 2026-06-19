@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"POT-Creation-Date: 2026-06-19 22:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -28,54 +28,187 @@ msgstr "アーキテクチャ"
 msgid "Overview"
 msgstr "概要"
 
-#: ../../dev/architecture.md:7
+#: ../../dev/architecture.md:5
+msgid ""
+"`@nagatatz/rescript-vitest` is a thin FFI binding layer — it has no "
+"application runtime of its own. Every binding is a ReScript `external` "
+"mapping directly onto a Vitest 4 export, so calling a binding *is* "
+"calling Vitest. There is no wrapper logic, no state, and no abstraction "
+"over the underlying API."
+msgstr ""
+"`@nagatatz/rescript-vitest` は薄い FFI バインディング層であり、独自のアプリケー"
+"ションランタイムを持ちません。すべてのバインディングは Vitest 4 のエクスポート"
+"に直接マッピングする ReScript の `external` であり、バインディングを呼び出すこ"
+"とは *そのまま* Vitest を呼び出すことです。ラッパーロジックも、状態も、基盤 API"
+" 上の抽象化も存在しません。"
+
+#: ../../dev/architecture.md:10
+msgid ""
+"The bindings are *faithful*: matchers behave exactly like their Vitest "
+"counterparts, including their side effects (an assertion throws on "
+"failure rather than returning a result). The type signatures encode the "
+"JavaScript contract as closely as ReScript's type system allows."
+msgstr ""
+"バインディングは *faithful* です。マッチャーは副作用を含めて Vitest の対応物と"
+"まったく同じように振る舞います（アサーションは結果を返すのではなく、失敗時に例"
+"外を投げます）。型シグネチャは、ReScript の型システムが許す限り JavaScript の契"
+"約を忠実にエンコードします。"
+
+#: ../../dev/architecture.md:15
 msgid "Key Components"
 msgstr "主要コンポーネント"
 
-#: ../../dev/architecture.md:11
+#: ../../dev/architecture.md
+msgid "Module"
+msgstr "モジュール"
+
+#: ../../dev/architecture.md
+msgid "Responsibility"
+msgstr "責務"
+
+#: ../../dev/architecture.md
+msgid "`src/Vitest.res`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid ""
+"Test structure (`describe` / `test` / `it` and variants), lifecycle "
+"hooks, the full `expect` matcher set, and the `not_` / `resolves` / "
+"`rejects` modifiers (with the `Async` matcher module)."
+msgstr ""
+"テスト構造（`describe` / `test` / `it` とその変種）、ライフサイクルフック、"
+"`expect` マッチャー一式、`not_` / `resolves` / `rejects` モディファイア（`Async`"
+" マッチャーモジュールを含む）。"
+
+#: ../../dev/architecture.md
+msgid "`src/Vi.res`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid ""
+"The `Vi` namespace: mock functions and spies, module mocking, "
+"global/environment stubs, and fake timers."
+msgstr ""
+"`Vi` 名前空間。モック関数とスパイ、モジュールモック、グローバル/環境のスタブ、"
+"フェイクタイマー。"
+
+#: ../../dev/architecture.md
+msgid "`src/VitestConfig.res`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid ""
+"The `vitest/config` side: `defineConfig` / `defineConfigFn` / "
+"`mergeConfig` / `defineProject` and an optional-record type for the main "
+"`test` config fields (intentionally a minimal subset)."
+msgstr ""
+"`vitest/config` の設定側。`defineConfig` / `defineConfigFn` / `mergeConfig` / "
+"`defineProject` と、主要な `test` 設定フィールドの optional record 型（意図的に"
+"最小のサブセット）。"
+
+#: ../../dev/architecture.md
+msgid "`__tests__/`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid ""
+"Dogfood tests that exercise the bindings on Vitest 4 itself. Every "
+"binding change ships with a corresponding test (verification-first)."
+msgstr ""
+"バインディング自身を Vitest 4 上で検証するドッグフードテスト。バインディングの"
+"変更には必ず対応するテストを併設します（verification-first）。"
+
+#: ../../dev/architecture.md:24
 msgid "Design Principles"
 msgstr "設計原則"
 
-#: ../../dev/architecture.md:15
-msgid "**Principle 1** — Description"
-msgstr "**原則1** — 説明"
-
-#: ../../dev/architecture.md:16
-msgid "**Principle 2** — Description"
-msgstr "**原則2** — 説明"
-
-#: ../../dev/architecture.md:18
-msgid "Diagram Examples"
-msgstr "図の例"
-
-#: ../../dev/architecture.md:20
-msgid "Mermaid Diagrams"
-msgstr "Mermaid 図"
-
-#: ../../dev/architecture.md:22
-#, python-brace-format
-msgid "Use the `{mermaid}` directive to embed diagrams directly in Markdown:"
-msgstr "`{mermaid}` ディレクティブを使うと、図を Markdown に直接埋め込めます:"
-
-#: ../../dev/architecture.md:33
+#: ../../dev/architecture.md:26
 msgid ""
-"Supported diagram types: flowchart, sequence, class, state, ER, Gantt, "
-"pie, and more. See [Mermaid documentation](https://mermaid.js.org/) for "
-"syntax reference."
-msgstr "サポートされる図の種類: フローチャート、シーケンス図、クラス図、状態遷移図、ER 図、ガントチャート、円グラフなど。構文リファレンスは [Mermaid documentation](https://mermaid.js.org/) を参照してください。"
+"**Faithful, not abstracted** — bindings map 1:1 onto Vitest exports and "
+"preserve their side effects. No convenience wrappers are layered on top."
+msgstr ""
+"**抽象化せず faithful に** — バインディングは Vitest のエクスポートに 1:1 でマッ"
+"ピングし、その副作用を保持します。便宜的なラッパーを上に重ねることはしません。"
 
-#: ../../dev/architecture.md:36
-msgid "Collapsible Sections"
-msgstr "折りたたみセクション"
-
-#: ../../dev/architecture.md:38
-#, python-brace-format
+#: ../../dev/architecture.md:28
 msgid ""
-"Use `{toggle}` to create collapsible content (e.g., for detailed "
-"explanations or optional content):"
-msgstr "`{toggle}` を使うと、折りたたみ可能なコンテンツを作成できます（例: 詳細な説明や任意のコンテンツ用）:"
+"**Type-safe where ReScript allows** — signatures capture argument and "
+"return shapes; where a JavaScript shape cannot be expressed faithfully "
+"(e.g. `test.extend` fixtures, `expect.extend` custom matchers), the API "
+"is left unbound rather than typed unsafely."
+msgstr ""
+"**ReScript が許す範囲で型安全に** — シグネチャは引数と戻り値の形を捉えます。"
+"JavaScript の形を faithful に表現できない場合（例: `test.extend` のフィクスチャ"
+"、`expect.extend` のカスタムマッチャー）は、安全でない型付けをするのではなく、"
+"API をバインドしないままにします。"
 
-#: ../../dev/architecture.md:46
-msgid "To show the section expanded by default, add the `:show:` option:"
-msgstr "デフォルトでセクションを展開して表示するには、`:show:` オプションを追加します:"
+#: ../../dev/architecture.md:32
+msgid ""
+"**Minimal config surface** — `VitestConfig` covers the common `test` "
+"fields only; full Vite-level configuration belongs in a JavaScript config"
+" file."
+msgstr ""
+"**最小限の設定範囲** — `VitestConfig` は一般的な `test` フィールドのみをカバーし"
+"ます。フルの Vite レベル設定は JavaScript の設定ファイルで記述します。"
+
+#: ../../dev/architecture.md:34
+msgid ""
+"**Verification-first** — the binding layer is validated by dogfooding it "
+"against Vitest 4; no binding ships without a test that runs it."
+msgstr ""
+"**Verification-first** — バインディング層は Vitest 4 に対するドッグフードによっ"
+"て検証されます。それを実行するテストなしにバインディングを出荷することはありま"
+"せん。"
+
+#: ../../dev/architecture.md:37
+msgid "Output Shape"
+msgstr "出力の形"
+
+#: ../../dev/architecture.md:39
+msgid ""
+"ReScript compiles each `src/*.res` to an in-source ESM `*.res.js` that "
+"re-exports the Vitest symbols under the bound names. Consumers import the"
+" generated `.res.js` (directly or through ReScript's module resolution)."
+msgstr ""
+"ReScript は各 `src/*.res` を、束縛した名前で Vitest のシンボルを再エクスポート"
+"するインソースの ESM `*.res.js` にコンパイルします。利用者は生成された "
+"`.res.js` を（直接、または ReScript のモジュール解決を通じて）インポートします。"
+
+#~ msgid "**Principle 1** — Description"
+#~ msgstr "**原則1** — 説明"
+
+#~ msgid "**Principle 2** — Description"
+#~ msgstr "**原則2** — 説明"
+
+#~ msgid "Diagram Examples"
+#~ msgstr "図の例"
+
+#~ msgid "Mermaid Diagrams"
+#~ msgstr "Mermaid 図"
+
+#~ msgid "Use the `{mermaid}` directive to embed diagrams directly in Markdown:"
+#~ msgstr "`{mermaid}` ディレクティブを使うと、図を Markdown に直接埋め込めます:"
+
+#~ msgid ""
+#~ "Supported diagram types: flowchart, sequence,"
+#~ " class, state, ER, Gantt, pie, and"
+#~ " more. See [Mermaid "
+#~ "documentation](https://mermaid.js.org/) for syntax "
+#~ "reference."
+#~ msgstr ""
+#~ "サポートされる図の種類: フローチャート、シーケンス図、クラス図、状態遷移図、ER "
+#~ "図、ガントチャート、円グラフなど。構文リファレンスは [Mermaid "
+#~ "documentation](https://mermaid.js.org/) を参照してください。"
+
+#~ msgid "Collapsible Sections"
+#~ msgstr "折りたたみセクション"
+
+#~ msgid ""
+#~ "Use `{toggle}` to create collapsible "
+#~ "content (e.g., for detailed explanations "
+#~ "or optional content):"
+#~ msgstr "`{toggle}` を使うと、折りたたみ可能なコンテンツを作成できます（例: 詳細な説明や任意のコンテンツ用）:"
+
+#~ msgid "To show the section expanded by default, add the `:show:` option:"
+#~ msgstr "デフォルトでセクションを展開して表示するには、`:show:` オプションを追加します:"
 

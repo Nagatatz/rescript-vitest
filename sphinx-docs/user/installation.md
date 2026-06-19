@@ -25,8 +25,31 @@ bindings:
 
 ## Verify
 
-<!-- Add verification steps here -->
+After installing, build your ReScript sources and run a test to confirm the
+bindings resolve:
+
+```bash
+pnpm rescript build   # the bindings compile alongside your code
+pnpm vitest run       # runs your compiled *_test.res.js files
+```
+
+A minimal smoke test:
+
+```rescript
+open Vitest
+
+test("vitest bindings resolve", () => {
+  expect(1 + 1)->toBe(2)
+})
+```
+
+If this compiles and passes, the bindings are installed correctly.
 
 ## Troubleshooting
 
-<!-- Add common installation issues and solutions here -->
+| Symptom | Cause / Fix |
+|---------|-------------|
+| ReScript can't find the `Vitest` module | Add `"@nagatatz/rescript-vitest"` to `dependencies` in `rescript.json`, then rebuild. |
+| `Cannot find package 'vitest'` at test time | Install the peer dependencies: `pnpm add -D vitest vite`. |
+| Vitest doesn't pick up your tests | Point your `vitest.config.js` `include` at the compiled output (e.g. `**/*_test.res.js`), not the `.res` sources. |
+

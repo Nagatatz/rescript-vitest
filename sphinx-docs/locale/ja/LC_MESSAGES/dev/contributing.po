@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"POT-Creation-Date: 2026-06-19 22:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -153,6 +153,22 @@ msgid "📝"
 msgstr ""
 
 #: ../../dev/contributing.md
+msgid "🎨"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "UI / style improvement"
+msgstr "UI・スタイルの改善"
+
+#: ../../dev/contributing.md
+msgid "⚡"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Performance improvement"
+msgstr "パフォーマンス改善"
+
+#: ../../dev/contributing.md
 msgid "🔧"
 msgstr ""
 
@@ -168,43 +184,55 @@ msgstr ""
 msgid "Test addition/fix"
 msgstr "テストの追加・修正"
 
-#: ../../dev/contributing.md:44
+#: ../../dev/contributing.md
+msgid "🗑️"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Dead-code removal"
+msgstr "不要コードの削除"
+
+#: ../../dev/contributing.md:47
+msgid "When several apply, pick the highest in the list above (✨ wins)."
+msgstr "複数が該当する場合は、上のリストで最も優先度の高いものを選びます（✨ が最優先）。"
+
+#: ../../dev/contributing.md:49
 msgid "**Format:** `<emoji> <verb> <concise description>`"
 msgstr "**フォーマット:** `<emoji> <verb> <concise description>`"
 
-#: ../../dev/contributing.md:46
+#: ../../dev/contributing.md:51
 msgid "Submitting Changes"
 msgstr "変更の提出"
 
-#: ../../dev/contributing.md:48
+#: ../../dev/contributing.md:53
 msgid "Ensure all tests pass"
 msgstr "すべてのテストがパスすることを確認します"
 
-#: ../../dev/contributing.md:49
+#: ../../dev/contributing.md:54
 msgid "Ensure code style checks pass"
 msgstr "コードスタイルチェックがパスすることを確認します"
 
-#: ../../dev/contributing.md:50
+#: ../../dev/contributing.md:55
 msgid "Build the project"
 msgstr "プロジェクトをビルドします"
 
-#: ../../dev/contributing.md:51
+#: ../../dev/contributing.md:56
 msgid "Push your branch and create a Pull Request"
 msgstr "ブランチを push してプルリクエストを作成します"
 
-#: ../../dev/contributing.md:53
+#: ../../dev/contributing.md:58
 msgid "PR Guidelines"
 msgstr "PR ガイドライン"
 
-#: ../../dev/contributing.md:55
+#: ../../dev/contributing.md:60
 msgid "Keep PRs focused on a single feature or fix"
 msgstr "PR は単一の機能または修正に集中させます"
 
-#: ../../dev/contributing.md:56
+#: ../../dev/contributing.md:61
 msgid "Write a clear description of what changed and why"
 msgstr "何をなぜ変更したのかを明確に説明します"
 
-#: ../../dev/contributing.md:57
+#: ../../dev/contributing.md:62
 msgid "Reference related issues if applicable"
 msgstr "該当する場合は関連する Issue を参照します"
 

@@ -38,8 +38,13 @@ Use emoji prefixes for commit messages:
 | 🐛 | Bug fix |
 | ♻️ | Refactoring |
 | 📝 | Documentation |
+| 🎨 | UI / style improvement |
+| ⚡ | Performance improvement |
 | 🔧 | Configuration change |
 | ✅ | Test addition/fix |
+| 🗑️ | Dead-code removal |
+
+When several apply, pick the highest in the list above (✨ wins).
 
 **Format:** `<emoji> <verb> <concise description>`
 

@@ -42,7 +42,7 @@
 | `CLAUDE.md` | アーキテクチャセクション | 必須 |
 | `README.md` | Features セクション（該当カテゴリ） | 必須 |
 | `sphinx-docs/` | 該当する機能ページ | 必須（sphinx-docs が存在する場合） |
-| `docs/product-requirements.md` | 実装済み機能セクション（ロードマップから移動） | 必須（ロードマップ記載機能の場合） |
+| `sphinx-docs/user/changelog.md` | Unreleased セクション | 必須（公開 API の追加・変更時） |
 
 ### 更新タイミング
 
@@ -52,11 +52,8 @@
 
 ## docs/ ファイルの役割
 
+現在 `docs/` に置く永続的設計ドキュメントは以下のみ。プロダクトが小規模な薄い FFI バインディング層であるため、要求定義書・機能設計書・技術仕様書等は `repository-structure.md` に集約している（必要が生じた時点で追加する）。
+
 | ファイル | 役割 |
 |---------|------|
-| `product-requirements.md` | プロダクト要求定義書 |
-| `functional-design.md` | 機能設計書 |
-| `architecture.md` | 技術仕様書 |
-| `repository-structure.md` | リポジトリ構造定義書 |
-| `development-guidelines.md` | 開発ガイドライン |
-| `glossary.md` | ユビキタス言語定義 |
+| `repository-structure.md` | リポジトリ構造定義書（責務・構成・ビルドフロー） |

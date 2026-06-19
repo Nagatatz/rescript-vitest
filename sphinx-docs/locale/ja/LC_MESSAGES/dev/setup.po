@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"POT-Creation-Date: 2026-06-19 22:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -25,8 +25,20 @@ msgid "Development Setup"
 msgstr "開発環境のセットアップ"
 
 #: ../../dev/setup.md:3
-msgid "Prerequisites"
-msgstr "前提条件"
+msgid ""
+"This page covers two separate setups: building the **ReScript bindings** "
+"(the library itself) and building this **documentation site**."
+msgstr ""
+"このページでは、**ReScript バインディング**（ライブラリ本体）のビルドと、この"
+"**ドキュメントサイト**のビルドという 2 つの独立したセットアップを扱います。"
+
+#: ../../dev/setup.md:6
+msgid "Building the Library"
+msgstr "ライブラリのビルド"
+
+#: ../../dev/setup.md:8
+msgid "The bindings need only Node.js and pnpm — no Python toolchain."
+msgstr "バインディングには Node.js と pnpm のみが必要で、Python ツールチェインは不要です。"
 
 #: ../../dev/setup.md
 msgid "Requirement"
@@ -39,6 +51,50 @@ msgstr "バージョン"
 #: ../../dev/setup.md
 msgid "Note"
 msgstr "備考"
+
+#: ../../dev/setup.md
+msgid "Node.js"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "24+"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "ESM runtime for Vitest"
+msgstr "Vitest 用の ESM ランタイム"
+
+#: ../../dev/setup.md
+msgid "pnpm"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "latest"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Package manager"
+msgstr "パッケージマネージャー"
+
+#: ../../dev/setup.md:23
+msgid "See [Building](building.md) for the full command reference."
+msgstr "コマンドの完全なリファレンスは [ビルド](building.md) を参照してください。"
+
+#: ../../dev/setup.md:25
+msgid "Building the Documentation Site"
+msgstr "ドキュメントサイトのビルド"
+
+#: ../../dev/setup.md:27
+msgid ""
+"The remaining steps below are only needed to work on this Sphinx "
+"documentation site, not the library."
+msgstr ""
+"以下の残りの手順は、ライブラリではなく、この Sphinx ドキュメントサイトの作業に"
+"のみ必要です。"
+
+#: ../../dev/setup.md:30
+msgid "Prerequisites"
+msgstr "前提条件"
 
 #: ../../dev/setup.md
 msgid "[uv](https://docs.astral.sh/uv/)"
@@ -65,30 +121,22 @@ msgid "uv が自動インストール"
 msgstr "uv が自動インストール"
 
 #: ../../dev/setup.md
-msgid "Node.js"
-msgstr ""
-
-#: ../../dev/setup.md
-msgid "24+"
-msgstr ""
-
-#: ../../dev/setup.md
 msgid "Pagefind 検索インデックス生成に使用"
 msgstr "Pagefind 検索インデックス生成に使用"
 
-#: ../../dev/setup.md:11
+#: ../../dev/setup.md:38
 msgid "uv のインストール"
 msgstr "uv のインストール"
 
-#: ../../dev/setup.md:24
+#: ../../dev/setup.md:51
 msgid "Clone the Repository"
 msgstr "リポジトリのクローン"
 
-#: ../../dev/setup.md:31
+#: ../../dev/setup.md:58
 msgid "Install Dependencies"
 msgstr "依存関係のインストール"
 
-#: ../../dev/setup.md:38
+#: ../../dev/setup.md:65
 msgid "Verify the Setup"
 msgstr "セットアップの確認"
 

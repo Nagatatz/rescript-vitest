@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 15:39+0900\n"
+"POT-Creation-Date: 2026-06-19 22:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -74,9 +74,65 @@ msgstr "ReScript がバインディングをコンパイルできるよう、`re
 msgid "Verify"
 msgstr "検証"
 
-#: ../../user/installation.md:30
+#: ../../user/installation.md:28
+msgid ""
+"After installing, build your ReScript sources and run a test to confirm "
+"the bindings resolve:"
+msgstr ""
+"インストール後、ReScript ソースをビルドしてテストを実行し、バインディングが解決"
+"されることを確認します:"
+
+#: ../../user/installation.md:36
+msgid "A minimal smoke test:"
+msgstr "最小限のスモークテスト:"
+
+#: ../../user/installation.md:46
+msgid "If this compiles and passes, the bindings are installed correctly."
+msgstr "これがコンパイルされてパスすれば、バインディングは正しくインストールされています。"
+
+#: ../../user/installation.md:48
 msgid "Troubleshooting"
 msgstr "トラブルシューティング"
+
+#: ../../user/installation.md
+msgid "Symptom"
+msgstr "症状"
+
+#: ../../user/installation.md
+msgid "Cause / Fix"
+msgstr "原因・対処"
+
+#: ../../user/installation.md
+msgid "ReScript can't find the `Vitest` module"
+msgstr "ReScript が `Vitest` モジュールを見つけられない"
+
+#: ../../user/installation.md
+msgid ""
+"Add `\"@nagatatz/rescript-vitest\"` to `dependencies` in `rescript.json`,"
+" then rebuild."
+msgstr ""
+"`rescript.json` の `dependencies` に `\"@nagatatz/rescript-vitest\"` を追加し、"
+"再ビルドします。"
+
+#: ../../user/installation.md
+msgid "`Cannot find package 'vitest'` at test time"
+msgstr "テスト実行時に `Cannot find package 'vitest'` が出る"
+
+#: ../../user/installation.md
+msgid "Install the peer dependencies: `pnpm add -D vitest vite`."
+msgstr "peer 依存をインストールします: `pnpm add -D vitest vite`。"
+
+#: ../../user/installation.md
+msgid "Vitest doesn't pick up your tests"
+msgstr "Vitest がテストを認識しない"
+
+#: ../../user/installation.md
+msgid ""
+"Point your `vitest.config.js` `include` at the compiled output (e.g. "
+"`**/*_test.res.js`), not the `.res` sources."
+msgstr ""
+"`vitest.config.js` の `include` を、`.res` ソースではなくコンパイル済み出力（例:"
+" `**/*_test.res.js`）に向けます。"
 
 #~ msgid "**Requirement 1** — Description"
 #~ msgstr ""
