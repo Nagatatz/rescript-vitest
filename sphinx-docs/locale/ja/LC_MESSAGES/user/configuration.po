@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 18:45+0900\n"
+"POT-Creation-Date: 2026-06-19 19:47+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -30,8 +30,8 @@ msgid ""
 "its own. Configuration happens in two places: the ReScript compiler and "
 "Vitest."
 msgstr ""
-"`@nagatatz/rescript-vitest` は薄いバインディング層で、独自の設定はありません。"
-"設定は ReScript コンパイラと Vitest の 2 か所で行います。"
+"`@nagatatz/rescript-vitest` は薄いバインディング層で、独自の設定はありません。設定は ReScript コンパイラと "
+"Vitest の 2 か所で行います。"
 
 #: ../../user/configuration.md:6
 msgid "ReScript (`rescript.json`)"
@@ -42,8 +42,8 @@ msgid ""
 "Compile in source to ESM so Vitest can run the output directly, and list "
 "the package as a dependency so the bindings are compiled:"
 msgstr ""
-"Vitest が出力を直接実行できるよう in-source で ESM にコンパイルし、"
-"バインディングがコンパイルされるようパッケージを依存に追加します:"
+"Vitest が出力を直接実行できるよう in-source で ESM "
+"にコンパイルし、バインディングがコンパイルされるようパッケージを依存に追加します:"
 
 #: ../../user/configuration.md
 msgid "Key"
@@ -138,17 +138,55 @@ msgid "Measure coverage on compiled sources"
 msgstr "コンパイル済みソースでカバレッジを計測する"
 
 #: ../../user/configuration.md:55
+msgid "Authoring the config in ReScript (`VitestConfig`)"
+msgstr "ReScript で設定を書く（`VitestConfig`）"
+
+#: ../../user/configuration.md:57
+msgid ""
+"The Vitest config above can also be written in ReScript with the "
+"`VitestConfig` bindings (`vitest/config`). The scope is intentionally "
+"minimal: `defineConfig`, `defineConfigFn` (function form), `mergeConfig`,"
+" `defineProject` and the common `test` fields are typed, while Vite-level"
+" options (`plugins`, `resolve`, …) and the long tail of `test` options "
+"are left to a plain JS config file. Config objects are write-once data "
+"with a large, churning surface, so full coverage is not worth the "
+"maintenance cost."
+msgstr ""
+"上記の Vitest 設定は、`VitestConfig` バインディング（`vitest/config`）を使って ReScript "
+"で書くこともできます。範囲は意図的に最小限で、`defineConfig`・`defineConfigFn`（関数フォーム）・"
+"`mergeConfig`・`defineProject` と `test` の主要フィールドを型付けし、Vite "
+"レベルのオプション（`plugins`・`resolve` など）や `test` の末端オプションは素の JS "
+"設定ファイルに委ねます。設定オブジェクトは一度書いたら放置する write-once "
+"のデータで、面が広くバージョン毎に変化するため、全網羅は保守コストに見合いません。"
+
+#: ../../user/configuration.md:75
+msgid ""
+"ReScript does not emit `export default`, so re-export the value through a"
+" thin JS shim that Vitest can load:"
+msgstr ""
+"ReScript は `export default` を出力しないため、Vitest が読み込める薄い JS "
+"シムから値を再エクスポートします:"
+
+#: ../../user/configuration.md:85
+msgid ""
+"`include` is a ReScript keyword, so the field is named `include_` and "
+"maps to JS `\"include\"` at runtime."
+msgstr ""
+"`include` は ReScript の予約語のため、フィールド名は `include_` "
+"とし、実行時に JS の `\"include\"` へマッピングされます。"
+
+#: ../../user/configuration.md:89
 msgid "Fake timers"
 msgstr "フェイクタイマー"
 
-#: ../../user/configuration.md:57
+#: ../../user/configuration.md:91
 msgid ""
 "Fake-timer behaviour (used by `Vi.useFakeTimers`) is Vitest's own "
 "configuration; see the [Vitest fake timers "
 "guide](https://vitest.dev/guide/mocking.html#timers)."
 msgstr ""
-"フェイクタイマーの挙動（`Vi.useFakeTimers` が利用）は Vitest 自体の設定です。"
-"[Vitest フェイクタイマーガイド](https://vitest.dev/guide/mocking.html#timers) を参照してください。"
+"フェイクタイマーの挙動（`Vi.useFakeTimers` が利用）は Vitest 自体の設定です。[Vitest "
+"フェイクタイマーガイド](https://vitest.dev/guide/mocking.html#timers) を参照してください。"
 
 #~ msgid "Settings"
 #~ msgstr "設定項目"

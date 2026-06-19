@@ -52,6 +52,40 @@ export default defineConfig({
 | `test.include` | `__tests__/**/*_test.res.js` | Run only compiled ReScript tests |
 | `coverage.include` | `src/**/*.res.js` | Measure coverage on compiled sources |
 
+## Authoring the config in ReScript (`VitestConfig`)
+
+The Vitest config above can also be written in ReScript with the `VitestConfig`
+bindings (`vitest/config`). The scope is intentionally minimal: `defineConfig`,
+`defineConfigFn` (function form), `mergeConfig`, `defineProject` and the common
+`test` fields are typed, while Vite-level options (`plugins`, `resolve`, …) and
+the long tail of `test` options are left to a plain JS config file. Config
+objects are write-once data with a large, churning surface, so full coverage is
+not worth the maintenance cost.
+
+```rescript
+// MyConfig.res
+let config = VitestConfig.defineConfig({
+  test: {
+    include_: ["__tests__/**/*_test.res.js"],
+    coverage: {provider: "v8", include_: ["src/**/*.res.js"]},
+  },
+})
+```
+
+ReScript does not emit `export default`, so re-export the value through a thin JS
+shim that Vitest can load:
+
+```js
+// vitest.config.js
+import { config } from "./MyConfig.res.js"
+export default config
+```
+
+```{note}
+`include` is a ReScript keyword, so the field is named `include_` and maps to JS
+`"include"` at runtime.
+```
+
 ## Fake timers
 
 Fake-timer behaviour (used by `Vi.useFakeTimers`) is Vitest's own configuration;
