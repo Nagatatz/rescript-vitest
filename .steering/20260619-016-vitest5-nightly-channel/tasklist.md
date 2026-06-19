@@ -26,4 +26,4 @@
 ## Phase 6: 仕上げ
 - [x] `pnpm test:coverage` 確認（coverage-v8 5.x 整合）
 - [x] `vitest5` ブランチを remote へ push（origin/vitest5）
-- [ ] （任意・ユーザー判断待ち）`v0.2.0-beta.5` タグ push → release.yml が `--tag next` で npm 公開
+- [x] `v0.2.0-beta.5` タグ push → release.yml 成功 → npm 公開済み（dist-tag: latest=0.1.0 / next=0.2.0-beta.5）
