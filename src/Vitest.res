@@ -204,6 +204,20 @@ external itEach: array<'a> => (string, 'a => unit) => unit = "each"
 @module("vitest") external afterEach: (unit => unit) => unit = "afterEach"
 @module("vitest") external afterEachAsync: (unit => promise<unit>) => unit = "afterEach"
 
+// `aroundAll` / `aroundEach` (Vitest 4) wrap a suite / test: the callback
+// receives a `runSuite` / `runTest` thunk it must `await` to execute the wrapped
+// body, so setup before the call and teardown after it bracket the run. The
+// listener also receives a context and the suite, but they are omitted here —
+// JavaScript ignores the extra arguments — until a concrete need arises.
+
+/** Wrap the whole suite: `await runSuite()` runs it, code around it brackets it. */
+@module("vitest")
+external aroundAll: ((unit => promise<unit>) => promise<unit>) => unit = "aroundAll"
+
+/** Wrap each test in the suite: `await runTest()` runs it, code around it brackets it. */
+@module("vitest")
+external aroundEach: ((unit => promise<unit>) => promise<unit>) => unit = "aroundEach"
+
 // Per-test hooks, registered from inside a test body (not at suite level).
 
 /**

@@ -20,15 +20,15 @@
 
 ## フェーズ3: 実装 — Vitest 4 API 補完（コミット②）
 
-- [ ] T3-1: `src/Vitest.res` に `aroundAll` / `aroundEach` を追加（ドキュメントコメント付き）
-- [ ] T3-2: `src/Vi.res` に `fakeTimerOptions` 型 + `useFakeTimersWith` を追加
-- [ ] T3-3: `src/Vi.res` に `waitForOptions` 型 + `waitForWith` / `waitUntilWith` を追加
-- [ ] T3-4: 新 API のドッグフードテストを追加（aroundAll/aroundEach/useFakeTimersWith/waitForWith/waitUntilWith）
-- [ ] T3-5: `pnpm build` + `pnpm test` 確認しコミット②
+- [x] T3-1: `src/Vitest.res` に `aroundAll` / `aroundEach` を追加（ドキュメントコメント付き）
+- [x] T3-2: `src/Vi.res` に `fakeTimerOptions` 型 + `useFakeTimersWith` を追加
+- [x] T3-3: `src/Vi.res` に `waitForOptions` 型 + `waitForWith` / `waitUntilWith` を追加
+- [x] T3-4: 新 API のドッグフードテストを追加（aroundAll/aroundEach は `Lifecycle_test.res` 新規、useFakeTimersWith/waitForWith/waitUntilWith は `Vi_test.res`）
+- [x] T3-5: `pnpm build` + `pnpm test`（128 passed）確認しコミット②（T4-1 のライフサイクルフックテストも同一新規ファイルに含めて同時コミット）
 
 ## フェーズ4: 実装 — ドッグフードテスト拡充（コミット③）
 
-- [ ] T4-1: ライフサイクルフックのテスト追加（`beforeAll`/`beforeEach`/`afterAllAsync`/`beforeEachAsync` 等の発火順序検証）
+- [x] T4-1: ライフサイクルフックのテスト追加（`Lifecycle_test.res` に beforeAll/beforeEach/afterEach の sync・async と発火回数検証）※ commit② に同梱
 - [ ] T4-2: スナップショットマッチャーのテスト追加（`toMatchSnapshot`/`toMatchInlineSnapshot`/`toThrowErrorMatchingInlineSnapshot`）
 - [ ] T4-3: 数値・戻り値マッチャーの抜け追加（`toBeLessThanOrEqual`/`toHaveReturned`）
 - [ ] T4-4: モック生成・解決系の抜け追加（`fn`/`fnWith`/`mockRejectedValue`）

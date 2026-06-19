@@ -268,6 +268,27 @@ describe("Vi — waiting", () => {
     })
     expect(n.contents)->toBe(3)
   })
+
+  testAsync("waitForWith honors the interval/timeout options", async () => {
+    let n = ref(0)
+    let result = await Vi.waitForWith(() => {
+      n := n.contents + 1
+      if n.contents < 2 {
+        throw(NotReady)
+      }
+      n.contents
+    }, {interval: 10, timeout: 500})
+    expect(result)->toBe(2)
+  })
+
+  testAsync("waitUntilWith honors the interval/timeout options", async () => {
+    let n = ref(0)
+    let _ = await Vi.waitUntilWith(() => {
+      n := n.contents + 1
+      n.contents >= 2
+    }, {interval: 10, timeout: 500})
+    expect(n.contents)->toBe(2)
+  })
 })
 
 describe("Vi — async timers & inspection", () => {
@@ -325,6 +346,13 @@ describe("Vi — async timers & inspection", () => {
     Vi.setSystemTimeMs(1000.0)
     expect((Vi.getMockedSystemTime())->Option.isSome)->toBeTruthy
     expect(Vi.getRealSystemTime() > 0.0)->toBeTruthy
+  })
+
+  test("useFakeTimersWith installs timers and pins the clock via options", () => {
+    Vi.useFakeTimersWith({now: 1000.0, shouldAdvanceTime: false})
+    expect(Vi.isFakeTimers())->toBeTruthy
+    // `now` pins the clock, so the mocked system time is set.
+    expect((Vi.getMockedSystemTime())->Option.isSome)->toBeTruthy
   })
 })
 

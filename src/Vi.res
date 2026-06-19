@@ -217,7 +217,25 @@ type disposable
 // Fake timers
 // ============================================================================
 
+/**
+ * Options for `useFakeTimersWith` (`FakeTimerInstallOpts`). All fields are
+ * optional; unset ones fall back to Vitest's defaults.
+ */
+type fakeTimerOptions = {
+  now?: float, // start epoch in ms (default 0)
+  toFake?: array<string>, // names of the timer APIs to fake (e.g. ["setTimeout"])
+  loopLimit?: int, // max timers run by `runAllTimers` (default 1000)
+  shouldAdvanceTime?: bool, // auto-advance mocked time with real time (default false)
+  advanceTimeDelta?: int, // step (ms) used when `shouldAdvanceTime` is true (default 20)
+  shouldClearNativeTimers?: bool, // also clear pre-existing native timers (default false)
+  ignoreMissingTimers?: bool, // don't throw when a faked timer is absent (default false)
+}
+
 @module("vitest") @scope("vi") external useFakeTimers: unit => unit = "useFakeTimers"
+
+/** `vi.useFakeTimers(options)` — install fake timers with explicit options. */
+@module("vitest") @scope("vi") external useFakeTimersWith: fakeTimerOptions => unit = "useFakeTimers"
+
 @module("vitest") @scope("vi") external useRealTimers: unit => unit = "useRealTimers"
 @module("vitest") @scope("vi") external runAllTimers: unit => unit = "runAllTimers"
 @module("vitest") @scope("vi") external runAllTicks: unit => unit = "runAllTicks"
@@ -272,8 +290,25 @@ external setTimerTickModeWithInterval: (string, int) => unit = "setTimerTickMode
 // Waiting
 // ============================================================================
 
+/**
+ * Options for `waitForWith` / `waitUntilWith`. `interval` is the delay between
+ * checks (default 50ms); `timeout` is when to give up (default 1000ms).
+ */
+type waitForOptions = {
+  interval?: int,
+  timeout?: int,
+}
+
 /** Retry `callback` until it returns without throwing, then resolve its result. */
 @module("vitest") @scope("vi") external waitFor: (unit => 'a) => promise<'a> = "waitFor"
 
+/** `vi.waitFor(callback, options)` — `waitFor` with an explicit interval/timeout. */
+@module("vitest") @scope("vi")
+external waitForWith: (unit => 'a, waitForOptions) => promise<'a> = "waitFor"
+
 /** Retry `callback` until it returns a truthy value, then resolve that value. */
 @module("vitest") @scope("vi") external waitUntil: (unit => 'a) => promise<'a> = "waitUntil"
+
+/** `vi.waitUntil(callback, options)` — `waitUntil` with an explicit interval/timeout. */
+@module("vitest") @scope("vi")
+external waitUntilWith: (unit => 'a, waitForOptions) => promise<'a> = "waitUntil"
