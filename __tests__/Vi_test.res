@@ -52,6 +52,16 @@ describe("Vi — mock functions", () => {
     m->Vi.MockFn.mockImplementation(x => x * 2)->ignore
     expect((m->Vi.MockFn.asFn)(21))->toBe(42)
   })
+
+  test("calls and results record every invocation", () => {
+    let m = Vi.fn1()
+    m->Vi.MockFn.mockImplementation(x => x + 1)->ignore
+    let f = m->Vi.MockFn.asFn
+    f(1)->ignore
+    f(2)->ignore
+    expect((m->Vi.MockFn.calls)->Array.length)->toBe(2)
+    expect((m->Vi.MockFn.results)->Array.length)->toBe(2)
+  })
 })
 
 describe("Vi — spies", () => {
@@ -80,6 +90,24 @@ describe("Vi — mock lifecycle", () => {
     let m = Vi.fn0()
     m->Vi.MockFn.mockRejectedValueOnce(JsError.make("boom"))->ignore
     await expect((m->Vi.MockFn.asFn)())->rejects->Async.toThrowWithMessage("boom")
+  })
+
+  test("mockReturnValueOnce applies only to the next call", () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockReturnValue(0)->ignore
+    m->Vi.MockFn.mockReturnValueOnce(7)->ignore
+    let f = m->Vi.MockFn.asFn
+    expect(f())->toBe(7)
+    expect(f())->toBe(0)
+  })
+
+  test("mockImplementationOnce overrides only the next call", () => {
+    let m = Vi.fn1()
+    m->Vi.MockFn.mockImplementation(x => x)->ignore
+    m->Vi.MockFn.mockImplementationOnce(x => x * 10)->ignore
+    let f = m->Vi.MockFn.asFn
+    expect(f(2))->toBe(20)
+    expect(f(2))->toBe(2)
   })
 
   test("mockReturnThis is chainable and callable", () => {
@@ -112,6 +140,33 @@ describe("Vi — mock lifecycle", () => {
     })
     ->ignore
     expect(f("y"))->toBe("base")
+  })
+})
+
+describe("Vi — reset semantics", () => {
+  test("mockClear resets recorded calls but keeps the implementation", () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockReturnValue(5)->ignore
+    (m->Vi.MockFn.asFn)()->ignore
+    m->Vi.MockFn.mockClear->ignore
+    m->Vi.MockFn.asAssertion->not_->toHaveBeenCalled
+    // Implementation survives mockClear.
+    expect((m->Vi.MockFn.asFn)())->toBe(5)
+  })
+
+  test("mockReset clears the implementation too", () => {
+    let m = Vi.fn1()
+    m->Vi.MockFn.mockImplementation(x => x + 1)->ignore
+    m->Vi.MockFn.mockReset->ignore
+    expect((m->Vi.MockFn.getMockImplementation)->Option.isNone)->toBeTruthy
+  })
+
+  test("resetAllMocks and restoreAllMocks are callable", () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockReturnValue(1)->ignore
+    Vi.resetAllMocks()
+    Vi.restoreAllMocks()
+    expect(true)->toBeTruthy
   })
 })
 
@@ -154,10 +209,12 @@ describe("Vi — fake timers", () => {
 let finishedRan = ref(false)
 
 describe("Vitest — per-test hooks", () => {
+  // Regression: the hook callbacks must accept the per-test `testContext`
+  // argument (binding signature `testContext => unit`), not `unit => unit`.
   test("registers onTestFinished and onTestFailed", () => {
-    onTestFinished(() => finishedRan := true)
+    onTestFinished(_ctx => finishedRan := true)
     // Smoke check: registering onTestFailed in a passing test must not throw.
-    onTestFailed(() => ())
+    onTestFailed(_ctx => ())
     expect(true)->toBeTruthy
   })
 
@@ -321,6 +378,14 @@ describe("Vi — module mocking completion", () => {
     expect(Vi.isMockFunction(mocked["compute"]))->toBeTruthy
   })
 
+  test("doMock returns a disposable handle", () => {
+    // Regression: vi.doMock returns a Disposable (typed as Vi.disposable),
+    // not unit. Annotating the binding result keeps the signature honest.
+    let _handle: Vi.disposable = Vi.doMock("node:path", () => {"sep": "/"})
+    Vi.doUnmock("node:path")
+    expect(true)->toBeTruthy
+  })
+
   test("doUnmock is callable", () => {
     Vi.doUnmock("node:path")
     expect(true)->toBeTruthy
@@ -338,6 +403,13 @@ describe("Vi — timer tick mode", () => {
   test("setTimerTickMode is callable under fake timers", () => {
     Vi.useFakeTimers()
     Vi.setTimerTickMode("manual")
+    expect(Vi.isFakeTimers())->toBeTruthy
+  })
+
+  test("setTimerTickModeWithInterval accepts an interval argument", () => {
+    // Regression: the "interval" mode takes a second `interval` (ms) argument.
+    Vi.useFakeTimers()
+    Vi.setTimerTickModeWithInterval("interval", 50)
     expect(Vi.isFakeTimers())->toBeTruthy
   })
 })

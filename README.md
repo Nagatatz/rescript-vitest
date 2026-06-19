@@ -152,7 +152,7 @@ bindings. Use ReScript helper functions instead of fixtures, and a dedicated
 - **Global state:** `clearAllMocks`, `resetAllMocks`, `restoreAllMocks`
 - **Timers:** `useFakeTimers`, `useRealTimers`, `runAllTimers`, `runOnlyPendingTimers`, `advanceTimersByTime`, `advanceTimersToNextTimer`, `setSystemTime`, `clearAllTimers`
 - **Async timers:** `advanceTimersByTimeAsync`, `runAllTimersAsync`, `runOnlyPendingTimersAsync`, `advanceTimersToNextTimerAsync`, `advanceTimersToNextFrame`
-- **Timer inspection:** `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`, `getRealSystemTime`, `setTimerTickMode`
+- **Timer inspection:** `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`, `getRealSystemTime`, `setTimerTickMode` (+ `…WithInterval`)
 - **Waiting:** `waitFor`, `waitUntil`
 
 ### `VitestConfig` (`vitest/config`)

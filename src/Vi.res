@@ -153,8 +153,14 @@ let spyOnSetter = (obj, key) => spyOnAccessor(obj, key, "set")
 /** `vi.unmock("module")` — undo a `mock` for the module. */
 @module("vitest") @scope("vi") external unmock: string => unit = "unmock"
 
-/** `vi.doMock("module", factory)` — register a mock without hoisting. */
-@module("vitest") @scope("vi") external doMock: (string, unit => 'a) => unit = "doMock"
+/**
+ * A disposable handle (returned by `doMock`). Calling `dispose` undoes the
+ * mock; it also works with a `using` declaration. Opaque for now.
+ */
+type disposable
+
+/** `vi.doMock("module", factory)` — register a mock without hoisting. Returns a disposable that undoes it. */
+@module("vitest") @scope("vi") external doMock: (string, unit => 'a) => disposable = "doMock"
 
 /** `vi.doUnmock("module")` — undo a `doMock` for the module. */
 @module("vitest") @scope("vi") external doUnmock: string => unit = "doUnmock"
@@ -253,6 +259,10 @@ external getMockedSystemTime: unit => option<Date.t> = "getMockedSystemTime"
 
 /** Set how fake timers advance: `"manual"`, `"nextTimerAsync"`, or `"interval"`. */
 @module("vitest") @scope("vi") external setTimerTickMode: string => unit = "setTimerTickMode"
+
+/** `setTimerTickMode("interval", interval)` — advance on a fixed interval (ms). */
+@module("vitest") @scope("vi")
+external setTimerTickModeWithInterval: (string, int) => unit = "setTimerTickMode"
 
 // ============================================================================
 // Waiting

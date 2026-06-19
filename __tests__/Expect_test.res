@@ -26,6 +26,12 @@ describe("Expect — equality", () => {
     expect((1, "x"))->toEqual((1, "x"))
   })
 
+  test("toStrictEqual compares structurally and strictly", () => {
+    expect([1, 2, 3])->toStrictEqual([1, 2, 3])
+    expect({"a": 1})->toStrictEqual({"a": 1})
+    expect({"a": 1})->not_->toStrictEqual({"a": 2})
+  })
+
   test("not_ negates", () => {
     expect(1)->not_->toBe(2)
     expect([1])->not_->toEqual([2])
@@ -37,6 +43,12 @@ describe("Expect — truthiness & numbers", () => {
     expect(true)->toBeTruthy
     expect(0)->toBeFalsy
     expect(Null.null)->toBeNull
+  })
+
+  test("defined / undefined / NaN", () => {
+    expect(Some(1))->toBeDefined
+    expect(None)->toBeUndefined
+    expect(0.0 /. 0.0)->toBeNaN
   })
 
   test("comparisons", () => {
@@ -95,6 +107,10 @@ describe("Expect — exceptions", () => {
   test("toThrow with a message", () => {
     expect(() => JsError.throw(JsError.make("kaboom")))->toThrowWithMessage("kaboom")
   })
+
+  test("toThrow matching a regular expression", () => {
+    expect(() => JsError.throw(JsError.make("code 42")))->toThrowRegExp(%re("/code [0-9]+/"))
+  })
 })
 
 describe("Expect — mock call-argument matchers", () => {
@@ -118,6 +134,19 @@ describe("Expect — mock call-argument matchers", () => {
     f("a")->ignore
     f("b")->ignore
     m->Vi.MockFn.asAssertion->toHaveBeenLastCalledWith("b")
+  })
+
+  test("toHaveBeenLastCalledWith2 inspects the last two-argument call", () => {
+    let m = Vi.fn2()
+    let f = m->Vi.MockFn.asFn
+    f(1, 2)->ignore
+    f(3, 4)->ignore
+    m->Vi.MockFn.asAssertion->toHaveBeenLastCalledWith2(3, 4)
+  })
+
+  test("not_ negates a mock matcher (never called)", () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.asAssertion->not_->toHaveBeenCalled
   })
 
   test("toHaveBeenNthCalledWith inspects a call by index", () => {
@@ -180,8 +209,24 @@ describe("Expect — async", () => {
     await expect(Promise.resolve(42))->resolves->Async.toBe(42)
   })
 
+  testAsync("resolves with structural equality", async () => {
+    await expect(Promise.resolve([1, 2, 3]))->resolves->Async.toEqual([1, 2, 3])
+  })
+
+  testAsync("resolves with strict structural equality", async () => {
+    await expect(Promise.resolve({"a": 1}))->resolves->Async.toStrictEqual({"a": 1})
+  })
+
   testAsync("rejects", async () => {
     await expect(Promise.reject(Boom))->rejects->Async.toThrow
+  })
+})
+
+// Regression: `describeAsync` takes an async body, unlike the other `describe`
+// variants — exercise it so the distinct signature stays covered.
+describeAsync("Expect — describeAsync suite", async () => {
+  test("runs a test registered inside an async describe", () => {
+    expect(1 + 1)->toBe(2)
   })
 })
 

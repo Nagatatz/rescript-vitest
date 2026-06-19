@@ -206,15 +206,23 @@ external itEach: array<'a> => (string, 'a => unit) => unit = "each"
 
 // Per-test hooks, registered from inside a test body (not at suite level).
 
+/**
+ * The per-test context passed to `onTestFailed` / `onTestFinished` callbacks
+ * (holds the task, its result, etc.). Opaque for now — accessors are added
+ * when a concrete need arises.
+ */
+type testContext
+
 /** Run the callback if the current test fails. */
-@module("vitest") external onTestFailed: (unit => unit) => unit = "onTestFailed"
+@module("vitest") external onTestFailed: (testContext => unit) => unit = "onTestFailed"
 /** Async variant of `onTestFailed`. */
-@module("vitest") external onTestFailedAsync: (unit => promise<unit>) => unit = "onTestFailed"
+@module("vitest") external onTestFailedAsync: (testContext => promise<unit>) => unit = "onTestFailed"
 
 /** Run the callback when the current test finishes, whether it passed or failed. */
-@module("vitest") external onTestFinished: (unit => unit) => unit = "onTestFinished"
+@module("vitest") external onTestFinished: (testContext => unit) => unit = "onTestFinished"
 /** Async variant of `onTestFinished`. */
-@module("vitest") external onTestFinishedAsync: (unit => promise<unit>) => unit = "onTestFinished"
+@module("vitest")
+external onTestFinishedAsync: (testContext => promise<unit>) => unit = "onTestFinished"
 
 // ============================================================================
 // expect — assertion wrappers
