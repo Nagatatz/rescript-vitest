@@ -1,5 +1,8 @@
 # @nagatatz/rescript-vitest
 
+[![CI](https://github.com/Nagatatz/rescript-vitest/actions/workflows/ci.yml/badge.svg)](https://github.com/Nagatatz/rescript-vitest/actions/workflows/ci.yml)
+[![Sponsor](https://img.shields.io/github/sponsors/Nagatatz?logo=githubsponsors&label=Sponsor)](https://github.com/sponsors/Nagatatz)
+
 Type-safe [ReScript](https://rescript-lang.org/) bindings for [Vitest](https://vitest.dev/).
 
 The bindings are *faithful*: matchers are side-effecting and throw on failure,
