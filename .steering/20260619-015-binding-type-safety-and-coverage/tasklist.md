@@ -8,15 +8,15 @@
 
 ## フェーズ1: 準備
 
-- [ ] T1-1: `EnterWorktree` で worktree (`binding-type-safety-and-coverage`) を作成し隔離環境を用意する
+- [x] T1-1: worktree (`binding-type-safety-and-coverage`) を HEAD から作成し隔離環境を用意した（settings.local.json 経由の baseRef 設定が auto モードで拒否されたため `git worktree add ... HEAD` + `EnterWorktree(path)` で head ベースを実現）
 
 ## フェーズ2: 実装 — 型安全化（コミット①）
 
-- [ ] T2-1: `src/Vitest.res` `toBeTypeOf` を poly variant 化
-- [ ] T2-2: `src/Vi.res` `spyOnAccessor` を poly variant 化し `spyOnGetter`/`spyOnSetter` を `#get`/`#set` に更新
-- [ ] T2-3: `src/VitestConfig.res` `coverageConfig.provider` を poly variant 化
-- [ ] T2-4: 既存ドッグフードテストの該当呼び出し（typeof/accessor/provider）を新型に更新
-- [ ] T2-5: `pnpm build` + `pnpm test` で型安全化分が通ることを確認しコミット①
+- [x] T2-1: `src/Vitest.res` `toBeTypeOf` を poly variant 化（`typeOf` 型を追加）
+- [x] T2-2: `src/Vi.res` `spyOnAccessor` を poly variant 化し `spyOnGetter`/`spyOnSetter` を `#get`/`#set` に更新
+- [x] T2-3: `src/VitestConfig.res` `coverageConfig.provider` を poly variant 化（`[#istanbul | #v8 | #custom]`）
+- [x] T2-4: 既存ドッグフードテストの該当呼び出し（typeof/provider）を新型に更新（直接 `spyOnAccessor` 呼び出しは無し）
+- [x] T2-5: `pnpm build` + `pnpm test`（119 passed / 3 expected fail）で型安全化分が通ることを確認しコミット①
 
 ## フェーズ3: 実装 — Vitest 4 API 補完（コミット②）
 

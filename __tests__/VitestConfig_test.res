@@ -21,11 +21,11 @@ describe("VitestConfig — defineConfig", () => {
 
   test("reflects nested coverage config", () => {
     let c = VitestConfig.defineConfig({
-      test: {coverage: {provider: "v8", enabled: true, reporter: ["text", "html"]}},
+      test: {coverage: {provider: #v8, enabled: true, reporter: ["text", "html"]}},
     })
 
     let cov = (c.test->Option.getOrThrow).coverage->Option.getOrThrow
-    cov.provider->expect->Vitest.toEqual(Some("v8"))
+    cov.provider->expect->Vitest.toEqual(Some(#v8))
     cov.enabled->expect->Vitest.toEqual(Some(true))
     cov.reporter->expect->Vitest.toEqual(Some(["text", "html"]))
   })

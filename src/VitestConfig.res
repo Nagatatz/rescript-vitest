@@ -33,10 +33,11 @@
 
 /**
  * Code-coverage configuration (`test.coverage`). Only the most common fields are
- * typed; `provider` selects the engine (`"v8"` | `"istanbul"`).
+ * typed; `provider` selects the engine. It is a polymorphic variant (the closed
+ * set Vitest accepts) so each tag compiles to its own string (`#v8` → `"v8"`).
  */
 type coverageConfig = {
-  provider?: string,
+  provider?: [#istanbul | #v8 | #custom],
   enabled?: bool,
   reporter?: array<string>,
   // `include` is a ReScript keyword; map the field to JS "include" via @as.

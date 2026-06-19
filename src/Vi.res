@@ -110,15 +110,19 @@ module MockFn = {
 /** `vi.spyOn(object, "method")` — wrap an existing method with a spy. */
 @module("vitest") @scope("vi") external spyOn: ('obj, string) => MockFn.t<'fn> = "spyOn"
 
-/** `vi.spyOn(object, key, accessor)` — spy on a `"get"` / `"set"` accessor. */
+/**
+ * `vi.spyOn(object, key, accessor)` — spy on a `#get` / `#set` accessor. The
+ * accessor is a polymorphic variant so only `#get` / `#set` compile; each tag
+ * compiles to its own string at runtime (`#get` → `"get"`).
+ */
 @module("vitest") @scope("vi")
-external spyOnAccessor: ('obj, string, string) => MockFn.t<'fn> = "spyOn"
+external spyOnAccessor: ('obj, string, [#get | #set]) => MockFn.t<'fn> = "spyOn"
 
 /** Spy on the getter of an accessor property. */
-let spyOnGetter = (obj, key) => spyOnAccessor(obj, key, "get")
+let spyOnGetter = (obj, key) => spyOnAccessor(obj, key, #get)
 
 /** Spy on the setter of an accessor property. */
-let spyOnSetter = (obj, key) => spyOnAccessor(obj, key, "set")
+let spyOnSetter = (obj, key) => spyOnAccessor(obj, key, #set)
 
 // ============================================================================
 // Mock inspection / hoisting

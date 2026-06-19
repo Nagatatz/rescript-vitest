@@ -82,8 +82,8 @@ describe("Expect — strings & collections", () => {
 
 describe("Expect — type & predicate matchers", () => {
   test("toBeTypeOf matches the runtime typeof", () => {
-    expect("hi")->toBeTypeOf("string")
-    expect(42)->toBeTypeOf("number")
+    expect("hi")->toBeTypeOf(#string)
+    expect(42)->toBeTypeOf(#number)
   })
 
   test("toBeInstanceOf checks the constructor", () => {
