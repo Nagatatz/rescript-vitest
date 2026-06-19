@@ -19,6 +19,8 @@
 - Accessor spies: `spyOnGetter`, `spyOnSetter`.
 - Global and environment stubs: `stubGlobal`, `stubEnv`, `unstubAllGlobals`, `unstubAllEnvs`.
 - Module mocking completion: `importActual`, `importMock`, `doUnmock`, `mockObject`, `dynamicImportSettled`.
+- Test modifiers: `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`, `testSequential`, `testSequentialAsync`.
+- Describe modifiers: `describeTodo`, `describeConcurrent`, `describeSequential`, `describeShuffle`, `describeSkipIf`, `describeRunIf`, `describeFor`.
 
 ### Changed
 

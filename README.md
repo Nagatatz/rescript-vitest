@@ -6,7 +6,7 @@ The bindings are *faithful*: matchers are side-effecting and throw on failure,
 exactly like Vitest itself. The `expect(value)` wrapper carries the type of the
 value under test, so matchers such as `toBe` stay honest at compile time.
 
-- ✅ `describe` / `test` / `it` (+ `.only` / `.skip` / `.todo` / `.each` / `.concurrent`)
+- ✅ `describe` / `test` / `it` (+ `.only` / `.skip` / `.todo` / `.each` / `.concurrent` / `.sequential` / `.shuffle` / `.skipIf` / `.runIf` / `.fails` / `.for`)
 - ✅ Lifecycle hooks (`beforeEach` / `afterEach` / `beforeAll` / `afterAll` / `onTestFailed` / `onTestFinished`, sync & async)
 - ✅ The full `expect` matcher set (equality, numbers, strings, collections, objects, exceptions, snapshots, mock matchers)
 - ✅ Negation (`not_`) and async assertions (`resolves` / `rejects`)
@@ -100,8 +100,11 @@ test("fake timers", () => {
 
 ### Test structure (`Vitest`)
 `describe`, `describeAsync`, `describeOnly`, `describeSkip`, `describeEach`,
+`describeTodo`, `describeConcurrent`, `describeSequential`, `describeShuffle`,
+`describeSkipIf`, `describeRunIf`, `describeFor`,
 `test`, `testAsync`, `testOnly`, `testSkip`, `testTodo`, `testConcurrent`,
-`testEach`, `it`, `itAsync`, `itOnly`, `itSkip`.
+`testEach`, `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`,
+`testSequential`, `testSequentialAsync`, `it`, `itAsync`, `itOnly`, `itSkip`.
 
 ### Lifecycle
 `beforeAll`, `afterAll`, `beforeEach`, `afterEach`, plus the per-test hooks `onTestFailed`, `onTestFinished` (each with an `…Async` variant).

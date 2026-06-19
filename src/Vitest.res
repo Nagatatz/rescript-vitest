@@ -52,6 +52,34 @@ external describeSkip: (string, unit => unit, ~timeout: int=?) => unit = "skip"
 @module("vitest") @scope("describe")
 external describeEach: array<'a> => (string, 'a => unit) => unit = "each"
 
+/** Mark a suite as not-yet-implemented (shown as todo in the report). */
+@module("vitest") @scope("describe")
+external describeTodo: string => unit = "todo"
+
+/** Run the tests in this suite concurrently. */
+@module("vitest") @scope("describe")
+external describeConcurrent: (string, unit => unit) => unit = "concurrent"
+
+/** Run the tests in this suite sequentially. */
+@module("vitest") @scope("describe")
+external describeSequential: (string, unit => unit) => unit = "sequential"
+
+/** Run the tests in this suite in random order. */
+@module("vitest") @scope("describe")
+external describeShuffle: (string, unit => unit) => unit = "shuffle"
+
+/** Skip the suite when the condition is true: `describeSkipIf(cond)("name", body)`. */
+@module("vitest") @scope("describe")
+external describeSkipIf: bool => (string, unit => unit) => unit = "skipIf"
+
+/** Run the suite only when the condition is true: `describeRunIf(cond)("name", body)`. */
+@module("vitest") @scope("describe")
+external describeRunIf: bool => (string, unit => unit) => unit = "runIf"
+
+/** Parameterized suite, `for`-style: `describeFor(cases)("name %i", case => ...)`. */
+@module("vitest") @scope("describe")
+external describeFor: array<'a> => (string, 'a => unit) => unit = "for"
+
 /**
  * Define a single test case.
  *
@@ -87,6 +115,30 @@ external testConcurrent: (string, unit => promise<unit>, ~timeout: int=?) => uni
 /** Register a parameterized test: `testEach(cases)("name %i", case => ...)`. */
 @module("vitest") @scope("test")
 external testEach: array<'a> => (string, 'a => unit) => unit = "each"
+
+/** Skip when the condition is true: `testSkipIf(cond)("name", body)`. */
+@module("vitest") @scope("test")
+external testSkipIf: bool => (string, unit => unit) => unit = "skipIf"
+
+/** Run only when the condition is true: `testRunIf(cond)("name", body)`. */
+@module("vitest") @scope("test")
+external testRunIf: bool => (string, unit => unit) => unit = "runIf"
+
+/** Expect this test to fail; it passes if the body throws. */
+@module("vitest") @scope("test")
+external testFails: (string, unit => unit) => unit = "fails"
+
+/** Async variant of `testFails`. */
+@module("vitest") @scope("test")
+external testFailsAsync: (string, unit => promise<unit>) => unit = "fails"
+
+/** Force this test to run sequentially (not concurrently). */
+@module("vitest") @scope("test")
+external testSequential: (string, unit => unit) => unit = "sequential"
+
+/** Async variant of `testSequential`. */
+@module("vitest") @scope("test")
+external testSequentialAsync: (string, unit => promise<unit>) => unit = "sequential"
 
 /** Alias of `test`, reading more naturally inside a `describe` ("it does X"). */
 @module("vitest")

@@ -180,3 +180,50 @@ describe("Expect — async", () => {
     await expect(Promise.reject(Boom))->rejects->Async.toThrow
   })
 })
+
+describe("Vitest — test modifiers", () => {
+  // The skipped branches carry a body that would fail if it ran.
+  testSkipIf(true)("skipped when the condition is true", () => expect(1)->toBe(2))
+  testSkipIf(false)("runs when the condition is false", () => expect(1)->toBe(1))
+  testRunIf(true)("runs when the condition is true", () => expect(1)->toBe(1))
+  testRunIf(false)("skipped when the condition is false", () => expect(1)->toBe(2))
+
+  // `fails` inverts the result: these pass *because* the body throws.
+  testFails("passes because the body fails", () => expect(1)->toBe(2))
+  testFailsAsync("passes because the async body fails", async () => expect(1)->toBe(2))
+
+  testSequential("runs sequentially", () => expect(1)->toBe(1))
+  testSequentialAsync("runs sequentially (async)", async () => expect(1)->toBe(1))
+})
+
+describeConcurrent("Vitest — describe.concurrent", () => {
+  test("runs inside a concurrent suite", () => expect(1)->toBe(1))
+})
+
+describeSequential("Vitest — describe.sequential", () => {
+  test("runs inside a sequential suite", () => expect(1)->toBe(1))
+})
+
+describeShuffle("Vitest — describe.shuffle", () => {
+  test("runs inside a shuffled suite", () => expect(1)->toBe(1))
+})
+
+describeTodo("Vitest — describe.todo suite")
+
+describeSkipIf(true)("Vitest — describe.skipIf (skipped)", () => {
+  test("would fail but the suite is skipped", () => expect(1)->toBe(2))
+})
+describeSkipIf(false)("Vitest — describe.skipIf (running)", () => {
+  test("runs", () => expect(1)->toBe(1))
+})
+
+describeRunIf(true)("Vitest — describe.runIf (running)", () => {
+  test("runs", () => expect(1)->toBe(1))
+})
+describeRunIf(false)("Vitest — describe.runIf (skipped)", () => {
+  test("would fail but the suite is skipped", () => expect(1)->toBe(2))
+})
+
+describeFor([1, 2, 3])("Vitest — describe.for case %i", n => {
+  test("the case value is positive", () => expect(n > 0)->toBeTruthy)
+})

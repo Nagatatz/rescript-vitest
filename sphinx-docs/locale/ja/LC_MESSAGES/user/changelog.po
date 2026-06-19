@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 17:23+0900\n"
+"POT-Creation-Date: 2026-06-19 17:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -115,23 +115,39 @@ msgstr "アクセサスパイ: `spyOnGetter`、`spyOnSetter`。"
 msgid ""
 "Global and environment stubs: `stubGlobal`, `stubEnv`, "
 "`unstubAllGlobals`, `unstubAllEnvs`."
-msgstr ""
-"グローバル・環境スタブ: `stubGlobal`、`stubEnv`、"
-"`unstubAllGlobals`、`unstubAllEnvs`。"
+msgstr "グローバル・環境スタブ: `stubGlobal`、`stubEnv`、`unstubAllGlobals`、`unstubAllEnvs`。"
 
 #: ../../user/changelog.md:21
 msgid ""
 "Module mocking completion: `importActual`, `importMock`, `doUnmock`, "
 "`mockObject`, `dynamicImportSettled`."
 msgstr ""
-"モジュールモックの補完: `importActual`、`importMock`、`doUnmock`、"
-"`mockObject`、`dynamicImportSettled`。"
+"モジュールモックの補完: "
+"`importActual`、`importMock`、`doUnmock`、`mockObject`、`dynamicImportSettled`。"
+
+#: ../../user/changelog.md:22
+msgid ""
+"Test modifiers: `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`,"
+" `testSequential`, `testSequentialAsync`."
+msgstr ""
+"test 修飾子: `testSkipIf`、`testRunIf`、`testFails`、`testFailsAsync`、"
+"`testSequential`、`testSequentialAsync`。"
 
 #: ../../user/changelog.md:23
+msgid ""
+"Describe modifiers: `describeTodo`, `describeConcurrent`, "
+"`describeSequential`, `describeShuffle`, `describeSkipIf`, "
+"`describeRunIf`, `describeFor`."
+msgstr ""
+"describe 修飾子: `describeTodo`、`describeConcurrent`、"
+"`describeSequential`、`describeShuffle`、`describeSkipIf`、"
+"`describeRunIf`、`describeFor`。"
+
+#: ../../user/changelog.md:25
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:27
+#: ../../user/changelog.md:29
 msgid "Fixed"
 msgstr "修正"
 
