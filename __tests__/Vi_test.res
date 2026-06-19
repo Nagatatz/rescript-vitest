@@ -29,6 +29,13 @@ function makeBox(initial) {
 @val external stubbedGlobal: int = "__viPhase6Global__"
 @val @scope(("process", "env")) external stubbedEnv: string = "__VI_PHASE6_ENV__"
 
+// Dynamic import thunk — `vi.doMock` only affects `import()` (not hoisted static
+// imports), so re-importing through this observes a registered `doMock`.
+%%raw(`
+function dynImport(spec) { return import(spec) }
+`)
+@val external dynImport: string => promise<'a> = "dynImport"
+
 describe("Vi — mock functions", () => {
   afterEach(() => Vi.clearAllMocks())
 
@@ -61,6 +68,24 @@ describe("Vi — mock functions", () => {
     f(2)->ignore
     expect((m->Vi.MockFn.calls)->Array.length)->toBe(2)
     expect((m->Vi.MockFn.results)->Array.length)->toBe(2)
+  })
+
+  test("fn creates an untyped mock (annotated at the use site)", () => {
+    let m: Vi.MockFn.t<unit => int> = Vi.fn()
+    m->Vi.MockFn.mockReturnValue(5)->ignore
+    expect((m->Vi.MockFn.asFn)())->toBe(5)
+  })
+
+  test("fnWith backs the mock with an initial implementation", () => {
+    let m = Vi.fnWith(x => x + 1)
+    expect((m->Vi.MockFn.asFn)(41))->toBe(42)
+    m->Vi.MockFn.asAssertion->toHaveBeenCalledOnce
+  })
+
+  testAsync("mockRejectedValue rejects every call", async () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockRejectedValue(JsError.make("rejected"))->ignore
+    await expect((m->Vi.MockFn.asFn)())->rejects->Async.toThrowWithMessage("rejected")
   })
 })
 
@@ -161,12 +186,22 @@ describe("Vi — reset semantics", () => {
     expect((m->Vi.MockFn.getMockImplementation)->Option.isNone)->toBeTruthy
   })
 
-  test("resetAllMocks and restoreAllMocks are callable", () => {
-    let m = Vi.fn0()
-    m->Vi.MockFn.mockReturnValue(1)->ignore
+  test("resetAllMocks clears every mock's implementation", () => {
+    let m = Vi.fn1()
+    m->Vi.MockFn.mockImplementation(x => x + 1)->ignore
     Vi.resetAllMocks()
+    // resetAllMocks wipes implementations globally.
+    expect((m->Vi.MockFn.getMockImplementation)->Option.isNone)->toBeTruthy
+  })
+
+  test("restoreAllMocks restores spied originals", () => {
+    let calc = {add: (a, b) => a + b}
+    let spy = Vi.spyOn(calc, "add")
+    spy->Vi.MockFn.mockReturnValue(0)->ignore
+    expect(calc.add(1, 2))->toBe(0)
     Vi.restoreAllMocks()
-    expect(true)->toBeTruthy
+    // The original method is back after restoreAllMocks.
+    expect(calc.add(1, 2))->toBe(3)
   })
 })
 
@@ -201,6 +236,55 @@ describe("Vi — fake timers", () => {
     Vi.advanceTimersByTime(1000)
     expect(fired.contents)->toBeTruthy
     Vi.useRealTimers()
+  })
+})
+
+describe("Vi — synchronous timers", () => {
+  afterEach(() => Vi.useRealTimers())
+
+  test("runAllTimers fires all pending timers", () => {
+    Vi.useFakeTimers()
+    let fired = ref(false)
+    setTimeout(() => fired := true, 5000)
+    Vi.runAllTimers()
+    expect(fired.contents)->toBeTruthy
+  })
+
+  test("runOnlyPendingTimers fires currently pending timers", () => {
+    Vi.useFakeTimers()
+    let fired = ref(false)
+    setTimeout(() => fired := true, 100)
+    Vi.runOnlyPendingTimers()
+    expect(fired.contents)->toBeTruthy
+  })
+
+  test("advanceTimersToNextTimer advances a single timer", () => {
+    Vi.useFakeTimers()
+    let count = ref(0)
+    setTimeout(() => count := count.contents + 1, 100)
+    setTimeout(() => count := count.contents + 1, 200)
+    Vi.advanceTimersToNextTimer()
+    expect(count.contents)->toBe(1)
+  })
+
+  test("clearAllTimers drops pending timers", () => {
+    Vi.useFakeTimers()
+    setTimeout(() => (), 100)
+    Vi.clearAllTimers()
+    expect(Vi.getTimerCount())->toBe(0)
+  })
+
+  test("runAllTicks is callable under fake timers", () => {
+    Vi.useFakeTimers()
+    // runAllTicks flushes queued ticks; calling it exercises the binding.
+    Vi.runAllTicks()
+    expect(Vi.isFakeTimers())->toBeTruthy
+  })
+
+  test("setSystemTime pins the clock to a Date", () => {
+    Vi.useFakeTimers()
+    Vi.setSystemTime(Date.fromTime(1000.0))
+    expect((Vi.getMockedSystemTime())->Option.isSome)->toBeTruthy
   })
 })
 
@@ -390,6 +474,10 @@ describe("Vi — global & environment stubs", () => {
 })
 
 describe("Vi — module mocking completion", () => {
+  // `vi.mock` (the hoisted form) is intentionally NOT dogfood-tested: it is
+  // hoisted to the top of the module before imports run, so it cannot be
+  // exercised from inside a test body. The non-hoisted `doMock` is tested below.
+
   testAsync("importActual loads the real module", async () => {
     let p: {"sep": string} = await Vi.importActual("node:path")
     expect(p["sep"]->String.length > 0)->toBeTruthy
@@ -406,12 +494,14 @@ describe("Vi — module mocking completion", () => {
     expect(Vi.isMockFunction(mocked["compute"]))->toBeTruthy
   })
 
-  test("doMock returns a disposable handle", () => {
-    // Regression: vi.doMock returns a Disposable (typed as Vi.disposable),
-    // not unit. Annotating the binding result keeps the signature honest.
-    let _handle: Vi.disposable = Vi.doMock("node:path", () => {"sep": "/"})
+  testAsync("doMock replaces a module for subsequent dynamic imports", async () => {
+    // The annotation keeps the disposable return type honest; the import asserts
+    // the mock actually took effect.
+    let _handle: Vi.disposable = Vi.doMock("node:path", () => {"sep": "DOMOCK"})
+    Vi.resetModules()
+    let p: {"sep": string} = await dynImport("node:path")
+    expect(p["sep"])->toBe("DOMOCK")
     Vi.doUnmock("node:path")
-    expect(true)->toBeTruthy
   })
 
   test("doUnmock is callable", () => {

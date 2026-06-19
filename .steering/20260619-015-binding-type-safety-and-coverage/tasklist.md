@@ -29,14 +29,14 @@
 ## フェーズ4: 実装 — ドッグフードテスト拡充（コミット③）
 
 - [x] T4-1: ライフサイクルフックのテスト追加（`Lifecycle_test.res` に beforeAll/beforeEach/afterEach の sync・async と発火回数検証）※ commit② に同梱
-- [ ] T4-2: スナップショットマッチャーのテスト追加（`toMatchSnapshot`/`toMatchInlineSnapshot`/`toThrowErrorMatchingInlineSnapshot`）
-- [ ] T4-3: 数値・戻り値マッチャーの抜け追加（`toBeLessThanOrEqual`/`toHaveReturned`）
-- [ ] T4-4: モック生成・解決系の抜け追加（`fn`/`fnWith`/`mockRejectedValue`）
-- [ ] T4-5: 同期タイマー群のテスト追加（`runAllTimers`/`runAllTicks`/`runOnlyPendingTimers`/`advanceTimersToNextTimer`/`clearAllTimers`/`setSystemTime`(Date)）
-- [ ] T4-6: 弱いテスト（`resetAllMocks`/`restoreAllMocks`/`doMock`）を挙動検証に置き換え
-- [ ] T4-7: `VitestConfig_test.res` に provider poly variant + 未検証フィールド round-trip テスト追加
-- [ ] T4-8: `vi.mock`（ホイスティング版）のテスト省略理由をコメントで明記
-- [ ] T4-9: `pnpm build` + `pnpm test` 確認しコミット③
+- [x] T4-2: スナップショットマッチャーのテスト追加（`toMatchSnapshot`/`WithName`/`toMatchInlineSnapshot`/`toThrowErrorMatchingSnapshot`/`Inline`）。外部 snap は `__tests__/__snapshots__/Expect_test.res.js.snap` に生成
+- [x] T4-3: 数値・戻り値マッチャーの抜け追加（`toBeLessThanOrEqual`/`toHaveReturned`）
+- [x] T4-4: モック生成・解決系の抜け追加（`fn`/`fnWith`/`mockRejectedValue`）
+- [x] T4-5: 同期タイマー群のテスト追加（`runAllTimers`/`runAllTicks`/`runOnlyPendingTimers`/`advanceTimersToNextTimer`/`clearAllTimers`/`setSystemTime`(Date)）
+- [x] T4-6: 弱いテストを挙動検証に置き換え（`resetAllMocks`→実装消去確認 / `restoreAllMocks`→原実装復帰確認 / `doMock`→動的 import で差し替え確認）
+- [x] T4-7: `VitestConfig_test.res` に provider poly variant（T2 で更新済）+ 未検証フィールド round-trip + カスタム environment テスト追加
+- [x] T4-8: `vi.mock`（ホイスティング版）のテスト省略理由をコメントで明記
+- [x] T4-9: `pnpm build` + `pnpm test`（146 passed / 3 expected fail）確認しコミット③。※環境の node_modules が nightly で v5 化していたため worktree ローカルに v4 を `pnpm install --frozen-lockfile` で導入し検証
 
 ## フェーズ5: カバレッジゲート（コミット④）
 

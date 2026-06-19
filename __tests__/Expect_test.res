@@ -55,6 +55,7 @@ describe("Expect — truthiness & numbers", () => {
     expect(5)->toBeGreaterThan(3)
     expect(5)->toBeGreaterThanOrEqual(5)
     expect(2)->toBeLessThan(3)
+    expect(2)->toBeLessThanOrEqual(2)
     expect(3.14159)->toBeCloseTo(3.14)
     expect(3.14159)->toBeCloseToWithDigits(3.1416, 4)
   })
@@ -184,6 +185,13 @@ describe("Expect — mock return-value matchers", () => {
     f()->ignore
     f()->ignore
     m->Vi.MockFn.asAssertion->toHaveReturnedTimes(2)
+  })
+
+  test("toHaveReturned is true after a successful return", () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockReturnValue(1)->ignore
+    (m->Vi.MockFn.asFn)()->ignore
+    m->Vi.MockFn.asAssertion->toHaveReturned
   })
 
   test("toHaveReturnedWith matches a returned value", () => {
@@ -380,6 +388,32 @@ describe("Vitest — it modifiers", () => {
 describe("Vitest — async conditional tests", () => {
   testSkipIfAsync(true)("async test skipped when condition is true", async () => expect(1)->toBe(2))
   testRunIfAsync(true)("async test runs when condition is true", async () => expect(1)->toBe(1))
+})
+
+describe("Expect — snapshots", () => {
+  // Snapshots are written to __tests__/__snapshots__/ on first run and compared
+  // afterwards; inline snapshots embed the expected serialization in this file.
+  test("toMatchSnapshot stores a structural snapshot", () => {
+    expect({"id": 1, "name": "a"})->toMatchSnapshot
+  })
+
+  test("toMatchSnapshotWithName stores a named snapshot", () => {
+    expect([1, 2, 3])->toMatchSnapshotWithName("a sample array")
+  })
+
+  test("toMatchInlineSnapshot compares against the inline value", () => {
+    expect(42)->toMatchInlineSnapshot("42")
+  })
+
+  test("toThrowErrorMatchingSnapshot snapshots a thrown error", () => {
+    expect(() => JsError.throw(JsError.make("snap boom")))->toThrowErrorMatchingSnapshot
+  })
+
+  test("toThrowErrorMatchingInlineSnapshot compares the error inline", () => {
+    expect(() => JsError.throw(JsError.make("inline boom")))->toThrowErrorMatchingInlineSnapshot(
+      `[Error: inline boom]`,
+    )
+  })
 })
 
 describe("Expect — file snapshot", () => {
