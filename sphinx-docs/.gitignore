@@ -1,0 +1,10 @@
+# Sphinx build artifacts
+_build/
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Translation: track .po (source), ignore compiled .mo
+locale/**/*.mo

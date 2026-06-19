@@ -1,0 +1,50 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz
+# This file is distributed under the same license as the rescript-vitest
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-vitest \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/installation.md:1
+msgid "Installation"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "Requirements"
+msgstr ""
+
+#: ../../user/installation.md:7
+msgid "**Requirement 1** — Description"
+msgstr ""
+
+#: ../../user/installation.md:8
+msgid "**Requirement 2** — Description"
+msgstr ""
+
+#: ../../user/installation.md:10
+msgid "Install"
+msgstr ""
+
+#: ../../user/installation.md:18
+msgid "Verify"
+msgstr ""
+
+#: ../../user/installation.md:22
+msgid "Troubleshooting"
+msgstr ""
+

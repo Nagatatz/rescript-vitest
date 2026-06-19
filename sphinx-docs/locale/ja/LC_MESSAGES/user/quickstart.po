@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz
+# This file is distributed under the same license as the rescript-vitest
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-vitest \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/quickstart.md:1
+msgid "Quick Start"
+msgstr ""
+
+#: ../../user/quickstart.md:3
+msgid "This guide walks you through your first experience after installation."
+msgstr ""
+
+#: ../../user/quickstart.md:5
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../user/quickstart.md:7
+msgid "Completed [Installation](installation.md)"
+msgstr ""
+
+#: ../../user/quickstart.md:9
+msgid "Getting Started"
+msgstr ""
+
+#: ../../user/quickstart.md:13
+msgid "What's Next?"
+msgstr ""
+
+#: ../../user/quickstart.md:15
+msgid "[Configuration](configuration.md) — Customize settings"
+msgstr ""
+
+#: ../../user/quickstart.md:16
+msgid "[Changelog](changelog.md) — See what's new"
+msgstr ""
+

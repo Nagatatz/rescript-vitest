@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz
+# This file is distributed under the same license as the rescript-vitest
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-vitest \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../dev/setup.md:1
+msgid "Development Setup"
+msgstr ""
+
+#: ../../dev/setup.md:3
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Requirement"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Version"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Note"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "[uv](https://docs.astral.sh/uv/)"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "0.5+"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Python パッケージ管理・仮想環境"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Python"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "3.12+"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "uv が自動インストール"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Node.js"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "24+"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Pagefind 検索インデックス生成に使用"
+msgstr ""
+
+#: ../../dev/setup.md:11
+msgid "uv のインストール"
+msgstr ""
+
+#: ../../dev/setup.md:24
+msgid "Clone the Repository"
+msgstr ""
+
+#: ../../dev/setup.md:31
+msgid "Install Dependencies"
+msgstr ""
+
+#: ../../dev/setup.md:38
+msgid "Verify the Setup"
+msgstr ""
+

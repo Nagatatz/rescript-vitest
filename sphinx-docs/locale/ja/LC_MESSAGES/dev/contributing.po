@@ -1,0 +1,210 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz
+# This file is distributed under the same license as the rescript-vitest
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-vitest \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../dev/contributing.md:1
+msgid "Contributing Guide"
+msgstr ""
+
+#: ../../dev/contributing.md:3
+msgid "Thank you for your interest in contributing!"
+msgstr ""
+
+#: ../../dev/contributing.md:5
+msgid "Getting Started"
+msgstr ""
+
+#: ../../dev/contributing.md:7
+msgid "Fork the repository on GitHub"
+msgstr ""
+
+#: ../../dev/contributing.md:8
+msgid "Clone your fork:"
+msgstr ""
+
+#: ../../dev/contributing.md:12
+msgid "Set up your [development environment](setup.md)"
+msgstr ""
+
+#: ../../dev/contributing.md:13
+msgid "Create a feature branch:"
+msgstr ""
+
+#: ../../dev/contributing.md:18
+msgid "Development Workflow"
+msgstr ""
+
+#: ../../dev/contributing.md:20
+msgid "Branch Naming"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Prefix"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Use"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "`feature/`"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "New features"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "`fix/`"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Bug fixes"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "`refactor/`"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Code refactoring"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "`docs/`"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Documentation"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "`test/`"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Test additions"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "`chore/`"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Configuration, dependencies"
+msgstr ""
+
+#: ../../dev/contributing.md:31
+msgid "Commit Messages"
+msgstr ""
+
+#: ../../dev/contributing.md:33
+msgid "Use emoji prefixes for commit messages:"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Emoji"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "✨"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "New feature"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "🐛"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Bug fix"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "♻️"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Refactoring"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "📝"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "🔧"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Configuration change"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "✅"
+msgstr ""
+
+#: ../../dev/contributing.md
+msgid "Test addition/fix"
+msgstr ""
+
+#: ../../dev/contributing.md:44
+msgid "**Format:** `<emoji> <verb> <concise description>`"
+msgstr ""
+
+#: ../../dev/contributing.md:46
+msgid "Submitting Changes"
+msgstr ""
+
+#: ../../dev/contributing.md:48
+msgid "Ensure all tests pass"
+msgstr ""
+
+#: ../../dev/contributing.md:49
+msgid "Ensure code style checks pass"
+msgstr ""
+
+#: ../../dev/contributing.md:50
+msgid "Build the project"
+msgstr ""
+
+#: ../../dev/contributing.md:51
+msgid "Push your branch and create a Pull Request"
+msgstr ""
+
+#: ../../dev/contributing.md:53
+msgid "PR Guidelines"
+msgstr ""
+
+#: ../../dev/contributing.md:55
+msgid "Keep PRs focused on a single feature or fix"
+msgstr ""
+
+#: ../../dev/contributing.md:56
+msgid "Write a clear description of what changed and why"
+msgstr ""
+
+#: ../../dev/contributing.md:57
+msgid "Reference related issues if applicable"
+msgstr ""
+
