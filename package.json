@@ -4,6 +4,7 @@
   "description": "Type-safe ReScript bindings for Vitest — describe/test/expect matchers, vi mocks, spies, snapshots, fake timers.",
   "type": "module",
   "license": "MIT",
+  "packageManager": "pnpm@10.28.1",
   "author": "Nagatatz <nagata.hbdc@gmail.com>",
   "keywords": [
     "rescript",
