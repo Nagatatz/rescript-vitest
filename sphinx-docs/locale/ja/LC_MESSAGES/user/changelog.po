@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 16:59+0900\n"
+"POT-Creation-Date: 2026-06-19 17:10+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -76,8 +76,7 @@ msgstr "テスト単位のライフサイクルフック: `onTestFailed`、`onTe
 msgid ""
 "Type and predicate matchers: `toBeTypeOf`, `toBeInstanceOf`, `toBeOneOf`,"
 " `toSatisfy`."
-msgstr ""
-"型・述語マッチャー: `toBeTypeOf`、`toBeInstanceOf`、`toBeOneOf`、`toSatisfy`。"
+msgstr "型・述語マッチャー: `toBeTypeOf`、`toBeInstanceOf`、`toBeOneOf`、`toSatisfy`。"
 
 #: ../../user/changelog.md:15
 msgid ""
@@ -87,11 +86,37 @@ msgstr ""
 "async モックの resolve マッチャー: "
 "`toHaveResolved`、`toHaveResolvedTimes`、`toHaveResolvedWith`、`toHaveLastResolvedWith`、`toHaveNthResolvedWith`。"
 
+#: ../../user/changelog.md:16
+msgid ""
+"Async fake timers: `advanceTimersByTimeAsync`, `runAllTimersAsync`, "
+"`runOnlyPendingTimersAsync`, `advanceTimersToNextTimerAsync`, "
+"`advanceTimersToNextFrame`."
+msgstr ""
+"async フェイクタイマー: `advanceTimersByTimeAsync`、`runAllTimersAsync`、"
+"`runOnlyPendingTimersAsync`、`advanceTimersToNextTimerAsync`、"
+"`advanceTimersToNextFrame`。"
+
 #: ../../user/changelog.md:17
+msgid ""
+"Timer inspection: `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`,"
+" `getRealSystemTime`."
+msgstr ""
+"タイマー検査: `isFakeTimers`、`getTimerCount`、`getMockedSystemTime`、"
+"`getRealSystemTime`。"
+
+#: ../../user/changelog.md:18
+msgid "Waiting utilities: `waitFor`, `waitUntil`."
+msgstr "待機ユーティリティ: `waitFor`、`waitUntil`。"
+
+#: ../../user/changelog.md:19
+msgid "Accessor spies: `spyOnGetter`, `spyOnSetter`."
+msgstr "アクセサスパイ: `spyOnGetter`、`spyOnSetter`。"
+
+#: ../../user/changelog.md:21
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:21
+#: ../../user/changelog.md:25
 msgid "Fixed"
 msgstr "修正"
 
