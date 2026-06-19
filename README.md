@@ -18,16 +18,15 @@ value under test, so matchers such as `toBe` stay honest at compile time.
 [`@greenfinity/rescript-vitest`](https://www.npmjs.com/package/@greenfinity/rescript-vitest)
 both target Vitest 2/3 and pin the dependency tree to Vite 5. Vitest **4.1+**
 requires `vite/module-runner` (Vite 6+), so those bindings block the upgrade.
-This package targets Vitest 4 and newer, tracking the latest Vite/Vitest releases
-rather than pinning to a fixed major.
+This package targets Vitest 4 (Vite 6/7) directly.
 
 ## Requirements
 
 | Tool | Version |
 |------|---------|
 | ReScript | `^12.0.0` |
-| Vitest | `>=4.0.0` (latest recommended) |
-| Vite | `>=6` (Vitest 4+ peer; latest recommended) |
+| Vitest | `^4.0.0` |
+| Vite | `^6` or `^7` (Vitest 4 peer) |
 
 ## Install
 
@@ -131,7 +130,7 @@ test("fake timers", () => {
 ```bash
 pnpm install
 pnpm build        # compile ReScript bindings + tests
-pnpm test         # run the dogfood test suite under Vitest
+pnpm test         # run the dogfood test suite under Vitest 4
 ```
 
 ## License
