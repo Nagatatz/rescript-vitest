@@ -113,10 +113,12 @@ test("fake timers", () => {
 - **Strings:** `toMatch`, `toMatchRegExp`, `toContainString`
 - **Collections:** `toContain`, `toContainEqual`, `toHaveLength`
 - **Objects:** `toMatchObject`, `toHaveProperty`, `toHavePropertyValue`
+- **Type & predicate:** `toBeTypeOf`, `toBeInstanceOf`, `toBeOneOf`, `toSatisfy`
 - **Exceptions:** `toThrow`, `toThrowWithMessage`, `toThrowRegExp`
 - **Snapshots:** `toMatchSnapshot`, `toMatchSnapshotWithName`, `toMatchInlineSnapshot`, `toThrowErrorMatchingSnapshot`, `toThrowErrorMatchingInlineSnapshot`
 - **Mocks (calls):** `toHaveBeenCalled`, `toHaveBeenCalledOnce`, `toHaveBeenCalledTimes`, `toHaveBeenCalledWith` (+ `…With2`), `toHaveBeenLastCalledWith` (+ `…With2`), `toHaveBeenNthCalledWith` (+ `…With2`), `toHaveBeenCalledExactlyOnceWith` (+ `…With2`)
 - **Mocks (returns):** `toHaveReturned`, `toHaveReturnedTimes`, `toHaveReturnedWith`, `toHaveLastReturnedWith`, `toHaveNthReturnedWith`
+- **Mocks (resolves):** `toHaveResolved`, `toHaveResolvedTimes`, `toHaveResolvedWith`, `toHaveLastResolvedWith`, `toHaveNthResolvedWith`
 - **Modifiers:** `not_`, `resolves` / `rejects` (+ the `Async` matcher module)
 
 ### `Vi`

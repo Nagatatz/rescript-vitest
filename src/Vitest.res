@@ -183,6 +183,22 @@ type asyncAssertion<'a>
 @send external toBeNaN: assertion<'a> => unit = "toBeNaN"
 
 // ----------------------------------------------------------------------------
+// Type & predicate matchers
+// ----------------------------------------------------------------------------
+
+/** Match the `typeof` of the value (`"string"`, `"number"`, `"function"`, …). */
+@send external toBeTypeOf: (assertion<'a>, string) => unit = "toBeTypeOf"
+
+/** Match an `instanceof` check against a constructor / class. */
+@send external toBeInstanceOf: (assertion<'a>, 'b) => unit = "toBeInstanceOf"
+
+/** The value equals one of the candidates. */
+@send external toBeOneOf: (assertion<'a>, array<'a>) => unit = "toBeOneOf"
+
+/** The value satisfies the given predicate. */
+@send external toSatisfy: (assertion<'a>, 'a => bool) => unit = "toSatisfy"
+
+// ----------------------------------------------------------------------------
 // Numbers
 // ----------------------------------------------------------------------------
 
@@ -302,6 +318,20 @@ external toHaveBeenCalledExactlyOnceWith2: (assertion<'a>, 'b, 'c) => unit =
 @send external toHaveLastReturnedWith: (assertion<'a>, 'b) => unit = "toHaveLastReturnedWith"
 /** The nth call (1-based) returned this value. */
 @send external toHaveNthReturnedWith: (assertion<'a>, int, 'b) => unit = "toHaveNthReturnedWith"
+
+// Resolve matchers — for async mocks whose calls returned promises. Await the
+// mock's promise before asserting so the resolved value is recorded.
+
+/** The mock resolved (a returned promise fulfilled) at least once. */
+@send external toHaveResolved: assertion<'a> => unit = "toHaveResolved"
+/** The mock resolved exactly `n` times. */
+@send external toHaveResolvedTimes: (assertion<'a>, int) => unit = "toHaveResolvedTimes"
+/** The mock resolved with this value on at least one call. */
+@send external toHaveResolvedWith: (assertion<'a>, 'b) => unit = "toHaveResolvedWith"
+/** The most recent resolution was this value. */
+@send external toHaveLastResolvedWith: (assertion<'a>, 'b) => unit = "toHaveLastResolvedWith"
+/** The nth call (1-based) resolved with this value. */
+@send external toHaveNthResolvedWith: (assertion<'a>, int, 'b) => unit = "toHaveNthResolvedWith"
 
 /**
  * Matchers for asynchronous assertions produced by `->resolves` / `->rejects`.

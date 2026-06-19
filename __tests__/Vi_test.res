@@ -146,3 +146,27 @@ describe("Vitest — per-test hooks", () => {
     expect(finishedRan.contents)->toBeTruthy
   })
 })
+
+describe("Vi — resolve matchers", () => {
+  afterEach(() => Vi.clearAllMocks())
+
+  testAsync("toHaveResolved / toHaveResolvedWith", async () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockResolvedValue(7)->ignore
+    let _ = await (m->Vi.MockFn.asFn)()
+    m->Vi.MockFn.asAssertion->toHaveResolved
+    m->Vi.MockFn.asAssertion->toHaveResolvedWith(7)
+  })
+
+  testAsync("toHaveResolvedTimes / Nth / Last", async () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockResolvedValueOnce(1)->ignore
+    m->Vi.MockFn.mockResolvedValueOnce(2)->ignore
+    let f = m->Vi.MockFn.asFn
+    let _ = await f()
+    let _ = await f()
+    m->Vi.MockFn.asAssertion->toHaveResolvedTimes(2)
+    m->Vi.MockFn.asAssertion->toHaveNthResolvedWith(1, 1)
+    m->Vi.MockFn.asAssertion->toHaveLastResolvedWith(2)
+  })
+})
