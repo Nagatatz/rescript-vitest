@@ -2,15 +2,14 @@
 
 ## Unreleased
 
-<!-- Add changes for the next release here -->
-
 ### Added
 
--
+- `Vi.setTimerTickModeWithInterval` — the `"interval"` tick mode now accepts its `interval` (ms) argument.
 
 ### Changed
 
--
+- **Breaking:** `onTestFailed` / `onTestFinished` (and their `…Async` variants) callbacks now receive the per-test `testContext` value (`testContext => unit`) instead of taking no argument. Update callbacks from `() => …` to `_ctx => …`.
+- **Breaking:** `Vi.doMock` now returns a `Vi.disposable` handle (matching Vitest 4) instead of `unit`.
 
 ### Fixed
 

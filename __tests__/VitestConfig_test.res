@@ -37,6 +37,18 @@ describe("VitestConfig — defineConfig", () => {
     t.environment->expect->Vitest.toEqual(None)
   })
 
+  test("defineConfigFn accepts the function form (configEnv => config)", () => {
+    // `defineConfig` is identity at runtime, so the function form returns the
+    // closure itself. We verify the binding accepts a `configEnv => config`
+    // closure and that the closure maps the resolved env to a config.
+    let build = (env: VitestConfig.configEnv) =>
+      VitestConfig.defineConfig({test: {globals: env.mode == "test"}})
+    let _fn = VitestConfig.defineConfigFn(build)
+
+    let produced = build({mode: "test", command: "serve"})
+    (produced.test->Option.getOrThrow).globals->expect->Vitest.toEqual(Some(true))
+  })
+
   test("supports recursive projects entries via defineProject", () => {
     let project = VitestConfig.defineProject({test: {environment: "jsdom"}})
     let c = VitestConfig.defineConfig({test: {projects: [project]}})
