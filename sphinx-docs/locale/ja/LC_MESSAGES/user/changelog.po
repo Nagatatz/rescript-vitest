@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 18:02+0900\n"
+"POT-Creation-Date: 2026-06-19 18:12+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -149,16 +149,26 @@ msgid ""
 "`stringMatching`, `stringMatchingRegExp`, `closeTo`, "
 "`closeToWithPrecision`."
 msgstr ""
-"非対称マッチャー（`Expect` モジュール）: `anything`、`any`、"
-"`arrayContaining`、`objectContaining`、`stringContaining`、"
-"`stringMatching`、`stringMatchingRegExp`、`closeTo`、"
-"`closeToWithPrecision`。"
+"非対称マッチャー（`Expect` モジュール）: "
+"`anything`、`any`、`arrayContaining`、`objectContaining`、`stringContaining`、`stringMatching`、`stringMatchingRegExp`、`closeTo`、`closeToWithPrecision`。"
+
+#: ../../user/changelog.md:25
+msgid "Parameterized test `testFor` (`test.for`)."
+msgstr "パラメータ化テスト `testFor`（`test.for`）。"
 
 #: ../../user/changelog.md:26
+msgid ""
+"Assertion guards and special assertions (`Expect` module): `assertions`, "
+"`hasAssertions`, `soft`, `poll`, `unreachable`, `unreachableWithMessage`."
+msgstr ""
+"アサーションガードと特殊アサーション（`Expect` モジュール）: `assertions`、"
+"`hasAssertions`、`soft`、`poll`、`unreachable`、`unreachableWithMessage`。"
+
+#: ../../user/changelog.md:28
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:30
+#: ../../user/changelog.md:32
 msgid "Fixed"
 msgstr "修正"
 
