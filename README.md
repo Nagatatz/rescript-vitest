@@ -12,6 +12,7 @@ value under test, so matchers such as `toBe` stay honest at compile time.
 - ✅ Asymmetric matchers and negations (`Expect.anything` / `arrayContaining` / `objectContaining` / … and `Expect.Not.*`), plus assertion guards (`assertions` / `hasAssertions` / `soft` / `poll`)
 - ✅ Negation (`not_`) and async assertions (`resolves` / `rejects`)
 - ✅ `Vi` — mock functions, spies (incl. getter/setter), module mocking, global/env stubs, and fake timers (sync & async) with `waitFor` / `waitUntil`
+- ✅ `VitestConfig` — minimal `vitest/config` bindings (`defineConfig` / `mergeConfig` / `defineProject` + the common `test` fields)
 
 ## Why another binding?
 
@@ -149,6 +150,37 @@ bindings. Use ReScript helper functions instead of fixtures, and a dedicated
 - **Async timers:** `advanceTimersByTimeAsync`, `runAllTimersAsync`, `runOnlyPendingTimersAsync`, `advanceTimersToNextTimerAsync`, `advanceTimersToNextFrame`
 - **Timer inspection:** `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`, `getRealSystemTime`, `setTimerTickMode`
 - **Waiting:** `waitFor`, `waitUntil`
+
+### `VitestConfig` (`vitest/config`)
+
+Minimal config-side bindings: `defineConfig`, `defineConfigFn` (function form
+receiving `{mode, command}`), `mergeConfig`, `defineProject`. Configs are typed
+with optional-record types covering the common `test` fields — `globals`,
+`environment`, `include_`, `exclude`, `setupFiles`, `coverage`, `pool`,
+`testTimeout`, `hookTimeout`, `reporters`, `watch`, `projects` — and `coverage`
+(`provider`, `enabled`, `reporter`, `include_`, `exclude`). (`include` is a
+ReScript keyword, so the field is named `include_` and maps to JS `"include"`.)
+
+**Scope (intentional):** Vite-level config (`plugins`, `resolve`, `server`,
+`build`) and the long tail of `test` options are **not** bound — write those in a
+plain JS config file. Config objects are write-once data with a large, churning
+surface, so full coverage is not worth the maintenance cost.
+
+ReScript does not emit `export default`, so wire the typed config into the real
+`vitest.config` through a thin JS shim:
+
+```rescript
+// MyConfig.res
+let config = VitestConfig.defineConfig({
+  test: {globals: true, environment: "node", include_: ["__tests__/**/*_test.res.js"]},
+})
+```
+
+```js
+// vitest.config.js
+import { config } from "./MyConfig.res.js"
+export default config
+```
 
 ## Development
 
