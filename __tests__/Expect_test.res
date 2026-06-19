@@ -8,6 +8,9 @@ open Vitest
 // A thunk that throws, used to exercise the exception matchers.
 exception Boom
 
+// The JS `Error` constructor, used to exercise `toBeInstanceOf`.
+@val external errorClass: 'a = "Error"
+
 describe("Expect — equality", () => {
   test("toBe compares by identity", () => {
     expect(1 + 1)->toBe(2)
@@ -58,6 +61,25 @@ describe("Expect — strings & collections", () => {
     expect({"a": 1, "b": 2})->toMatchObject({"a": 1})
     expect({"a": 1})->toHaveProperty("a")
     expect({"a": 1})->toHavePropertyValue("a", 1)
+  })
+})
+
+describe("Expect — type & predicate matchers", () => {
+  test("toBeTypeOf matches the runtime typeof", () => {
+    expect("hi")->toBeTypeOf("string")
+    expect(42)->toBeTypeOf("number")
+  })
+
+  test("toBeInstanceOf checks the constructor", () => {
+    expect(JsError.make("boom"))->toBeInstanceOf(errorClass)
+  })
+
+  test("toBeOneOf checks membership in candidates", () => {
+    expect(2)->toBeOneOf([1, 2, 3])
+  })
+
+  test("toSatisfy applies a predicate", () => {
+    expect(4)->toSatisfy(x => x > 3)
   })
 })
 

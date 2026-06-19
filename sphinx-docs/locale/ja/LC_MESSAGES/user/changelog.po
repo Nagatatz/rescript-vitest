@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 16:49+0900\n"
+"POT-Creation-Date: 2026-06-19 16:59+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -70,15 +70,28 @@ msgstr "`Vi` のモック検査・ホイストヘルパー: `mocked`、`isMockFu
 msgid ""
 "Per-test lifecycle hooks: `onTestFailed`, `onTestFinished` (each with an "
 "`…Async` variant)."
+msgstr "テスト単位のライフサイクルフック: `onTestFailed`、`onTestFinished`（それぞれ `…Async` バリアントを含む）。"
+
+#: ../../user/changelog.md:14
+msgid ""
+"Type and predicate matchers: `toBeTypeOf`, `toBeInstanceOf`, `toBeOneOf`,"
+" `toSatisfy`."
 msgstr ""
-"テスト単位のライフサイクルフック: `onTestFailed`、`onTestFinished`"
-"（それぞれ `…Async` バリアントを含む）。"
+"型・述語マッチャー: `toBeTypeOf`、`toBeInstanceOf`、`toBeOneOf`、`toSatisfy`。"
 
 #: ../../user/changelog.md:15
+msgid ""
+"Async-mock resolve matchers: `toHaveResolved`, `toHaveResolvedTimes`, "
+"`toHaveResolvedWith`, `toHaveLastResolvedWith`, `toHaveNthResolvedWith`."
+msgstr ""
+"async モックの resolve マッチャー: "
+"`toHaveResolved`、`toHaveResolvedTimes`、`toHaveResolvedWith`、`toHaveLastResolvedWith`、`toHaveNthResolvedWith`。"
+
+#: ../../user/changelog.md:17
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:19
+#: ../../user/changelog.md:21
 msgid "Fixed"
 msgstr "修正"
 

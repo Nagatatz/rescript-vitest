@@ -11,6 +11,8 @@
 - `Vi.MockFn` lifecycle helpers: `mockResolvedValueOnce`, `mockRejectedValueOnce`, `mockReturnThis`, `getMockName`, `mockName`, `getMockImplementation`, `withImplementation`.
 - `Vi` mock inspection and hoisting helpers: `mocked`, `isMockFunction`, `hoisted`.
 - Per-test lifecycle hooks: `onTestFailed`, `onTestFinished` (each with an `…Async` variant).
+- Type and predicate matchers: `toBeTypeOf`, `toBeInstanceOf`, `toBeOneOf`, `toSatisfy`.
+- Async-mock resolve matchers: `toHaveResolved`, `toHaveResolvedTimes`, `toHaveResolvedWith`, `toHaveLastResolvedWith`, `toHaveNthResolvedWith`.
 
 ### Changed
 
