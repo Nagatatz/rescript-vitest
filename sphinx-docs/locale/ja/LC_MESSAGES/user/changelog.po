@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 16:09+0900\n"
+"POT-Creation-Date: 2026-06-19 16:36+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -39,23 +39,40 @@ msgid ""
 "`toHaveBeenCalledExactlyOnceWith` (each with a two-argument `…With2` "
 "variant)."
 msgstr ""
-"モックの呼び出し引数マッチャー: `toHaveBeenCalledWith`、"
-"`toHaveBeenLastCalledWith`、`toHaveBeenNthCalledWith`、"
-"`toHaveBeenCalledExactlyOnceWith`（それぞれ 2 引数版 `…With2` を含む）。"
+"モックの呼び出し引数マッチャー: "
+"`toHaveBeenCalledWith`、`toHaveBeenLastCalledWith`、`toHaveBeenNthCalledWith`、`toHaveBeenCalledExactlyOnceWith`（それぞれ"
+" 2 引数版 `…With2` を含む）。"
 
 #: ../../user/changelog.md:10
 msgid ""
 "Mock return-value matchers: `toHaveReturnedTimes`, `toHaveReturnedWith`, "
 "`toHaveLastReturnedWith`, `toHaveNthReturnedWith`."
 msgstr ""
-"モックの返り値マッチャー: `toHaveReturnedTimes`、`toHaveReturnedWith`、"
-"`toHaveLastReturnedWith`、`toHaveNthReturnedWith`。"
+"モックの返り値マッチャー: "
+"`toHaveReturnedTimes`、`toHaveReturnedWith`、`toHaveLastReturnedWith`、`toHaveNthReturnedWith`。"
+
+#: ../../user/changelog.md:11
+msgid ""
+"`Vi.MockFn` lifecycle helpers: `mockResolvedValueOnce`, "
+"`mockRejectedValueOnce`, `mockReturnThis`, `getMockName`, `mockName`, "
+"`getMockImplementation`, `withImplementation`."
+msgstr ""
+"`Vi.MockFn` のライフサイクルヘルパー: `mockResolvedValueOnce`、"
+"`mockRejectedValueOnce`、`mockReturnThis`、`getMockName`、`mockName`、"
+"`getMockImplementation`、`withImplementation`。"
 
 #: ../../user/changelog.md:12
+msgid ""
+"`Vi` mock inspection and hoisting helpers: `mocked`, `isMockFunction`, "
+"`hoisted`."
+msgstr ""
+"`Vi` のモック検査・ホイストヘルパー: `mocked`、`isMockFunction`、`hoisted`。"
+
+#: ../../user/changelog.md:14
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:16
+#: ../../user/changelog.md:18
 msgid "Fixed"
 msgstr "修正"
 

@@ -47,6 +47,77 @@ describe("Vi — spies", () => {
   })
 })
 
+describe("Vi — mock lifecycle", () => {
+  afterEach(() => Vi.clearAllMocks())
+
+  testAsync("mockResolvedValueOnce resolves the next call", async () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockResolvedValueOnce(42)->ignore
+    let result = await (m->Vi.MockFn.asFn)()
+    expect(result)->toBe(42)
+  })
+
+  testAsync("mockRejectedValueOnce rejects the next call", async () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockRejectedValueOnce(JsError.make("boom"))->ignore
+    await expect((m->Vi.MockFn.asFn)())->rejects->Async.toThrowWithMessage("boom")
+  })
+
+  test("mockReturnThis is chainable and callable", () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockReturnThis->ignore
+    (m->Vi.MockFn.asFn)()->ignore
+    m->Vi.MockFn.asAssertion->toHaveBeenCalledOnce
+  })
+
+  test("mockName / getMockName round-trip", () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockName("greeter")->ignore
+    expect(m->Vi.MockFn.getMockName)->toBe("greeter")
+  })
+
+  test("getMockImplementation reflects the configured implementation", () => {
+    let m = Vi.fn1()
+    expect((m->Vi.MockFn.getMockImplementation)->Option.isNone)->toBeTruthy
+    m->Vi.MockFn.mockImplementation(x => x + 1)->ignore
+    expect((m->Vi.MockFn.getMockImplementation)->Option.isSome)->toBeTruthy
+  })
+
+  test("withImplementation overrides only during the callback", () => {
+    let m = Vi.fn1()
+    m->Vi.MockFn.mockImplementation(_ => "base")->ignore
+    let f = m->Vi.MockFn.asFn
+    m
+    ->Vi.MockFn.withImplementation(_ => "temp", () => {
+      expect(f("x"))->toBe("temp")
+    })
+    ->ignore
+    expect(f("y"))->toBe("base")
+  })
+})
+
+describe("Vi — mock inspection & hoisting", () => {
+  afterEach(() => Vi.clearAllMocks())
+
+  test("mocked views a function as a typed mock", () => {
+    let m = Vi.fn1()
+    let f = m->Vi.MockFn.asFn
+    Vi.mocked(f)->Vi.MockFn.mockReturnValue("hi")->ignore
+    expect(f("x"))->toBe("hi")
+  })
+
+  test("isMockFunction distinguishes mocks from plain functions", () => {
+    let m = Vi.fn0()
+    expect(Vi.isMockFunction(m->Vi.MockFn.asFn))->toBeTruthy
+    expect(Vi.isMockFunction(() => 1))->toBeFalsy
+  })
+
+  test("hoisted runs a factory and returns its value", () => {
+    let v = Vi.hoisted(() => 123)
+    expect(v)->toBe(123)
+  })
+})
+
 describe("Vi — fake timers", () => {
   test("advanceTimersByTime fires pending timers", () => {
     Vi.useFakeTimers()
