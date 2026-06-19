@@ -4,27 +4,27 @@
 |---|---|
 | 機能名 | asymmetric matchers (Phase 8) |
 | 作成日 | 2026-06-19 |
-| 進捗 | 0 / 9 完了 |
+| 進捗 | 8 / 9 完了 |
 
 ## フェーズ1: 準備
 
-- [ ] `EnterWorktree` で worktree (`asymmetric-matchers`) を作成し、`git merge main --ff-only` で同期する
+- [x] `EnterWorktree` で worktree (`asymmetric-matchers`) を作成し、`git merge main --ff-only` で同期する
 
 ## フェーズ2: 実装
 
-- [ ] `module Expect` に `anything` / `any` / `arrayContaining` / `objectContaining` を追加
-- [ ] `module Expect` に `stringContaining` / `stringMatching` / `stringMatchingRegExp` / `closeTo` / `closeToWithPrecision` を追加
+- [x] `module Expect` に `anything` / `any` / `arrayContaining` / `objectContaining` を追加
+- [x] `module Expect` に `stringContaining` / `stringMatching` / `stringMatchingRegExp` / `closeTo` / `closeToWithPrecision` を追加
 
 ## フェーズ3: テスト（= PoC 検証）
 
-- [ ] `toEqual` / `toMatchObject` の期待値位置に埋め込むテストを追加
-- [ ] `toHaveBeenCalledWith` の期待値位置に埋め込むテストを追加
-- [ ] `pnpm build` が型エラーなしで通ることを確認（多相戻り値アプローチの型整合確認）
-- [ ] `pnpm test` が全件パスすることを確認
+- [x] `toEqual` / `toMatchObject` の期待値位置に埋め込むテストを追加
+- [x] `toHaveBeenCalledWith` の期待値位置に埋め込むテストを追加
+- [x] `pnpm build` が型エラーなしで通ることを確認（多相戻り値アプローチの型整合確認 = PoC 成立）
+- [x] `pnpm test` が全件パスすることを確認（79 passed / 2 expected fail / 4 skipped）
 
 ## フェーズ4: 仕上げ
 
-- [ ] ドキュメント更新（`README.md` に asymmetric matchers / `sphinx-docs/user/changelog.md` Unreleased + 日本語 `.po`、`make build-ja`）
+- [x] ドキュメント更新（`README.md` に asymmetric matchers / `sphinx-docs/user/changelog.md` Unreleased + 日本語 `.po`、`make build-ja` 成功）
 - [ ] コミット（`✨` プレフィックス）後、main へのマージ可否を確認 → 承認後マージ・worktree クリーンアップ
 
 ## 完了条件

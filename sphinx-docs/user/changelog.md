@@ -21,6 +21,7 @@
 - Module mocking completion: `importActual`, `importMock`, `doUnmock`, `mockObject`, `dynamicImportSettled`.
 - Test modifiers: `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`, `testSequential`, `testSequentialAsync`.
 - Describe modifiers: `describeTodo`, `describeConcurrent`, `describeSequential`, `describeShuffle`, `describeSkipIf`, `describeRunIf`, `describeFor`.
+- Asymmetric matchers (`Expect` module): `anything`, `any`, `arrayContaining`, `objectContaining`, `stringContaining`, `stringMatching`, `stringMatchingRegExp`, `closeTo`, `closeToWithPrecision`.
 
 ### Changed
 

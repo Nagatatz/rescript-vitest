@@ -398,3 +398,33 @@ module Async = {
   @send external toThrow: asyncAssertion<'a> => promise<unit> = "toThrow"
   @send external toThrowWithMessage: (asyncAssertion<'a>, string) => promise<unit> = "toThrow"
 }
+
+/**
+ * Asymmetric matchers — special values you embed in the *expected* position of
+ * `toEqual` / `toMatchObject` / `toHaveBeenCalledWith` etc. Each returns a
+ * polymorphic value that unifies with the surrounding expected type, so no
+ * change to the existing matchers is needed.
+ *
+ *   expect({"id": 1, "name": "a"})->toEqual({"id": Expect.anything(), "name": "a"})
+ *   expect([1, 2, 3])->toEqual(Expect.arrayContaining([1, 2]))
+ */
+module Expect = {
+  /** Matches any value that is not `null` or `undefined`. */
+  @module("vitest") @scope("expect") external anything: unit => 'a = "anything"
+  /** Matches a value created by the given constructor (e.g. the `Error` class). */
+  @module("vitest") @scope("expect") external any: 'ctor => 'a = "any"
+  /** Matches an array that contains all of the given elements. */
+  @module("vitest") @scope("expect") external arrayContaining: array<'a> => 'b = "arrayContaining"
+  /** Matches an object that contains the given subset of properties. */
+  @module("vitest") @scope("expect") external objectContaining: 'a => 'b = "objectContaining"
+  /** Matches a string that contains the given substring. */
+  @module("vitest") @scope("expect") external stringContaining: string => 'a = "stringContaining"
+  /** Matches a string against the given pattern (string form). */
+  @module("vitest") @scope("expect") external stringMatching: string => 'a = "stringMatching"
+  /** Matches a string against the given `RegExp`. */
+  @module("vitest") @scope("expect") external stringMatchingRegExp: RegExp.t => 'a = "stringMatching"
+  /** Matches a number close to the expected value (default precision). */
+  @module("vitest") @scope("expect") external closeTo: float => 'a = "closeTo"
+  /** Matches a number close to the expected value with an explicit precision. */
+  @module("vitest") @scope("expect") external closeToWithPrecision: (float, int) => 'a = "closeTo"
+}

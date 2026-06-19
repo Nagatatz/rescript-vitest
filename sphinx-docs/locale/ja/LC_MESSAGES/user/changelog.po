@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 17:49+0900\n"
+"POT-Creation-Date: 2026-06-19 18:02+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -130,8 +130,8 @@ msgid ""
 "Test modifiers: `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`,"
 " `testSequential`, `testSequentialAsync`."
 msgstr ""
-"test 修飾子: `testSkipIf`、`testRunIf`、`testFails`、`testFailsAsync`、"
-"`testSequential`、`testSequentialAsync`。"
+"test 修飾子: "
+"`testSkipIf`、`testRunIf`、`testFails`、`testFailsAsync`、`testSequential`、`testSequentialAsync`。"
 
 #: ../../user/changelog.md:23
 msgid ""
@@ -139,15 +139,26 @@ msgid ""
 "`describeSequential`, `describeShuffle`, `describeSkipIf`, "
 "`describeRunIf`, `describeFor`."
 msgstr ""
-"describe 修飾子: `describeTodo`、`describeConcurrent`、"
-"`describeSequential`、`describeShuffle`、`describeSkipIf`、"
-"`describeRunIf`、`describeFor`。"
+"describe 修飾子: "
+"`describeTodo`、`describeConcurrent`、`describeSequential`、`describeShuffle`、`describeSkipIf`、`describeRunIf`、`describeFor`。"
 
-#: ../../user/changelog.md:25
+#: ../../user/changelog.md:24
+msgid ""
+"Asymmetric matchers (`Expect` module): `anything`, `any`, "
+"`arrayContaining`, `objectContaining`, `stringContaining`, "
+"`stringMatching`, `stringMatchingRegExp`, `closeTo`, "
+"`closeToWithPrecision`."
+msgstr ""
+"非対称マッチャー（`Expect` モジュール）: `anything`、`any`、"
+"`arrayContaining`、`objectContaining`、`stringContaining`、"
+"`stringMatching`、`stringMatchingRegExp`、`closeTo`、"
+"`closeToWithPrecision`。"
+
+#: ../../user/changelog.md:26
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:29
+#: ../../user/changelog.md:30
 msgid "Fixed"
 msgstr "修正"
 
