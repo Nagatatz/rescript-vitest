@@ -27,7 +27,7 @@
 ## フェーズ4: 仕上げ
 
 - [x] ドキュメント更新: `README.md`（対象範囲・非対象方針）/ `docs/repository-structure.md`（ファイル表に追記）/ `sphinx-docs/`（en ページ + `make update-po` で ja .po を埋める。`make build-ja` 成功確認済み）
-- [ ] 適切な粒度でコミットする（✨ 実装+テスト / 📝 ドキュメント）
+- [x] 適切な粒度でコミットする（✨ 実装+テスト / 📝 ドキュメント）
 - [x] マージ確認タスク: `AskUserQuestion` で main へのマージ可否を確認し、承認後マージ・worktree/ブランチのクリーンアップ・検証まで一括実行する
 
 ## 完了条件
