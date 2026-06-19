@@ -10,6 +10,7 @@
 - Mock return-value matchers: `toHaveReturnedTimes`, `toHaveReturnedWith`, `toHaveLastReturnedWith`, `toHaveNthReturnedWith`.
 - `Vi.MockFn` lifecycle helpers: `mockResolvedValueOnce`, `mockRejectedValueOnce`, `mockReturnThis`, `getMockName`, `mockName`, `getMockImplementation`, `withImplementation`.
 - `Vi` mock inspection and hoisting helpers: `mocked`, `isMockFunction`, `hoisted`.
+- Per-test lifecycle hooks: `onTestFailed`, `onTestFinished` (each with an `…Async` variant).
 
 ### Changed
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 16:36+0900\n"
+"POT-Creation-Date: 2026-06-19 16:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -57,22 +57,28 @@ msgid ""
 "`mockRejectedValueOnce`, `mockReturnThis`, `getMockName`, `mockName`, "
 "`getMockImplementation`, `withImplementation`."
 msgstr ""
-"`Vi.MockFn` のライフサイクルヘルパー: `mockResolvedValueOnce`、"
-"`mockRejectedValueOnce`、`mockReturnThis`、`getMockName`、`mockName`、"
-"`getMockImplementation`、`withImplementation`。"
+"`Vi.MockFn` のライフサイクルヘルパー: "
+"`mockResolvedValueOnce`、`mockRejectedValueOnce`、`mockReturnThis`、`getMockName`、`mockName`、`getMockImplementation`、`withImplementation`。"
 
 #: ../../user/changelog.md:12
 msgid ""
 "`Vi` mock inspection and hoisting helpers: `mocked`, `isMockFunction`, "
 "`hoisted`."
-msgstr ""
-"`Vi` のモック検査・ホイストヘルパー: `mocked`、`isMockFunction`、`hoisted`。"
+msgstr "`Vi` のモック検査・ホイストヘルパー: `mocked`、`isMockFunction`、`hoisted`。"
 
-#: ../../user/changelog.md:14
+#: ../../user/changelog.md:13
+msgid ""
+"Per-test lifecycle hooks: `onTestFailed`, `onTestFinished` (each with an "
+"`…Async` variant)."
+msgstr ""
+"テスト単位のライフサイクルフック: `onTestFailed`、`onTestFinished`"
+"（それぞれ `…Async` バリアントを含む）。"
+
+#: ../../user/changelog.md:15
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:18
+#: ../../user/changelog.md:19
 msgid "Fixed"
 msgstr "修正"
 
