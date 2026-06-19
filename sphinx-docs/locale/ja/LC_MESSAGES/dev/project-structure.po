@@ -22,13 +22,13 @@ msgstr ""
 
 #: ../../dev/project-structure.md:1
 msgid "Project Structure"
-msgstr ""
+msgstr "プロジェクト構成"
 
 #: ../../dev/project-structure.md:3
 msgid "Top-Level Layout"
-msgstr ""
+msgstr "トップレベルの構成"
 
 #: ../../dev/project-structure.md:15
 msgid "Source Code Organization"
-msgstr ""
+msgstr "ソースコードの構成"
 

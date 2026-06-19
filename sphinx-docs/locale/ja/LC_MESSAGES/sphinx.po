@@ -23,5 +23,5 @@ msgstr ""
 #: ../../_templates/sidebar/search.html:5
 #: ../../_templates/sidebar/search.html:8
 msgid "Search"
-msgstr ""
+msgstr "検索"
 

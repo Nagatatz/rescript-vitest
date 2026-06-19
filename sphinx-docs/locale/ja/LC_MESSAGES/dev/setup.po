@@ -22,23 +22,23 @@ msgstr ""
 
 #: ../../dev/setup.md:1
 msgid "Development Setup"
-msgstr ""
+msgstr "開発環境のセットアップ"
 
 #: ../../dev/setup.md:3
 msgid "Prerequisites"
-msgstr ""
+msgstr "前提条件"
 
 #: ../../dev/setup.md
 msgid "Requirement"
-msgstr ""
+msgstr "要件"
 
 #: ../../dev/setup.md
 msgid "Version"
-msgstr ""
+msgstr "バージョン"
 
 #: ../../dev/setup.md
 msgid "Note"
-msgstr ""
+msgstr "備考"
 
 #: ../../dev/setup.md
 msgid "[uv](https://docs.astral.sh/uv/)"
@@ -50,7 +50,7 @@ msgstr ""
 
 #: ../../dev/setup.md
 msgid "Python パッケージ管理・仮想環境"
-msgstr ""
+msgstr "Python パッケージ管理・仮想環境"
 
 #: ../../dev/setup.md
 msgid "Python"
@@ -62,7 +62,7 @@ msgstr ""
 
 #: ../../dev/setup.md
 msgid "uv が自動インストール"
-msgstr ""
+msgstr "uv が自動インストール"
 
 #: ../../dev/setup.md
 msgid "Node.js"
@@ -74,21 +74,21 @@ msgstr ""
 
 #: ../../dev/setup.md
 msgid "Pagefind 検索インデックス生成に使用"
-msgstr ""
+msgstr "Pagefind 検索インデックス生成に使用"
 
 #: ../../dev/setup.md:11
 msgid "uv のインストール"
-msgstr ""
+msgstr "uv のインストール"
 
 #: ../../dev/setup.md:24
 msgid "Clone the Repository"
-msgstr ""
+msgstr "リポジトリのクローン"
 
 #: ../../dev/setup.md:31
 msgid "Install Dependencies"
-msgstr ""
+msgstr "依存関係のインストール"
 
 #: ../../dev/setup.md:38
 msgid "Verify the Setup"
-msgstr ""
+msgstr "セットアップの確認"
 

@@ -22,33 +22,33 @@ msgstr ""
 
 #: ../../user/quickstart.md:1
 msgid "Quick Start"
-msgstr ""
+msgstr "クイックスタート"
 
 #: ../../user/quickstart.md:3
 msgid "This guide walks you through your first experience after installation."
-msgstr ""
+msgstr "このガイドでは、インストール後の最初の操作を順を追って説明します。"
 
 #: ../../user/quickstart.md:5
 msgid "Prerequisites"
-msgstr ""
+msgstr "前提条件"
 
 #: ../../user/quickstart.md:7
 msgid "Completed [Installation](installation.md)"
-msgstr ""
+msgstr "[インストール](installation.md)が完了していること"
 
 #: ../../user/quickstart.md:9
 msgid "Getting Started"
-msgstr ""
+msgstr "はじめに"
 
 #: ../../user/quickstart.md:13
 msgid "What's Next?"
-msgstr ""
+msgstr "次のステップ"
 
 #: ../../user/quickstart.md:15
 msgid "[Configuration](configuration.md) — Customize settings"
-msgstr ""
+msgstr "[設定](configuration.md) — 設定をカスタマイズする"
 
 #: ../../user/quickstart.md:16
 msgid "[Changelog](changelog.md) — See what's new"
-msgstr ""
+msgstr "[変更履歴](changelog.md) — 最新情報を確認する"
 

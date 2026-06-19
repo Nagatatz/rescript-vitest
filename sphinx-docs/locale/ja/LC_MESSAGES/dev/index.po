@@ -22,45 +22,45 @@ msgstr ""
 
 #: ../../dev/index.md:1
 msgid "Developer Guide"
-msgstr ""
+msgstr "開発者ガイド"
 
 #: ../../dev/index.md:3
 msgid "This section covers everything you need to contribute to the project."
-msgstr ""
+msgstr "このセクションでは、プロジェクトに貢献するために必要なすべてを説明します。"
 
 #: ../../dev/index.md:5
 msgid "Getting Started"
-msgstr ""
+msgstr "はじめに"
 
 #: ../../dev/index.md:7
 msgid "[Development Setup](setup.md) — Set up your development environment"
-msgstr ""
+msgstr "[開発環境のセットアップ](setup.md) — 開発環境を構築します"
 
 #: ../../dev/index.md:8
 msgid "[Building](building.md) — Build and run the project"
-msgstr ""
+msgstr "[ビルド](building.md) — プロジェクトをビルドして実行します"
 
 #: ../../dev/index.md:10
 msgid "Understanding the Codebase"
-msgstr ""
+msgstr "コードベースの理解"
 
 #: ../../dev/index.md:12
 msgid "[Architecture](architecture.md) — How the project is structured"
-msgstr ""
+msgstr "[アーキテクチャ](architecture.md) — プロジェクトがどのように構成されているか"
 
 #: ../../dev/index.md:13
 msgid ""
 "[Project Structure](project-structure.md) — Source code layout and key "
 "files"
-msgstr ""
+msgstr "[プロジェクト構成](project-structure.md) — ソースコードの配置と主要なファイル"
 
 #: ../../dev/index.md:15
 msgid "Contributing"
-msgstr ""
+msgstr "コントリビュート"
 
 #: ../../dev/index.md:17
 msgid ""
 "[Contributing Guide](contributing.md) — Workflow, conventions, and PR "
 "process"
-msgstr ""
+msgstr "[コントリビュートガイド](contributing.md) — ワークフロー、規約、PR プロセス"
 

@@ -22,33 +22,33 @@ msgstr ""
 
 #: ../../user/index.md:1
 msgid "User Guide"
-msgstr ""
+msgstr "ユーザーガイド"
 
 #: ../../user/index.md:3
 msgid "Everything you need to get started with rescript-vitest."
-msgstr ""
+msgstr "rescript-vitest を使い始めるために必要なすべての情報をまとめています。"
 
 #: ../../user/index.md:5
 msgid "Getting Started"
-msgstr ""
+msgstr "はじめに"
 
 #: ../../user/index.md:7
 msgid "[Installation](installation.md) — Install and set up"
-msgstr ""
+msgstr "[インストール](installation.md) — インストールとセットアップ"
 
 #: ../../user/index.md:8
 msgid "[Quick Start](quickstart.md) — Your first steps"
-msgstr ""
+msgstr "[クイックスタート](quickstart.md) — 最初のステップ"
 
 #: ../../user/index.md:10
 msgid "Reference"
-msgstr ""
+msgstr "リファレンス"
 
 #: ../../user/index.md:12
 msgid "[Configuration](configuration.md) — Settings and options"
-msgstr ""
+msgstr "[設定](configuration.md) — 設定とオプション"
 
 #: ../../user/index.md:13
 msgid "[Changelog](changelog.md) — Release notes"
-msgstr ""
+msgstr "[変更履歴](changelog.md) — リリースノート"
 

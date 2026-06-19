@@ -22,60 +22,60 @@ msgstr ""
 
 #: ../../dev/architecture.md:1
 msgid "Architecture"
-msgstr ""
+msgstr "アーキテクチャ"
 
 #: ../../dev/architecture.md:3
 msgid "Overview"
-msgstr ""
+msgstr "概要"
 
 #: ../../dev/architecture.md:7
 msgid "Key Components"
-msgstr ""
+msgstr "主要コンポーネント"
 
 #: ../../dev/architecture.md:11
 msgid "Design Principles"
-msgstr ""
+msgstr "設計原則"
 
 #: ../../dev/architecture.md:15
 msgid "**Principle 1** — Description"
-msgstr ""
+msgstr "**原則1** — 説明"
 
 #: ../../dev/architecture.md:16
 msgid "**Principle 2** — Description"
-msgstr ""
+msgstr "**原則2** — 説明"
 
 #: ../../dev/architecture.md:18
 msgid "Diagram Examples"
-msgstr ""
+msgstr "図の例"
 
 #: ../../dev/architecture.md:20
 msgid "Mermaid Diagrams"
-msgstr ""
+msgstr "Mermaid 図"
 
 #: ../../dev/architecture.md:22
 #, python-brace-format
 msgid "Use the `{mermaid}` directive to embed diagrams directly in Markdown:"
-msgstr ""
+msgstr "`{mermaid}` ディレクティブを使うと、図を Markdown に直接埋め込めます:"
 
 #: ../../dev/architecture.md:33
 msgid ""
 "Supported diagram types: flowchart, sequence, class, state, ER, Gantt, "
 "pie, and more. See [Mermaid documentation](https://mermaid.js.org/) for "
 "syntax reference."
-msgstr ""
+msgstr "サポートされる図の種類: フローチャート、シーケンス図、クラス図、状態遷移図、ER 図、ガントチャート、円グラフなど。構文リファレンスは [Mermaid documentation](https://mermaid.js.org/) を参照してください。"
 
 #: ../../dev/architecture.md:36
 msgid "Collapsible Sections"
-msgstr ""
+msgstr "折りたたみセクション"
 
 #: ../../dev/architecture.md:38
 #, python-brace-format
 msgid ""
 "Use `{toggle}` to create collapsible content (e.g., for detailed "
 "explanations or optional content):"
-msgstr ""
+msgstr "`{toggle}` を使うと、折りたたみ可能なコンテンツを作成できます（例: 詳細な説明や任意のコンテンツ用）:"
 
 #: ../../dev/architecture.md:46
 msgid "To show the section expanded by default, add the `:show:` option:"
-msgstr ""
+msgstr "デフォルトでセクションを展開して表示するには、`:show:` オプションを追加します:"
 

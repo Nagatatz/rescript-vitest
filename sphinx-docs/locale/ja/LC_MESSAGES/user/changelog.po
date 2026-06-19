@@ -22,21 +22,21 @@ msgstr ""
 
 #: ../../user/changelog.md:1
 msgid "Changelog"
-msgstr ""
+msgstr "変更履歴"
 
 #: ../../user/changelog.md:3
 msgid "Unreleased"
-msgstr ""
+msgstr "未リリース"
 
 #: ../../user/changelog.md:7
 msgid "Added"
-msgstr ""
+msgstr "追加"
 
 #: ../../user/changelog.md:11
 msgid "Changed"
-msgstr ""
+msgstr "変更"
 
 #: ../../user/changelog.md:15
 msgid "Fixed"
-msgstr ""
+msgstr "修正"
 

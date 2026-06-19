@@ -22,23 +22,23 @@ msgstr ""
 
 #: ../../user/configuration.md:1
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../../user/configuration.md:3
 msgid "Settings"
-msgstr ""
+msgstr "設定項目"
 
 #: ../../user/configuration.md
 msgid "Setting"
-msgstr ""
+msgstr "設定"
 
 #: ../../user/configuration.md
 msgid "Default"
-msgstr ""
+msgstr "デフォルト値"
 
 #: ../../user/configuration.md
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: ../../user/configuration.md
 msgid "`example_setting`"
@@ -50,5 +50,5 @@ msgstr ""
 
 #: ../../user/configuration.md
 msgid "Description of the setting"
-msgstr ""
+msgstr "設定項目の説明"
 

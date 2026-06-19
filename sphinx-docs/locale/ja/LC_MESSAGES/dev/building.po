@@ -22,33 +22,33 @@ msgstr ""
 
 #: ../../dev/building.md:1
 msgid "Building"
-msgstr ""
+msgstr "ビルド"
 
 #: ../../dev/building.md:3
 msgid "Build Commands"
-msgstr ""
+msgstr "ビルドコマンド"
 
 #: ../../dev/building.md
 msgid "Command"
-msgstr ""
+msgstr "コマンド"
 
 #: ../../dev/building.md
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: ../../dev/building.md
 msgid "<!-- e.g. `npm run build` -->"
-msgstr ""
+msgstr "<!-- 例: `npm run build` -->"
 
 #: ../../dev/building.md
 msgid "<!-- Build the project -->"
-msgstr ""
+msgstr "<!-- プロジェクトをビルドする -->"
 
 #: ../../dev/building.md:9
 msgid "Output"
-msgstr ""
+msgstr "出力"
 
 #: ../../dev/building.md:13
 msgid "CI Pipeline"
-msgstr ""
+msgstr "CI パイプライン"
 
