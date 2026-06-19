@@ -129,3 +129,20 @@ describe("Vi — fake timers", () => {
     Vi.useRealTimers()
   })
 })
+
+// Module-level flag, set by an `onTestFinished` callback in one test and
+// asserted by the next test (tests run sequentially by default).
+let finishedRan = ref(false)
+
+describe("Vitest — per-test hooks", () => {
+  test("registers onTestFinished and onTestFailed", () => {
+    onTestFinished(() => finishedRan := true)
+    // Smoke check: registering onTestFailed in a passing test must not throw.
+    onTestFailed(() => ())
+    expect(true)->toBeTruthy
+  })
+
+  test("onTestFinished callback ran after the previous test", () => {
+    expect(finishedRan.contents)->toBeTruthy
+  })
+})

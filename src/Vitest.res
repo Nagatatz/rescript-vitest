@@ -117,6 +117,18 @@ external itOnly: (string, unit => unit, ~timeout: int=?) => unit = "only"
 @module("vitest") external afterEach: (unit => unit) => unit = "afterEach"
 @module("vitest") external afterEachAsync: (unit => promise<unit>) => unit = "afterEach"
 
+// Per-test hooks, registered from inside a test body (not at suite level).
+
+/** Run the callback if the current test fails. */
+@module("vitest") external onTestFailed: (unit => unit) => unit = "onTestFailed"
+/** Async variant of `onTestFailed`. */
+@module("vitest") external onTestFailedAsync: (unit => promise<unit>) => unit = "onTestFailed"
+
+/** Run the callback when the current test finishes, whether it passed or failed. */
+@module("vitest") external onTestFinished: (unit => unit) => unit = "onTestFinished"
+/** Async variant of `onTestFinished`. */
+@module("vitest") external onTestFinishedAsync: (unit => promise<unit>) => unit = "onTestFinished"
+
 // ============================================================================
 // expect — assertion wrappers
 // ============================================================================

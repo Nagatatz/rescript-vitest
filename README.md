@@ -7,7 +7,7 @@ exactly like Vitest itself. The `expect(value)` wrapper carries the type of the
 value under test, so matchers such as `toBe` stay honest at compile time.
 
 - ✅ `describe` / `test` / `it` (+ `.only` / `.skip` / `.todo` / `.each` / `.concurrent`)
-- ✅ Lifecycle hooks (`beforeEach` / `afterEach` / `beforeAll` / `afterAll`, sync & async)
+- ✅ Lifecycle hooks (`beforeEach` / `afterEach` / `beforeAll` / `afterAll` / `onTestFailed` / `onTestFinished`, sync & async)
 - ✅ The full `expect` matcher set (equality, numbers, strings, collections, objects, exceptions, snapshots, mock matchers)
 - ✅ Negation (`not_`) and async assertions (`resolves` / `rejects`)
 - ✅ `Vi` — mock functions, spies, module mocking and fake timers
@@ -104,7 +104,7 @@ test("fake timers", () => {
 `testEach`, `it`, `itAsync`, `itOnly`, `itSkip`.
 
 ### Lifecycle
-`beforeAll`, `afterAll`, `beforeEach`, `afterEach` (each with an `…Async` variant).
+`beforeAll`, `afterAll`, `beforeEach`, `afterEach`, plus the per-test hooks `onTestFailed`, `onTestFinished` (each with an `…Async` variant).
 
 ### `expect` matchers
 - **Equality:** `toBe`, `toEqual`, `toStrictEqual`
