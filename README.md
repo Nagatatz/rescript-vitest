@@ -24,20 +24,32 @@ value under test, so matchers such as `toBe` stay honest at compile time.
 [`@greenfinity/rescript-vitest`](https://www.npmjs.com/package/@greenfinity/rescript-vitest)
 both target Vitest 2/3 and pin the dependency tree to Vite 5. Vitest **4.1+**
 requires `vite/module-runner` (Vite 6+), so those bindings block the upgrade.
-This package targets Vitest 4 (Vite 6/7) directly.
+This package targets Vitest 4 (Vite 6/7) directly. A prerelease line tracking
+Vitest **5.0.0-beta** is published to the `next` dist-tag (see [Install](#install)).
 
 ## Requirements
 
 | Tool | Version |
 |------|---------|
 | ReScript | `^12.0.0` |
-| Vitest | `^4.0.0` |
+| Vitest | `^4.0.0 \|\| ^5.0.0-0` |
 | Vite | `^6` or `^7` (Vitest 4 peer) |
 
 ## Install
 
 ```bash
 pnpm add -D @nagatatz/rescript-vitest vitest vite
+```
+
+### Vitest 5 nightly channel
+
+A prerelease tracking Vitest 5 beta is published under the `next` dist-tag.
+It drops the `describe/test/it.sequential` bindings, which Vitest 5 removed
+(sequential is the default; use `concurrent` to opt out). The stable `latest`
+release keeps targeting Vitest 4.
+
+```bash
+pnpm add -D @nagatatz/rescript-vitest@next vitest@beta vite
 ```
 
 Add the package to your `rescript.json` dependencies so ReScript compiles the
@@ -191,7 +203,7 @@ export default config
 ```bash
 pnpm install
 pnpm build        # compile ReScript bindings + tests
-pnpm test         # run the dogfood test suite under Vitest 4
+pnpm test         # run the dogfood test suite (Vitest 5 beta on this branch)
 ```
 
 ## License

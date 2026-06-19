@@ -15,6 +15,19 @@
 
 -
 
+## 0.2.0-beta.5 (2026-06-19)
+
+Prerelease tracking Vitest 5 beta, published to the npm `next` dist-tag. The
+stable `latest` line keeps targeting Vitest 4.
+
+### Changed
+
+- `peerDependencies.vitest` widened to `^4.0.0 || ^5.0.0-0`; the dogfood suite now runs on Vitest `5.0.0-beta.5`.
+
+### Removed
+
+- **Breaking:** `describeSequential`, `testSequential`, `testSequentialAsync`, `itSequential` — Vitest 5 removed the `describe/test/it.sequential` modifier. Sequential is the default execution order; use the `concurrent` variants to opt out.
+
 ## 0.1.0 (2026-06-19)
 
 Initial release: type-safe ReScript bindings covering the Vitest 4 surface.

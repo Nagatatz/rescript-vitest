@@ -18,12 +18,12 @@
 - [ ] コミット ②（release.yml）
 
 ## Phase 5: ドキュメント
-- [ ] `README.md` Requirements 表 + `@next` install 手順
-- [ ] `sphinx-docs/user/changelog.md` `0.2.0-beta.5` エントリ
-- [ ] （API 変更時のみ）sphinx ページ + ja 翻訳
+- [x] `README.md` Requirements 表 + `@next` install 手順 + vitest5 nightly セクション
+- [x] `sphinx-docs/user/changelog.md` `0.2.0-beta.5` エントリ（Changed / Removed）
+- [x] `make update-po` → ja `msgstr` 記入 → `make build-ja` 成功（sphinx ページには sequential 記載なし、changelog のみ翻訳）
 - [ ] コミット ④（ドキュメント）
 
 ## Phase 6: 仕上げ
-- [ ] `pnpm test:coverage` 確認
+- [x] `pnpm test:coverage` 確認（coverage-v8 5.x 整合）
 - [ ] `vitest5` ブランチを remote へ push
 - [ ] （任意）`v0.2.0-beta.5` タグで nightly 公開
