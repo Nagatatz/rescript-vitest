@@ -144,7 +144,7 @@ async requestPasswordReset(email: string): Promise<void> {
 
 ## Phase 4: マージとクリーンアップ
 
-→ `.claude/rules/steering-workflow.md`「worktree マージ・クリーンアップ手順」に従い、CWD を main へ移動 → マージ → worktree 削除 → ブランチ削除 → 検証 3 点を実施。
+→ `worktree-safety` skill「マージ・クリーンアップ手順」に従い、CWD を main へ移動 → マージ → worktree 削除 → ブランチ削除 → 検証 3 点を実施。
 
 ## ポイント
 

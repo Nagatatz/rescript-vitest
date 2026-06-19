@@ -28,7 +28,7 @@ allowed-tools: Read, Bash
 
 ## 判定スクリプト
 
-`.claude/rules/steering-workflow.md` の「アーカイブ判定基準」と同等のロジックを使う。
+本 skill がアーカイブ判定の SSOT。最終コミット日が閾値より古いディレクトリを抽出する。
 
 ```bash
 threshold_days=30
@@ -61,4 +61,4 @@ git commit -m "📝 Archive completed steering: <対象ディレクトリ>"
 
 ## 関連
 
-- `.claude/rules/steering-workflow.md` 「アーカイブポリシー」節
+- `.claude/rules/steering-workflow.md` 「アーカイブポリシー」節（本 skill を SSOT として参照）

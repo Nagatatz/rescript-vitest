@@ -1,52 +1,38 @@
 # 調査タスクの subagent 分離規約
 
-> 出典: [Best practices for Claude Code（Anthropic 公式）](https://code.claude.com/docs/en/best-practices), [Context Engineering for Coding Agents（Martin Fowler / Birgitta Böckeler）](https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html)
->
-> 公式: 「Since context is your fundamental constraint, **subagents are one of the most powerful tools available**.」
+> 出典: Anthropic 公式ベストプラクティス。「context is your fundamental constraint, **subagents are one of the most powerful tools available**.」
 
-コードベース調査・コード読み込みの多いタスクは、メイン会話のコンテキストを汚さないため **必ず subagent に分離** すること。メイン会話は「決定」と「実装」に集中させる。
+コードベース調査・コード読み込みの多いタスクは、メイン会話のコンテキストを汚さないため **subagent に分離**する。メイン会話は「決定」と「実装」に集中させる。
 
 ## 判定基準
 
-以下のいずれかに該当するタスクは subagent に分離すること:
+以下に該当するタスクは subagent に分離する:
 
-- **3 ファイル以上を横断的に読む必要がある探索**
-- **「どこで X が定義されているか」「Y を参照しているのはどこか」型のシンボル / キーワード検索**
-- **不慣れな領域の理解（認証フロー / DB スキーマ / API パターン把握）**
-- **PR / ブランチの差分要約**
-- **既存実装パターンの抽出（「既存のウィジェットはどう実装されているか」）**
-- **コードレビュー（書いたコードを別コンテキストで批評させる Writer/Reviewer パターン）**
+- **3 ファイル以上を横断的に読む探索**
+- シンボル / キーワードの所在検索（「どこで X が定義/参照されるか」）
+- 不慣れな領域の理解、PR / ブランチ差分要約、既存実装パターンの抽出
+- コードレビュー（別コンテキストで批評させる Writer/Reviewer）
 
-逆に、**1〜2 ファイルの該当箇所が既に判明している場合は直接 Read** を使う（subagent は過剰）。
+逆に、**1〜2 ファイルの該当箇所が判明している場合は直接 Read**（subagent は過剰）。
 
 ## subagent タイプの選び方
 
-| タスク | 推奨 subagent | 理由 |
-|--------|--------------|------|
-| ファイル名 / シンボルの所在特定 | `Explore`（read-only） | 最速・低コスト |
-| 軽量検索（grep / glob） | `quick-search`（Haiku） | 低レイテンシ |
-| 横断的な深掘り（複数領域の関連性） | `general-purpose` または `Plan` | 包括的調査 |
-| コード品質レビュー | `code-reviewer`（Sonnet） | 8 観点フレームワーク |
-| セキュリティレビュー | `security-reviewer`（Opus） | 深い分析 |
-| ビルド・テスト失敗の原因分析 | `build-resolver`（Sonnet, worktree 隔離） | 失敗の本質に到達 |
-| バグ・スタックトレース分析 | `debugger`（Sonnet） | 根本原因分析 |
-| PR 差分要約 | `pr-summary` skill（内部で Explore fork） | コンテキスト保護 |
-| トピック徹底調査 | `deep-research` skill（内部で Explore fork） | 詳細な領域理解 |
+| タスク | 推奨 |
+|--------|------|
+| ファイル名 / シンボルの所在特定 | `Explore`（read-only・最速） |
+| 軽量検索（grep / glob） | `quick-search`（Haiku） |
+| 横断的な深掘り | `general-purpose` / `Plan` |
+| コード品質 / セキュリティレビュー | `code-reviewer` / `security-reviewer` |
+| ビルド・テスト失敗 / バグ分析 | `build-resolver` / `debugger` |
+| PR 差分要約 / トピック徹底調査 | `pr-summary` / `deep-research` skill |
 
-## メイン会話のコンテキスト保護原則
+## 原則
 
-- **subagent には自己完結したプロンプトを渡す**: 「本会話のここまで」ではなく、subagent が初見で必要な情報をすべて含める
-- **subagent の結果は要約のみ受け取る**: 探索結果の生 grep 出力をメイン会話に持ち込まない
-- **並列実行可能なら 1 メッセージで並行起動する**: 独立した調査は並列、依存関係があれば直列
+- subagent には**自己完結したプロンプト**を渡す（「本会話のここまで」ではなく初見で必要な情報を全て含める）
+- 結果は**要約のみ**受け取る（生 grep 出力をメインに持ち込まない）
+- 独立した調査は 1 メッセージで**並列起動**する
+- subagent の主張は**検証してから採用**する（「memory says X exists ≠ X exists now」）
 
-## 禁止事項
+## 関連
 
-- 「ちょっと調べる」つもりで Read / Grep を 5 回以上連打する（メインのコンテキストが汚れる）
-- subagent の結果を全文転記する（要約せよ）
-- 検証 / 信頼チェックなしに subagent の主張を採用する（公式: 「memory says X exists ≠ X exists now」）
-
-## 関連規約
-
-- `.claude/skills/token-optimization/`: モデル選択（Haiku / Sonnet / Opus）とコンテキスト節約戦略
-- `.claude/skills/context-management/`: コンテキスト圧迫時の `/compact` 戦略
-- `.claude/skills/deep-research/`, `.claude/skills/pr-summary/`: fork 実行型の調査 skill
+- `token-optimization` skill（モデル選択）/ `context-management` skill（コンテキスト圧迫時）

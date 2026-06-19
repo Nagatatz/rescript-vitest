@@ -86,13 +86,8 @@
 
 ## Phase 5: マージ後（マージ完了後）
 
-- [ ] worktree を削除した（`git worktree prune` または `git worktree remove`）
-- [ ] マージ済みブランチを削除した（`git branch -d`）
-- [ ] マージ・クリーンアップ手順を順守した（→ `steering-workflow.md` worktree マージ・クリーンアップ手順）
-- [ ] クリーンアップ完了の検証を実施した:
-  - `git worktree list` で main のみ表示される
-  - `git branch --list 'worktree-*'` の出力が空である
-  - `.claude/worktrees/` が空またはディレクトリが存在しない
+- [ ] `worktree-safety` skill「マージ・クリーンアップ手順」に従い worktree とマージ済みブランチを削除した
+- [ ] クリーンアップ完了の検証を実施した（同 skill「検証」: `git worktree list` が main のみ / `git branch --list 'worktree-*'` が空 / `.claude/worktrees/` が空）
 
 ## 禁止事項
 

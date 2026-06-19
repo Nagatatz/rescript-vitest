@@ -1,57 +1,30 @@
 # CLAUDE.md 健全性規約
 
-> 出典: [Best practices for Claude Code（Anthropic 公式）](https://code.claude.com/docs/en/best-practices)
->
-> 公式警告: 「Bloated CLAUDE.md files cause Claude to **ignore** your actual instructions」「If Claude keeps doing something you don't want despite having a rule against it, the file is probably too long and the rule is getting lost.」
+> 出典: [Best practices for Claude Code（Anthropic 公式）](https://code.claude.com/docs/en/best-practices)。公式警告: 肥大化した CLAUDE.md は Claude に**実際の指示を無視させる**。ルールに反する挙動が続くなら、ファイルが長すぎてルールが埋もれている可能性が高い。
 
-CLAUDE.md（および `@import` 連鎖でロードされる `.claude/rules/` 配下のファイル）は **毎セッションでロードされる固定オーバーヘッド** であり、肥大化すると逆効果になる。本ルールは「短く保つ」規律を Single Source of Truth として明示する。
+`CLAUDE.md` + `@import` 連鎖（`.claude/rules/`）は**毎セッションの固定オーバーヘッド**。短く保つのが SSOT 規律。
 
-## プルーニング原則
+## プルーニング原則（3 つの自問）
 
-新しい行・新しいルールを追加するとき、必ず以下を自問すること:
+新しい行を追加する前に問う:
 
-1. **この行を削除したら、Claude が間違えるか？** 間違えないなら削除する
-2. **既存コードを読めば Claude が推測できる内容か？** 推測できるなら削除する
+1. **この行を削除したら Claude が間違えるか？** 間違えないなら削除する
+2. **既存コードを読めば推測できる内容か？** 推測できるなら削除する
 3. **特定状況でしか使わない知識か？** Yes なら `.claude/skills/` に分離する（auto-invoke）
 
-3 つすべて No の場合のみ、CLAUDE.md / `.claude/rules/` に追加してよい。
+3 つすべて No の場合のみ追加してよい。
 
 ## 含めるもの / 除外するもの
 
 | ✅ 含める | ❌ 除外する |
 |----------|------------|
-| Claude が推測できないビルド・テストコマンド | コードを読めば分かること |
-| デフォルトと異なるコードスタイル規則 | 標準的な言語慣習（Claude は既に知っている） |
-| テスト方針と推奨テストランナー | 詳細な API ドキュメント（リンクで参照） |
-| リポジトリ運用規約（ブランチ命名、PR 規約） | 頻繁に変わる情報 |
+| 推測できないビルド・テストコマンド | コードを読めば分かること |
+| デフォルトと異なるコードスタイル規則 | 標準的な言語慣習 |
+| テスト方針・推奨テストランナー | 詳細な API ドキュメント（リンク参照） |
+| リポジトリ運用規約（ブランチ・PR） | 頻繁に変わる情報 |
 | プロジェクト固有のアーキテクチャ判断 | 長文の解説・チュートリアル |
-| 開発環境の癖（必須環境変数等） | ファイルごとのコードベース記述 |
-| 非自明な落とし穴・既知の地雷 | 「クリーンなコードを書け」のような自明な訓示 |
+| 非自明な落とし穴・既知の地雷 | 「クリーンに書け」等の自明な訓示 |
 
-## 状況発火スキルへの分離基準
+## 肥大化のサイン → 対応
 
-「毎セッションで必要か / 特定状況だけか」で判断:
-
-- **常時必要** → `.claude/rules/` + CLAUDE.md.template の `@import`
-- **特定状況** → `.claude/skills/` に skill 化、description で auto-invoke
-
-例: 「破壊的 Bash 操作前の安全規約」は常時要らない（破壊操作時のみ）→ `bash-safety` skill。「Git コミット規約」は実装後に毎回適用 → `git-conventions.md` ルール。
-
-## 過剰追加検知
-
-以下のいずれかが観測されたら CLAUDE.md / ルールが肥大化している可能性が高い:
-
-- Claude がルールに反する挙動を繰り返す（規則が他のテキストに埋もれている）
-- Claude が CLAUDE.md に既に答えがある質問をユーザーに投げる（表現が曖昧 / 重要度が伝わっていない）
-- セッション開始時のコンテキスト使用率が常に 30% を超えている
-
-対応:
-1. 既存ルールを「3 つの自問」で再評価し、削れる行を削る
-2. 特定状況用の知識は skill に移動する
-3. `empirical-prompt-tuning` skill で description / ルール本文の効果を実測する
-
-## 関連規約
-
-- `.claude/rules/permission-modes.md`: Plan Mode / steering の住み分け
-- `.claude/skills/empirical-prompt-tuning/`: description / system prompt の実測ベース改善
-- `.claude/skills/context-management/`: コンテキスト圧迫時の運用
+ルール違反の繰り返し / CLAUDE.md に答えのある質問をユーザーに投げる / セッション開始時のコンテキスト使用率が常時 30% 超 → ①「3 つの自問」で削れる行を削る ②特定状況用の知識は skill に移す ③`empirical-prompt-tuning` skill で description / ルール本文の効果を実測する。
