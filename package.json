@@ -1,7 +1,7 @@
 {
   "name": "@nagatatz/rescript-vitest",
   "version": "0.1.0",
-  "description": "Type-safe ReScript bindings for Vitest 4 — describe/test/expect matchers, vi mocks, spies, snapshots, fake timers.",
+  "description": "Type-safe ReScript bindings for Vitest — describe/test/expect matchers, vi mocks, spies, snapshots, fake timers.",
   "type": "module",
   "license": "MIT",
   "author": "Nagatatz <nagata.hbdc@gmail.com>",

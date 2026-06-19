@@ -1,6 +1,6 @@
 # @nagatatz/rescript-vitest
 
-Type-safe [ReScript](https://rescript-lang.org/) bindings for [Vitest](https://vitest.dev/) **4**.
+Type-safe [ReScript](https://rescript-lang.org/) bindings for [Vitest](https://vitest.dev/).
 
 The bindings are *faithful*: matchers are side-effecting and throw on failure,
 exactly like Vitest itself. The `expect(value)` wrapper carries the type of the

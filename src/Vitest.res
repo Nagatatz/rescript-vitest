@@ -1,5 +1,5 @@
 /**
- * Vitest — type-safe ReScript bindings for the Vitest 4 test runner.
+ * Vitest — type-safe ReScript bindings for the Vitest test runner.
  *
  * This module binds Vitest's test structure, lifecycle hooks and the `expect`
  * assertion API faithfully: matchers are side-effecting (they throw on failure),
