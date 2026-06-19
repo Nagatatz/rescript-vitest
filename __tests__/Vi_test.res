@@ -331,3 +331,13 @@ describe("Vi — module mocking completion", () => {
     expect(true)->toBeTruthy
   })
 })
+
+describe("Vi — timer tick mode", () => {
+  afterEach(() => Vi.useRealTimers())
+
+  test("setTimerTickMode is callable under fake timers", () => {
+    Vi.useFakeTimers()
+    Vi.setTimerTickMode("manual")
+    expect(Vi.isFakeTimers())->toBeTruthy
+  })
+})

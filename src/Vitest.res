@@ -124,9 +124,17 @@ external testFor: array<'a> => (string, 'a => unit) => unit = "for"
 @module("vitest") @scope("test")
 external testSkipIf: bool => (string, unit => unit) => unit = "skipIf"
 
+/** Async-body variant of `testSkipIf`. */
+@module("vitest") @scope("test")
+external testSkipIfAsync: bool => (string, unit => promise<unit>) => unit = "skipIf"
+
 /** Run only when the condition is true: `testRunIf(cond)("name", body)`. */
 @module("vitest") @scope("test")
 external testRunIf: bool => (string, unit => unit) => unit = "runIf"
+
+/** Async-body variant of `testRunIf`. */
+@module("vitest") @scope("test")
+external testRunIfAsync: bool => (string, unit => promise<unit>) => unit = "runIf"
 
 /** Expect this test to fail; it passes if the body throws. */
 @module("vitest") @scope("test")
@@ -159,6 +167,29 @@ external itSkip: (string, unit => unit, ~timeout: int=?) => unit = "skip"
 /** Run only this `it` case. */
 @module("vitest") @scope("it")
 external itOnly: (string, unit => unit, ~timeout: int=?) => unit = "only"
+
+/** Mark an `it` case as not-yet-implemented. */
+@module("vitest") @scope("it") external itTodo: string => unit = "todo"
+
+/** Run this `it` case concurrently with siblings. */
+@module("vitest") @scope("it")
+external itConcurrent: (string, unit => promise<unit>, ~timeout: int=?) => unit = "concurrent"
+
+/** Parameterized `it`: `itEach(cases)("name %i", case => ...)`. */
+@module("vitest") @scope("it")
+external itEach: array<'a> => (string, 'a => unit) => unit = "each"
+
+/** Expect this `it` case to fail; it passes if the body throws. */
+@module("vitest") @scope("it") external itFails: (string, unit => unit) => unit = "fails"
+
+/** Force this `it` case to run sequentially. */
+@module("vitest") @scope("it") external itSequential: (string, unit => unit) => unit = "sequential"
+
+/** Skip this `it` case when the condition is true. */
+@module("vitest") @scope("it") external itSkipIf: bool => (string, unit => unit) => unit = "skipIf"
+
+/** Run this `it` case only when the condition is true. */
+@module("vitest") @scope("it") external itRunIf: bool => (string, unit => unit) => unit = "runIf"
 
 // ============================================================================
 // Lifecycle hooks
@@ -320,6 +351,9 @@ type asyncAssertion<'a>
 @send external toMatchSnapshot: assertion<'a> => unit = "toMatchSnapshot"
 @send external toMatchSnapshotWithName: (assertion<'a>, string) => unit = "toMatchSnapshot"
 @send external toMatchInlineSnapshot: (assertion<'a>, string) => unit = "toMatchInlineSnapshot"
+
+/** Compare against a snapshot stored in an external file (created on first run). */
+@send external toMatchFileSnapshot: (assertion<'a>, string) => promise<unit> = "toMatchFileSnapshot"
 @send external toThrowErrorMatchingSnapshot: assertion<unit => 'a> => unit = "toThrowErrorMatchingSnapshot"
 @send
 external toThrowErrorMatchingInlineSnapshot: (assertion<unit => 'a>, string) => unit =
@@ -457,4 +491,26 @@ module Expect = {
   @module("vitest") @scope("expect") external unreachable: unit => 'a = "unreachable"
   /** `unreachable` with an explanatory message. */
   @module("vitest") @scope("expect") external unreachableWithMessage: string => 'a = "unreachable"
+
+  /**
+   * Negated asymmetric matchers (`expect.not.*`): match values that do NOT
+   * satisfy the containing/matching condition. Embed in the expected position
+   * just like the positive forms.
+   */
+  module Not = {
+    /** Matches an array that does NOT contain all of the given elements. */
+    @module("vitest") @scope(("expect", "not")) external arrayContaining: array<'a> => 'b = "arrayContaining"
+    /** Matches an object that does NOT contain the given subset. */
+    @module("vitest") @scope(("expect", "not")) external objectContaining: 'a => 'b = "objectContaining"
+    /** Matches a string that does NOT contain the given substring. */
+    @module("vitest") @scope(("expect", "not")) external stringContaining: string => 'a = "stringContaining"
+    /** Matches a string that does NOT match the given pattern (string form). */
+    @module("vitest") @scope(("expect", "not")) external stringMatching: string => 'a = "stringMatching"
+    /** Matches a string that does NOT match the given `RegExp`. */
+    @module("vitest") @scope(("expect", "not")) external stringMatchingRegExp: RegExp.t => 'a = "stringMatching"
+    /** Matches a number that is NOT close to the expected value (default precision). */
+    @module("vitest") @scope(("expect", "not")) external closeTo: float => 'a = "closeTo"
+    /** Matches a number that is NOT close to the expected value with an explicit precision. */
+    @module("vitest") @scope(("expect", "not")) external closeToWithPrecision: (float, int) => 'a = "closeTo"
+  }
 }
