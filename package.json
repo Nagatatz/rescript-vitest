@@ -1,0 +1,50 @@
+{
+  "name": "@nagatatz/rescript-vitest",
+  "version": "0.1.0",
+  "description": "Type-safe ReScript bindings for Vitest 4 — describe/test/expect matchers, vi mocks, spies, snapshots, fake timers.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Nagatatz <nagata.hbdc@gmail.com>",
+  "keywords": [
+    "rescript",
+    "vitest",
+    "bindings",
+    "testing",
+    "test",
+    "mock"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nagatatz/rescript-vitest.git"
+  },
+  "files": [
+    "src",
+    "rescript.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rescript build",
+    "clean": "rescript clean",
+    "watch": "rescript watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "peerDependencies": {
+    "rescript": "^12.0.0-0",
+    "vitest": "^4.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "devDependencies": {
+    "@rescript/runtime": "^12.3.0",
+    "@vitest/coverage-v8": "^4.1.9",
+    "rescript": "^12.3.0",
+    "vite": "^7.0.0",
+    "vitest": "^4.1.9"
+  }
+}
