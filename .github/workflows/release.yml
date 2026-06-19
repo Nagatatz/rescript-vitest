@@ -1,15 +1,20 @@
 name: Release
 
-# Publishes the package to npm when a version tag (e.g. v0.1.0) is pushed.
-# Requires an `NPM_TOKEN` repository secret (an npm automation token with
-# publish access to the @nagatatz scope).
+# Publishes the package to npm when a version tag (e.g. v0.1.0) is pushed,
+# using npm Trusted Publishing (OIDC) — no long-lived NPM_TOKEN secret.
+#
+# One-time setup on npmjs.com (package Settings → Trusted Publishers): register
+# this repository + workflow (.github/workflows/release.yml) as a trusted
+# GitHub Actions publisher. The trusted publisher can only be configured once
+# the package exists, so publish 0.1.0 manually the first time, then every
+# later tag publishes tokenlessly via this workflow.
 on:
   push:
     tags: ['v*']
 
 permissions:
   contents: read
-  id-token: write # required for npm provenance
+  id-token: write # required for OIDC trusted publishing + provenance
 
 jobs:
   publish:
@@ -25,6 +30,10 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
+      # Trusted publishing requires npm >= 11.5.1.
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - run: pnpm install --frozen-lockfile
 
       - name: Build ReScript bindings
@@ -33,7 +42,5 @@ jobs:
       - name: Run tests
         run: pnpm test
 
-      - name: Publish to npm
+      - name: Publish to npm (OIDC trusted publishing)
         run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
