@@ -13,6 +13,10 @@
 - Per-test lifecycle hooks: `onTestFailed`, `onTestFinished` (each with an `…Async` variant).
 - Type and predicate matchers: `toBeTypeOf`, `toBeInstanceOf`, `toBeOneOf`, `toSatisfy`.
 - Async-mock resolve matchers: `toHaveResolved`, `toHaveResolvedTimes`, `toHaveResolvedWith`, `toHaveLastResolvedWith`, `toHaveNthResolvedWith`.
+- Async fake timers: `advanceTimersByTimeAsync`, `runAllTimersAsync`, `runOnlyPendingTimersAsync`, `advanceTimersToNextTimerAsync`, `advanceTimersToNextFrame`.
+- Timer inspection: `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`, `getRealSystemTime`.
+- Waiting utilities: `waitFor`, `waitUntil`.
+- Accessor spies: `spyOnGetter`, `spyOnSetter`.
 
 ### Changed
 

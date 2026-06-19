@@ -110,6 +110,16 @@ module MockFn = {
 /** `vi.spyOn(object, "method")` — wrap an existing method with a spy. */
 @module("vitest") @scope("vi") external spyOn: ('obj, string) => MockFn.t<'fn> = "spyOn"
 
+/** `vi.spyOn(object, key, accessor)` — spy on a `"get"` / `"set"` accessor. */
+@module("vitest") @scope("vi")
+external spyOnAccessor: ('obj, string, string) => MockFn.t<'fn> = "spyOn"
+
+/** Spy on the getter of an accessor property. */
+let spyOnGetter = (obj, key) => spyOnAccessor(obj, key, "get")
+
+/** Spy on the setter of an accessor property. */
+let spyOnSetter = (obj, key) => spyOnAccessor(obj, key, "set")
+
 // ============================================================================
 // Mock inspection / hoisting
 // ============================================================================
@@ -180,3 +190,42 @@ module MockFn = {
 
 /** Pin the mocked clock to a specific `Date`. */
 @module("vitest") @scope("vi") external setSystemTime: Date.t => unit = "setSystemTime"
+
+// Async variants — they flush the microtask queue between timers, so timers
+// that schedule promises resolve correctly. Each returns a `promise` to await.
+
+/** Async `advanceTimersByTime`. */
+@module("vitest") @scope("vi")
+external advanceTimersByTimeAsync: int => promise<unit> = "advanceTimersByTimeAsync"
+/** Async `runAllTimers`. */
+@module("vitest") @scope("vi") external runAllTimersAsync: unit => promise<unit> = "runAllTimersAsync"
+/** Async `runOnlyPendingTimers`. */
+@module("vitest") @scope("vi")
+external runOnlyPendingTimersAsync: unit => promise<unit> = "runOnlyPendingTimersAsync"
+/** Async `advanceTimersToNextTimer`. */
+@module("vitest") @scope("vi")
+external advanceTimersToNextTimerAsync: unit => promise<unit> = "advanceTimersToNextTimerAsync"
+/** Advance to the next animation frame (`requestAnimationFrame`). */
+@module("vitest") @scope("vi") external advanceTimersToNextFrame: unit => unit = "advanceTimersToNextFrame"
+
+// Timer inspection.
+
+/** Whether fake timers are currently installed. */
+@module("vitest") @scope("vi") external isFakeTimers: unit => bool = "isFakeTimers"
+/** Number of pending fake timers. */
+@module("vitest") @scope("vi") external getTimerCount: unit => int = "getTimerCount"
+/** The currently mocked clock as a `Date`, or `None` if no time is pinned. */
+@module("vitest") @scope("vi") @return(nullable)
+external getMockedSystemTime: unit => option<Date.t> = "getMockedSystemTime"
+/** The real wall-clock time in epoch milliseconds, ignoring fake timers. */
+@module("vitest") @scope("vi") external getRealSystemTime: unit => float = "getRealSystemTime"
+
+// ============================================================================
+// Waiting
+// ============================================================================
+
+/** Retry `callback` until it returns without throwing, then resolve its result. */
+@module("vitest") @scope("vi") external waitFor: (unit => 'a) => promise<'a> = "waitFor"
+
+/** Retry `callback` until it returns a truthy value, then resolve that value. */
+@module("vitest") @scope("vi") external waitUntil: (unit => 'a) => promise<'a> = "waitUntil"
