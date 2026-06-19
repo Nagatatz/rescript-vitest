@@ -116,6 +116,10 @@ external testConcurrent: (string, unit => promise<unit>, ~timeout: int=?) => uni
 @module("vitest") @scope("test")
 external testEach: array<'a> => (string, 'a => unit) => unit = "each"
 
+/** Parameterized test, `for`-style: `testFor(cases)("name %i", case => ...)`. */
+@module("vitest") @scope("test")
+external testFor: array<'a> => (string, 'a => unit) => unit = "for"
+
 /** Skip when the condition is true: `testSkipIf(cond)("name", body)`. */
 @module("vitest") @scope("test")
 external testSkipIf: bool => (string, unit => unit) => unit = "skipIf"
@@ -427,4 +431,30 @@ module Expect = {
   @module("vitest") @scope("expect") external closeTo: float => 'a = "closeTo"
   /** Matches a number close to the expected value with an explicit precision. */
   @module("vitest") @scope("expect") external closeToWithPrecision: (float, int) => 'a = "closeTo"
+
+  // Assertion-count guards and special assertions.
+
+  /** Assert that exactly `count` assertions ran during the test. */
+  @module("vitest") @scope("expect") external assertions: int => unit = "assertions"
+  /** Assert that at least one assertion ran during the test. */
+  @module("vitest") @scope("expect") external hasAssertions: unit => unit = "hasAssertions"
+
+  /**
+   * A "soft" assertion: failures are collected and the test continues, instead
+   * of aborting on the first failure. Returns the same `assertion` type, so the
+   * normal matchers apply: `Expect.soft(x)->toBe(y)`.
+   */
+  @module("vitest") @scope("expect") external soft: 'a => assertion<'a> = "soft"
+
+  /**
+   * Poll `callback` until the matcher passes (or it times out). Returns an
+   * async assertion, so use the `Async` matchers and `await` the result:
+   * `await Expect.poll(() => value)->Async.toBe(expected)`.
+   */
+  @module("vitest") @scope("expect") external poll: (unit => 'a) => asyncAssertion<'a> = "poll"
+
+  /** Mark code as unreachable; throws when executed. */
+  @module("vitest") @scope("expect") external unreachable: unit => 'a = "unreachable"
+  /** `unreachable` with an explanatory message. */
+  @module("vitest") @scope("expect") external unreachableWithMessage: string => 'a = "unreachable"
 }

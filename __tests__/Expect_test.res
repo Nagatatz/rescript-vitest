@@ -269,3 +269,37 @@ describe("Expect — asymmetric matchers", () => {
     m->Vi.MockFn.asAssertion->toHaveBeenCalledWith(Expect.stringContaining("world"))
   })
 })
+
+describe("Vitest — test.for", () => {
+  testFor([1, 2, 3])("for-case %i is positive", n => expect(n > 0)->toBeTruthy)
+})
+
+describe("Expect — assertion guards, soft, poll, unreachable", () => {
+  test("assertions counts the assertions that ran", () => {
+    Expect.assertions(1)
+    expect(1)->toBe(1)
+  })
+
+  test("hasAssertions requires at least one assertion", () => {
+    Expect.hasAssertions()
+    expect(true)->toBeTruthy
+  })
+
+  test("soft collects failures without aborting", () => {
+    Expect.soft(1)->toBe(1)
+    Expect.soft("a")->toBe("a")
+  })
+
+  testAsync("poll retries until the matcher passes", async () => {
+    let n = ref(0)
+    await Expect.poll(() => {
+      n := n.contents + 1
+      n.contents
+    })->Async.toBe(3)
+  })
+
+  test("unreachable throws when executed", () => {
+    expect(() => Expect.unreachable())->toThrow
+    expect(() => Expect.unreachableWithMessage("should not happen"))->toThrow
+  })
+})

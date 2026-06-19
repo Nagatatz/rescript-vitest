@@ -22,6 +22,8 @@
 - Test modifiers: `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`, `testSequential`, `testSequentialAsync`.
 - Describe modifiers: `describeTodo`, `describeConcurrent`, `describeSequential`, `describeShuffle`, `describeSkipIf`, `describeRunIf`, `describeFor`.
 - Asymmetric matchers (`Expect` module): `anything`, `any`, `arrayContaining`, `objectContaining`, `stringContaining`, `stringMatching`, `stringMatchingRegExp`, `closeTo`, `closeToWithPrecision`.
+- Parameterized test `testFor` (`test.for`).
+- Assertion guards and special assertions (`Expect` module): `assertions`, `hasAssertions`, `soft`, `poll`, `unreachable`, `unreachableWithMessage`.
 
 ### Changed
 

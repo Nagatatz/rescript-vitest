@@ -103,7 +103,7 @@ test("fake timers", () => {
 `describeTodo`, `describeConcurrent`, `describeSequential`, `describeShuffle`,
 `describeSkipIf`, `describeRunIf`, `describeFor`,
 `test`, `testAsync`, `testOnly`, `testSkip`, `testTodo`, `testConcurrent`,
-`testEach`, `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`,
+`testEach`, `testFor`, `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`,
 `testSequential`, `testSequentialAsync`, `it`, `itAsync`, `itOnly`, `itSkip`.
 
 ### Lifecycle
@@ -123,7 +123,17 @@ test("fake timers", () => {
 - **Mocks (returns):** `toHaveReturned`, `toHaveReturnedTimes`, `toHaveReturnedWith`, `toHaveLastReturnedWith`, `toHaveNthReturnedWith`
 - **Mocks (resolves):** `toHaveResolved`, `toHaveResolvedTimes`, `toHaveResolvedWith`, `toHaveLastResolvedWith`, `toHaveNthResolvedWith`
 - **Asymmetric (`Expect` module):** `anything`, `any`, `arrayContaining`, `objectContaining`, `stringContaining`, `stringMatching` (+ `…RegExp`), `closeTo` (+ `…WithPrecision`) — embed in the expected position of `toEqual` / `toMatchObject` / `toHaveBeenCalledWith`
+- **Guards & special (`Expect` module):** `assertions`, `hasAssertions`, `soft`, `poll`, `unreachable` (+ `…WithMessage`)
 - **Modifiers:** `not_`, `resolves` / `rejects` (+ the `Async` matcher module)
+
+### Not yet bound
+
+`test.extend` (fixtures) and `expect.extend` (custom matchers) are intentionally
+left unbound: their JavaScript shapes — a fixtures object injected via `use`
+callbacks, and matchers added dynamically onto every assertion — cannot be
+expressed faithfully or type-safely in ReScript without per-matcher manual
+bindings. Use ReScript helper functions instead of fixtures, and a dedicated
+`@send` external if you must call a project-specific custom matcher.
 
 ### `Vi`
 - **Create:** `fn`, `fnWith`, `fn0`, `fn1`, `fn2`, `spyOn`, `spyOnGetter`, `spyOnSetter`
