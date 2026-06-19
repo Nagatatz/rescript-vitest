@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"POT-Creation-Date: 2026-06-19 16:09+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -32,11 +32,30 @@ msgstr "未リリース"
 msgid "Added"
 msgstr "追加"
 
-#: ../../user/changelog.md:11
+#: ../../user/changelog.md:9
+msgid ""
+"Mock call-argument matchers: `toHaveBeenCalledWith`, "
+"`toHaveBeenLastCalledWith`, `toHaveBeenNthCalledWith`, "
+"`toHaveBeenCalledExactlyOnceWith` (each with a two-argument `…With2` "
+"variant)."
+msgstr ""
+"モックの呼び出し引数マッチャー: `toHaveBeenCalledWith`、"
+"`toHaveBeenLastCalledWith`、`toHaveBeenNthCalledWith`、"
+"`toHaveBeenCalledExactlyOnceWith`（それぞれ 2 引数版 `…With2` を含む）。"
+
+#: ../../user/changelog.md:10
+msgid ""
+"Mock return-value matchers: `toHaveReturnedTimes`, `toHaveReturnedWith`, "
+"`toHaveLastReturnedWith`, `toHaveNthReturnedWith`."
+msgstr ""
+"モックの返り値マッチャー: `toHaveReturnedTimes`、`toHaveReturnedWith`、"
+"`toHaveLastReturnedWith`、`toHaveNthReturnedWith`。"
+
+#: ../../user/changelog.md:12
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:15
+#: ../../user/changelog.md:16
 msgid "Fixed"
 msgstr "修正"
 

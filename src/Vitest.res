@@ -250,6 +250,47 @@ external toThrowErrorMatchingInlineSnapshot: (assertion<unit => 'a>, string) => 
 @send external toHaveBeenCalledTimes: (assertion<'a>, int) => unit = "toHaveBeenCalledTimes"
 @send external toHaveReturned: assertion<'a> => unit = "toHaveReturned"
 
+// Call-argument matchers. Vitest takes the arguments variadically; ReScript
+// `@send` is fixed-arity, so each matcher comes in a 1-arg form and a 2-arg
+// `*With2` variant (mirroring `Vi.fn1` / `Vi.fn2`). The expected argument type
+// is generic because the value under test is typed `assertion<'a>` (the mock's
+// signature lives in `Vi.MockFn.t`, which `Vitest` cannot reference).
+
+/** The mock was called at least once with these arguments. */
+@send external toHaveBeenCalledWith: (assertion<'a>, 'b) => unit = "toHaveBeenCalledWith"
+/** Two-argument variant of `toHaveBeenCalledWith`. */
+@send external toHaveBeenCalledWith2: (assertion<'a>, 'b, 'c) => unit = "toHaveBeenCalledWith"
+
+/** The most recent call was made with these arguments. */
+@send external toHaveBeenLastCalledWith: (assertion<'a>, 'b) => unit = "toHaveBeenLastCalledWith"
+/** Two-argument variant of `toHaveBeenLastCalledWith`. */
+@send external toHaveBeenLastCalledWith2: (assertion<'a>, 'b, 'c) => unit = "toHaveBeenLastCalledWith"
+
+/** The nth call (1-based) was made with these arguments. */
+@send external toHaveBeenNthCalledWith: (assertion<'a>, int, 'b) => unit = "toHaveBeenNthCalledWith"
+/** Two-argument variant of `toHaveBeenNthCalledWith`. */
+@send external toHaveBeenNthCalledWith2: (assertion<'a>, int, 'b, 'c) => unit = "toHaveBeenNthCalledWith"
+
+/** The mock was called exactly once, and that call used these arguments. */
+@send
+external toHaveBeenCalledExactlyOnceWith: (assertion<'a>, 'b) => unit = "toHaveBeenCalledExactlyOnceWith"
+/** Two-argument variant of `toHaveBeenCalledExactlyOnceWith`. */
+@send
+external toHaveBeenCalledExactlyOnceWith2: (assertion<'a>, 'b, 'c) => unit =
+  "toHaveBeenCalledExactlyOnceWith"
+
+// Return-value matchers. These take a single expected return value, so no
+// arity variants are needed.
+
+/** The mock returned successfully (did not throw) exactly `n` times. */
+@send external toHaveReturnedTimes: (assertion<'a>, int) => unit = "toHaveReturnedTimes"
+/** The mock returned this value on at least one call. */
+@send external toHaveReturnedWith: (assertion<'a>, 'b) => unit = "toHaveReturnedWith"
+/** The most recent successful return was this value. */
+@send external toHaveLastReturnedWith: (assertion<'a>, 'b) => unit = "toHaveLastReturnedWith"
+/** The nth call (1-based) returned this value. */
+@send external toHaveNthReturnedWith: (assertion<'a>, int, 'b) => unit = "toHaveNthReturnedWith"
+
 /**
  * Matchers for asynchronous assertions produced by `->resolves` / `->rejects`.
  * Each returns `promise<unit>` and must be `await`ed.

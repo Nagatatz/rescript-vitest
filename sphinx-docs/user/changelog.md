@@ -6,7 +6,8 @@
 
 ### Added
 
--
+- Mock call-argument matchers: `toHaveBeenCalledWith`, `toHaveBeenLastCalledWith`, `toHaveBeenNthCalledWith`, `toHaveBeenCalledExactlyOnceWith` (each with a two-argument `…With2` variant).
+- Mock return-value matchers: `toHaveReturnedTimes`, `toHaveReturnedWith`, `toHaveLastReturnedWith`, `toHaveNthReturnedWith`.
 
 ### Changed
 

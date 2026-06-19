@@ -71,6 +71,84 @@ describe("Expect — exceptions", () => {
   })
 })
 
+describe("Expect — mock call-argument matchers", () => {
+  afterEach(() => Vi.clearAllMocks())
+
+  test("toHaveBeenCalledWith matches a single argument", () => {
+    let m = Vi.fn1()
+    (m->Vi.MockFn.asFn)("hi")->ignore
+    m->Vi.MockFn.asAssertion->toHaveBeenCalledWith("hi")
+  })
+
+  test("toHaveBeenCalledWith2 matches two arguments", () => {
+    let m = Vi.fn2()
+    (m->Vi.MockFn.asFn)(1, 2)->ignore
+    m->Vi.MockFn.asAssertion->toHaveBeenCalledWith2(1, 2)
+  })
+
+  test("toHaveBeenLastCalledWith inspects the most recent call", () => {
+    let m = Vi.fn1()
+    let f = m->Vi.MockFn.asFn
+    f("a")->ignore
+    f("b")->ignore
+    m->Vi.MockFn.asAssertion->toHaveBeenLastCalledWith("b")
+  })
+
+  test("toHaveBeenNthCalledWith inspects a call by index", () => {
+    let m = Vi.fn1()
+    let f = m->Vi.MockFn.asFn
+    f("x")->ignore
+    f("y")->ignore
+    m->Vi.MockFn.asAssertion->toHaveBeenNthCalledWith(1, "x")
+
+    let m2 = Vi.fn2()
+    let g = m2->Vi.MockFn.asFn
+    g(1, 2)->ignore
+    g(3, 4)->ignore
+    m2->Vi.MockFn.asAssertion->toHaveBeenNthCalledWith2(2, 3, 4)
+  })
+
+  test("toHaveBeenCalledExactlyOnceWith requires a single matching call", () => {
+    let m = Vi.fn1()
+    (m->Vi.MockFn.asFn)("only")->ignore
+    m->Vi.MockFn.asAssertion->toHaveBeenCalledExactlyOnceWith("only")
+
+    let m2 = Vi.fn2()
+    (m2->Vi.MockFn.asFn)(1, 2)->ignore
+    m2->Vi.MockFn.asAssertion->toHaveBeenCalledExactlyOnceWith2(1, 2)
+  })
+})
+
+describe("Expect — mock return-value matchers", () => {
+  afterEach(() => Vi.clearAllMocks())
+
+  test("toHaveReturnedTimes counts successful returns", () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockReturnValue(1)->ignore
+    let f = m->Vi.MockFn.asFn
+    f()->ignore
+    f()->ignore
+    m->Vi.MockFn.asAssertion->toHaveReturnedTimes(2)
+  })
+
+  test("toHaveReturnedWith matches a returned value", () => {
+    let m = Vi.fn0()
+    m->Vi.MockFn.mockReturnValue(7)->ignore
+    (m->Vi.MockFn.asFn)()->ignore
+    m->Vi.MockFn.asAssertion->toHaveReturnedWith(7)
+  })
+
+  test("toHaveLastReturnedWith / toHaveNthReturnedWith inspect returns by position", () => {
+    let m = Vi.fn1()
+    m->Vi.MockFn.mockImplementation(x => x * 2)->ignore
+    let f = m->Vi.MockFn.asFn
+    f(3)->ignore
+    f(5)->ignore
+    m->Vi.MockFn.asAssertion->toHaveNthReturnedWith(1, 6)
+    m->Vi.MockFn.asAssertion->toHaveLastReturnedWith(10)
+  })
+})
+
 describe("Expect — async", () => {
   testAsync("resolves", async () => {
     await expect(Promise.resolve(42))->resolves->Async.toBe(42)

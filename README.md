@@ -115,7 +115,8 @@ test("fake timers", () => {
 - **Objects:** `toMatchObject`, `toHaveProperty`, `toHavePropertyValue`
 - **Exceptions:** `toThrow`, `toThrowWithMessage`, `toThrowRegExp`
 - **Snapshots:** `toMatchSnapshot`, `toMatchSnapshotWithName`, `toMatchInlineSnapshot`, `toThrowErrorMatchingSnapshot`, `toThrowErrorMatchingInlineSnapshot`
-- **Mocks:** `toHaveBeenCalled`, `toHaveBeenCalledOnce`, `toHaveBeenCalledTimes`, `toHaveReturned`
+- **Mocks (calls):** `toHaveBeenCalled`, `toHaveBeenCalledOnce`, `toHaveBeenCalledTimes`, `toHaveBeenCalledWith` (+ `…With2`), `toHaveBeenLastCalledWith` (+ `…With2`), `toHaveBeenNthCalledWith` (+ `…With2`), `toHaveBeenCalledExactlyOnceWith` (+ `…With2`)
+- **Mocks (returns):** `toHaveReturned`, `toHaveReturnedTimes`, `toHaveReturnedWith`, `toHaveLastReturnedWith`, `toHaveNthReturnedWith`
 - **Modifiers:** `not_`, `resolves` / `rejects` (+ the `Async` matcher module)
 
 ### `Vi`
