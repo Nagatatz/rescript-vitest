@@ -9,3 +9,4 @@ coverage/
 *.log
 .idea/
 .env
+.claude/settings.local.json
