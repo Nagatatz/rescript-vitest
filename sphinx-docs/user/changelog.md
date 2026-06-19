@@ -24,6 +24,11 @@
 - Asymmetric matchers (`Expect` module): `anything`, `any`, `arrayContaining`, `objectContaining`, `stringContaining`, `stringMatching`, `stringMatchingRegExp`, `closeTo`, `closeToWithPrecision`.
 - Parameterized test `testFor` (`test.for`).
 - Assertion guards and special assertions (`Expect` module): `assertions`, `hasAssertions`, `soft`, `poll`, `unreachable`, `unreachableWithMessage`.
+- File snapshot matcher: `toMatchFileSnapshot`.
+- Negated asymmetric matchers (`Expect.Not` module): `arrayContaining`, `objectContaining`, `stringContaining`, `stringMatching`, `stringMatchingRegExp`, `closeTo`, `closeToWithPrecision`.
+- `it` modifiers: `itTodo`, `itConcurrent`, `itEach`, `itFails`, `itSequential`, `itSkipIf`, `itRunIf`.
+- Async-body conditional tests: `testSkipIfAsync`, `testRunIfAsync`.
+- Fake-timer tick mode: `setTimerTickMode`.
 
 ### Changed
 

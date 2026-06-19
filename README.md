@@ -8,9 +8,10 @@ value under test, so matchers such as `toBe` stay honest at compile time.
 
 - ✅ `describe` / `test` / `it` (+ `.only` / `.skip` / `.todo` / `.each` / `.concurrent` / `.sequential` / `.shuffle` / `.skipIf` / `.runIf` / `.fails` / `.for`)
 - ✅ Lifecycle hooks (`beforeEach` / `afterEach` / `beforeAll` / `afterAll` / `onTestFailed` / `onTestFinished`, sync & async)
-- ✅ The full `expect` matcher set (equality, numbers, strings, collections, objects, exceptions, snapshots, mock matchers)
+- ✅ The full `expect` matcher set (equality, numbers, strings, collections, objects, type/predicate, exceptions, snapshots — inline and file, mock call/return/resolve matchers)
+- ✅ Asymmetric matchers and negations (`Expect.anything` / `arrayContaining` / `objectContaining` / … and `Expect.Not.*`), plus assertion guards (`assertions` / `hasAssertions` / `soft` / `poll`)
 - ✅ Negation (`not_`) and async assertions (`resolves` / `rejects`)
-- ✅ `Vi` — mock functions, spies, module mocking and fake timers
+- ✅ `Vi` — mock functions, spies (incl. getter/setter), module mocking, global/env stubs, and fake timers (sync & async) with `waitFor` / `waitUntil`
 
 ## Why another binding?
 
@@ -103,8 +104,10 @@ test("fake timers", () => {
 `describeTodo`, `describeConcurrent`, `describeSequential`, `describeShuffle`,
 `describeSkipIf`, `describeRunIf`, `describeFor`,
 `test`, `testAsync`, `testOnly`, `testSkip`, `testTodo`, `testConcurrent`,
-`testEach`, `testFor`, `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`,
-`testSequential`, `testSequentialAsync`, `it`, `itAsync`, `itOnly`, `itSkip`.
+`testEach`, `testFor`, `testSkipIf`, `testSkipIfAsync`, `testRunIf`, `testRunIfAsync`,
+`testFails`, `testFailsAsync`, `testSequential`, `testSequentialAsync`,
+`it`, `itAsync`, `itOnly`, `itSkip`, `itTodo`, `itConcurrent`, `itEach`, `itFails`,
+`itSequential`, `itSkipIf`, `itRunIf`.
 
 ### Lifecycle
 `beforeAll`, `afterAll`, `beforeEach`, `afterEach`, plus the per-test hooks `onTestFailed`, `onTestFinished` (each with an `…Async` variant).
@@ -118,11 +121,11 @@ test("fake timers", () => {
 - **Objects:** `toMatchObject`, `toHaveProperty`, `toHavePropertyValue`
 - **Type & predicate:** `toBeTypeOf`, `toBeInstanceOf`, `toBeOneOf`, `toSatisfy`
 - **Exceptions:** `toThrow`, `toThrowWithMessage`, `toThrowRegExp`
-- **Snapshots:** `toMatchSnapshot`, `toMatchSnapshotWithName`, `toMatchInlineSnapshot`, `toThrowErrorMatchingSnapshot`, `toThrowErrorMatchingInlineSnapshot`
+- **Snapshots:** `toMatchSnapshot`, `toMatchSnapshotWithName`, `toMatchInlineSnapshot`, `toMatchFileSnapshot`, `toThrowErrorMatchingSnapshot`, `toThrowErrorMatchingInlineSnapshot`
 - **Mocks (calls):** `toHaveBeenCalled`, `toHaveBeenCalledOnce`, `toHaveBeenCalledTimes`, `toHaveBeenCalledWith` (+ `…With2`), `toHaveBeenLastCalledWith` (+ `…With2`), `toHaveBeenNthCalledWith` (+ `…With2`), `toHaveBeenCalledExactlyOnceWith` (+ `…With2`)
 - **Mocks (returns):** `toHaveReturned`, `toHaveReturnedTimes`, `toHaveReturnedWith`, `toHaveLastReturnedWith`, `toHaveNthReturnedWith`
 - **Mocks (resolves):** `toHaveResolved`, `toHaveResolvedTimes`, `toHaveResolvedWith`, `toHaveLastResolvedWith`, `toHaveNthResolvedWith`
-- **Asymmetric (`Expect` module):** `anything`, `any`, `arrayContaining`, `objectContaining`, `stringContaining`, `stringMatching` (+ `…RegExp`), `closeTo` (+ `…WithPrecision`) — embed in the expected position of `toEqual` / `toMatchObject` / `toHaveBeenCalledWith`
+- **Asymmetric (`Expect` module):** `anything`, `any`, `arrayContaining`, `objectContaining`, `stringContaining`, `stringMatching` (+ `…RegExp`), `closeTo` (+ `…WithPrecision`) — embed in the expected position of `toEqual` / `toMatchObject` / `toHaveBeenCalledWith`; negated forms live in `Expect.Not`
 - **Guards & special (`Expect` module):** `assertions`, `hasAssertions`, `soft`, `poll`, `unreachable` (+ `…WithMessage`)
 - **Modifiers:** `not_`, `resolves` / `rejects` (+ the `Async` matcher module)
 
@@ -144,7 +147,7 @@ bindings. Use ReScript helper functions instead of fixtures, and a dedicated
 - **Global state:** `clearAllMocks`, `resetAllMocks`, `restoreAllMocks`
 - **Timers:** `useFakeTimers`, `useRealTimers`, `runAllTimers`, `runOnlyPendingTimers`, `advanceTimersByTime`, `advanceTimersToNextTimer`, `setSystemTime`, `clearAllTimers`
 - **Async timers:** `advanceTimersByTimeAsync`, `runAllTimersAsync`, `runOnlyPendingTimersAsync`, `advanceTimersToNextTimerAsync`, `advanceTimersToNextFrame`
-- **Timer inspection:** `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`, `getRealSystemTime`
+- **Timer inspection:** `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`, `getRealSystemTime`, `setTimerTickMode`
 - **Waiting:** `waitFor`, `waitUntil`
 
 ## Development
