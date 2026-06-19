@@ -11,6 +11,10 @@ exception Boom
 // The JS `Error` constructor, used to exercise `toBeInstanceOf`.
 @val external errorClass: 'a = "Error"
 
+// JS constructors used to exercise `Expect.any`.
+@val external stringClass: 'a = "String"
+@val external numberClass: 'a = "Number"
+
 describe("Expect — equality", () => {
   test("toBe compares by identity", () => {
     expect(1 + 1)->toBe(2)
@@ -226,4 +230,42 @@ describeRunIf(false)("Vitest — describe.runIf (skipped)", () => {
 
 describeFor([1, 2, 3])("Vitest — describe.for case %i", n => {
   test("the case value is positive", () => expect(n > 0)->toBeTruthy)
+})
+
+describe("Expect — asymmetric matchers", () => {
+  afterEach(() => Vi.clearAllMocks())
+
+  test("anything matches any present value", () => {
+    expect({"id": 1, "name": "a"})->toEqual({"id": Expect.anything(), "name": "a"})
+  })
+
+  test("any matches by constructor", () => {
+    expect("hello")->toEqual(Expect.any(stringClass))
+    expect(42)->toEqual(Expect.any(numberClass))
+  })
+
+  test("arrayContaining matches a subset", () => {
+    expect([1, 2, 3])->toEqual(Expect.arrayContaining([1, 2]))
+  })
+
+  test("objectContaining matches a subset", () => {
+    expect({"a": 1, "b": 2})->toEqual(Expect.objectContaining({"a": 1}))
+  })
+
+  test("stringContaining / stringMatching match patterns", () => {
+    expect("hello world")->toEqual(Expect.stringContaining("world"))
+    expect("hello123")->toEqual(Expect.stringMatching("[0-9]+"))
+    expect("hello")->toEqual(Expect.stringMatchingRegExp(%re("/^h/")))
+  })
+
+  test("closeTo matches approximate numbers", () => {
+    expect(2.004)->toEqual(Expect.closeTo(2.0))
+    expect(2.0049)->toEqual(Expect.closeToWithPrecision(2.0, 2))
+  })
+
+  test("embeds inside toHaveBeenCalledWith", () => {
+    let m = Vi.fn1()
+    (m->Vi.MockFn.asFn)("hello world")->ignore
+    m->Vi.MockFn.asAssertion->toHaveBeenCalledWith(Expect.stringContaining("world"))
+  })
 })

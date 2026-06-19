@@ -122,6 +122,7 @@ test("fake timers", () => {
 - **Mocks (calls):** `toHaveBeenCalled`, `toHaveBeenCalledOnce`, `toHaveBeenCalledTimes`, `toHaveBeenCalledWith` (+ `…With2`), `toHaveBeenLastCalledWith` (+ `…With2`), `toHaveBeenNthCalledWith` (+ `…With2`), `toHaveBeenCalledExactlyOnceWith` (+ `…With2`)
 - **Mocks (returns):** `toHaveReturned`, `toHaveReturnedTimes`, `toHaveReturnedWith`, `toHaveLastReturnedWith`, `toHaveNthReturnedWith`
 - **Mocks (resolves):** `toHaveResolved`, `toHaveResolvedTimes`, `toHaveResolvedWith`, `toHaveLastResolvedWith`, `toHaveNthResolvedWith`
+- **Asymmetric (`Expect` module):** `anything`, `any`, `arrayContaining`, `objectContaining`, `stringContaining`, `stringMatching` (+ `…RegExp`), `closeTo` (+ `…WithPrecision`) — embed in the expected position of `toEqual` / `toMatchObject` / `toHaveBeenCalledWith`
 - **Modifiers:** `not_`, `resolves` / `rejects` (+ the `Async` matcher module)
 
 ### `Vi`
