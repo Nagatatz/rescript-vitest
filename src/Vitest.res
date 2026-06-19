@@ -60,10 +60,6 @@ external describeTodo: string => unit = "todo"
 @module("vitest") @scope("describe")
 external describeConcurrent: (string, unit => unit) => unit = "concurrent"
 
-/** Run the tests in this suite sequentially. */
-@module("vitest") @scope("describe")
-external describeSequential: (string, unit => unit) => unit = "sequential"
-
 /** Run the tests in this suite in random order. */
 @module("vitest") @scope("describe")
 external describeShuffle: (string, unit => unit) => unit = "shuffle"
@@ -144,14 +140,6 @@ external testFails: (string, unit => unit) => unit = "fails"
 @module("vitest") @scope("test")
 external testFailsAsync: (string, unit => promise<unit>) => unit = "fails"
 
-/** Force this test to run sequentially (not concurrently). */
-@module("vitest") @scope("test")
-external testSequential: (string, unit => unit) => unit = "sequential"
-
-/** Async variant of `testSequential`. */
-@module("vitest") @scope("test")
-external testSequentialAsync: (string, unit => promise<unit>) => unit = "sequential"
-
 /** Alias of `test`, reading more naturally inside a `describe` ("it does X"). */
 @module("vitest")
 external it: (string, unit => unit, ~timeout: int=?) => unit = "it"
@@ -181,9 +169,6 @@ external itEach: array<'a> => (string, 'a => unit) => unit = "each"
 
 /** Expect this `it` case to fail; it passes if the body throws. */
 @module("vitest") @scope("it") external itFails: (string, unit => unit) => unit = "fails"
-
-/** Force this `it` case to run sequentially. */
-@module("vitest") @scope("it") external itSequential: (string, unit => unit) => unit = "sequential"
 
 /** Skip this `it` case when the condition is true. */
 @module("vitest") @scope("it") external itSkipIf: bool => (string, unit => unit) => unit = "skipIf"

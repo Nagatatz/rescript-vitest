@@ -240,17 +240,10 @@ describe("Vitest — test modifiers", () => {
   // `fails` inverts the result: these pass *because* the body throws.
   testFails("passes because the body fails", () => expect(1)->toBe(2))
   testFailsAsync("passes because the async body fails", async () => expect(1)->toBe(2))
-
-  testSequential("runs sequentially", () => expect(1)->toBe(1))
-  testSequentialAsync("runs sequentially (async)", async () => expect(1)->toBe(1))
 })
 
 describeConcurrent("Vitest — describe.concurrent", () => {
   test("runs inside a concurrent suite", () => expect(1)->toBe(1))
-})
-
-describeSequential("Vitest — describe.sequential", () => {
-  test("runs inside a sequential suite", () => expect(1)->toBe(1))
 })
 
 describeShuffle("Vitest — describe.shuffle", () => {
@@ -370,7 +363,6 @@ describe("Expect — negated asymmetric matchers", () => {
 describe("Vitest — it modifiers", () => {
   itEach([1, 2])("it-each case %i is positive", n => expect(n > 0)->toBeTruthy)
   itFails("it.fails passes because the body fails", () => expect(1)->toBe(2))
-  itSequential("it.sequential runs", () => expect(1)->toBe(1))
   itSkipIf(true)("it.skipIf skips when true", () => expect(1)->toBe(2))
   itRunIf(false)("it.runIf skips when false", () => expect(1)->toBe(2))
   itTodo("it.todo placeholder")
