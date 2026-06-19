@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 15:04+0900\n"
+"POT-Creation-Date: 2026-06-19 15:39+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -22,29 +22,65 @@ msgstr ""
 
 #: ../../user/installation.md:1
 msgid "Installation"
-msgstr ""
+msgstr "インストール"
 
 #: ../../user/installation.md:3
 msgid "Requirements"
+msgstr "要件"
+
+#: ../../user/installation.md
+msgid "Tool"
+msgstr "ツール"
+
+#: ../../user/installation.md
+msgid "Version"
+msgstr "バージョン"
+
+#: ../../user/installation.md
+msgid "ReScript"
 msgstr ""
 
-#: ../../user/installation.md:7
-msgid "**Requirement 1** — Description"
+#: ../../user/installation.md
+msgid "`^12.0.0`"
 msgstr ""
 
-#: ../../user/installation.md:8
-msgid "**Requirement 2** — Description"
+#: ../../user/installation.md
+msgid "Vitest"
 msgstr ""
 
-#: ../../user/installation.md:10
+#: ../../user/installation.md
+msgid "`^4.0.0`"
+msgstr ""
+
+#: ../../user/installation.md
+msgid "Vite"
+msgstr ""
+
+#: ../../user/installation.md
+msgid "`^6` or `^7` (Vitest 4 peer)"
+msgstr "`^6` または `^7`（Vitest 4 の peer）"
+
+#: ../../user/installation.md:11
 msgid "Install"
-msgstr ""
+msgstr "インストール"
 
-#: ../../user/installation.md:18
+#: ../../user/installation.md:17
+msgid ""
+"Add the package to your `rescript.json` dependencies so ReScript compiles"
+" the bindings:"
+msgstr "ReScript がバインディングをコンパイルできるよう、`rescript.json` の dependencies にパッケージを追加します:"
+
+#: ../../user/installation.md:26
 msgid "Verify"
-msgstr ""
+msgstr "検証"
 
-#: ../../user/installation.md:22
+#: ../../user/installation.md:30
 msgid "Troubleshooting"
-msgstr ""
+msgstr "トラブルシューティング"
+
+#~ msgid "**Requirement 1** — Description"
+#~ msgstr ""
+
+#~ msgid "**Requirement 2** — Description"
+#~ msgstr ""
 
