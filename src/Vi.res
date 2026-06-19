@@ -61,6 +61,31 @@ module MockFn = {
 
   /** Make an async mock reject with a reason. */
   @send external mockRejectedValue: (t<'fn>, 'err) => t<'fn> = "mockRejectedValue"
+
+  /** Make an async mock resolve with a value on the next call only. */
+  @send external mockResolvedValueOnce: (t<'fn>, 'ret) => t<'fn> = "mockResolvedValueOnce"
+
+  /** Make an async mock reject with a reason on the next call only. */
+  @send external mockRejectedValueOnce: (t<'fn>, 'err) => t<'fn> = "mockRejectedValueOnce"
+
+  /** Make the mock return its `this` context (useful for method chaining). */
+  @send external mockReturnThis: t<'fn> => t<'fn> = "mockReturnThis"
+
+  /** The mock's current name (set via `mockName`, defaults to `"vi.fn()"`). */
+  @send external getMockName: t<'fn> => string = "getMockName"
+
+  /** Give the mock a name shown in assertion error messages. */
+  @send external mockName: (t<'fn>, string) => t<'fn> = "mockName"
+
+  /** The current implementation, or `None` if none is configured. */
+  @send @return(nullable)
+  external getMockImplementation: t<'fn> => option<'fn> = "getMockImplementation"
+
+  /**
+   * Temporarily replace the implementation while running `callback`, restoring
+   * the previous implementation afterwards. The callback must be synchronous.
+   */
+  @send external withImplementation: (t<'fn>, 'fn, unit => unit) => t<'fn> = "withImplementation"
 }
 
 // ============================================================================
@@ -84,6 +109,26 @@ module MockFn = {
 
 /** `vi.spyOn(object, "method")` — wrap an existing method with a spy. */
 @module("vitest") @scope("vi") external spyOn: ('obj, string) => MockFn.t<'fn> = "spyOn"
+
+// ============================================================================
+// Mock inspection / hoisting
+// ============================================================================
+
+/**
+ * `vi.mocked(fn)` — view an (already-mocked) function as a typed `MockFn.t`.
+ * At runtime this is the identity function; it only supplies the mock typing
+ * so the `MockFn` helpers can be used on auto-mocked module functions.
+ */
+@module("vitest") @scope("vi") external mocked: 'fn => MockFn.t<'fn> = "mocked"
+
+/** `vi.isMockFunction(value)` — whether `value` is a Vitest mock function. */
+@module("vitest") @scope("vi") external isMockFunction: 'a => bool = "isMockFunction"
+
+/**
+ * `vi.hoisted(factory)` — run `factory` before the file's imports are evaluated
+ * and return its result. Use for values that mock factories need at hoist time.
+ */
+@module("vitest") @scope("vi") external hoisted: (unit => 'a) => 'a = "hoisted"
 
 // ============================================================================
 // Module mocking

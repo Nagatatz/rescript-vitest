@@ -121,7 +121,8 @@ test("fake timers", () => {
 
 ### `Vi`
 - **Create:** `fn`, `fnWith`, `fn0`, `fn1`, `fn2`, `spyOn`
-- **`MockFn`:** `asFn`, `asAssertion`, `calls`, `results`, `mockClear`, `mockReset`, `mockRestore`, `mockImplementation`, `mockImplementationOnce`, `mockReturnValue`, `mockReturnValueOnce`, `mockResolvedValue`, `mockRejectedValue`
+- **`MockFn`:** `asFn`, `asAssertion`, `calls`, `results`, `mockClear`, `mockReset`, `mockRestore`, `mockImplementation`, `mockImplementationOnce`, `mockReturnValue`, `mockReturnValueOnce`, `mockResolvedValue`, `mockResolvedValueOnce`, `mockRejectedValue`, `mockRejectedValueOnce`, `mockReturnThis`, `getMockName`, `mockName`, `getMockImplementation`, `withImplementation`
+- **Inspection / hoisting:** `mocked`, `isMockFunction`, `hoisted`
 - **Modules:** `mock`, `mockWithFactory`, `unmock`, `doMock`, `resetModules`
 - **Global state:** `clearAllMocks`, `resetAllMocks`, `restoreAllMocks`
 - **Timers:** `useFakeTimers`, `useRealTimers`, `runAllTimers`, `runOnlyPendingTimers`, `advanceTimersByTime`, `advanceTimersToNextTimer`, `setSystemTime`, `clearAllTimers`
