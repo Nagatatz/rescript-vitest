@@ -17,6 +17,8 @@
 - Timer inspection: `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`, `getRealSystemTime`.
 - Waiting utilities: `waitFor`, `waitUntil`.
 - Accessor spies: `spyOnGetter`, `spyOnSetter`.
+- Global and environment stubs: `stubGlobal`, `stubEnv`, `unstubAllGlobals`, `unstubAllEnvs`.
+- Module mocking completion: `importActual`, `importMock`, `doUnmock`, `mockObject`, `dynamicImportSettled`.
 
 ### Changed
 
