@@ -38,16 +38,16 @@
 - [x] T4-8: `vi.mock`（ホイスティング版）のテスト省略理由をコメントで明記
 - [x] T4-9: `pnpm build` + `pnpm test`（146 passed / 3 expected fail）確認しコミット③。※環境の node_modules が nightly で v5 化していたため worktree ローカルに v4 を `pnpm install --frozen-lockfile` で導入し検証
 
-## フェーズ5: カバレッジゲート（コミット④）
+## フェーズ5: カバレッジ方針（ゲートは設けず文書化 — コミット④）
 
-- [ ] T5-1: `pnpm test:coverage` を実行し実測カバレッジを確認
-- [ ] T5-2: `vitest.config.js` に `coverage.thresholds`（実測値 floor）を設定し、`pnpm test:coverage` がゲートを満たすことを確認しコミット④
+- [x] T5-1: `pnpm test:coverage` を実行し実測カバレッジを確認 → external は消去され計測可能コードがほぼ無く（VitestConfig.res.js は完全に空）、statement/line % は無意味と判明
+- [x] T5-2: しきい値ゲートは設けない方針をユーザー承認。design.md に技術判断を記録し、検証手段は「コンパイル + ドッグフードテスト」であることを README/sphinx に明記（コミット④はドキュメントフェーズに統合）。`test:coverage` スクリプトはローカル検査用に存置
 
 ## フェーズ6: ドキュメント（コミット⑤）
 
-- [ ] T6-1: `README.md` Features セクションに新 API（around フック / fake timer オプション / waitFor オプション / 型安全化）を追記
-- [ ] T6-2: `sphinx-docs/` 該当ページを更新し、`make update-po` → `msgstr` 日本語記入 → `make build-ja` で日英両ビルド確認
-- [ ] T6-3: `sphinx-docs/user/changelog.md` Unreleased に追記（日英）しコミット⑤
+- [x] T6-1: `README.md` Features / cheat sheet / Development を更新（around フック / useFakeTimersWith / waitForWith / 型安全化 / カバレッジ非ゲート方針）
+- [x] T6-2: `sphinx-docs/user/configuration.md` を更新（provider #v8 例修正 + poly variant 注記 + useFakeTimersWith）。`make update-po` → `msgstr` 日本語記入 → `make build-ja` 成功（warning は pre-existing の sitemap のみ）、check-po クリーン
+- [x] T6-3: `sphinx-docs/user/changelog.md` Unreleased に追記（日英 .po 記入）しコミット⑤
 
 ## フェーズ7: 仕上げ・マージ
 

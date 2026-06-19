@@ -67,9 +67,16 @@ not worth the maintenance cost.
 let config = VitestConfig.defineConfig({
   test: {
     include_: ["__tests__/**/*_test.res.js"],
-    coverage: {provider: "v8", include_: ["src/**/*.res.js"]},
+    coverage: {provider: #v8, include_: ["src/**/*.res.js"]},
   },
 })
+```
+
+```{note}
+`coverage.provider` is a polymorphic variant (`#istanbul` / `#v8` / `#custom`),
+so an invalid engine name is a compile error. `pool` and `environment` stay
+plain `string` because Vitest treats them as extensible unions — custom pools
+and environment packages remain expressible.
 ```
 
 ReScript does not emit `export default`, so re-export the value through a thin JS
@@ -90,3 +97,5 @@ export default config
 
 Fake-timer behaviour (used by `Vi.useFakeTimers`) is Vitest's own configuration;
 see the [Vitest fake timers guide](https://vitest.dev/guide/mocking.html#timers).
+To install fake timers with explicit options (`FakeTimerInstallOpts` — `now`,
+`toFake`, `shouldAdvanceTime`, …), use `Vi.useFakeTimersWith({now: 0.0, …})`.

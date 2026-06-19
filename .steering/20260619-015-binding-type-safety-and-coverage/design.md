@@ -81,5 +81,5 @@ type waitForOptions = {
 | `suite` エイリアス | 追加 / 省略 | 省略 | `describe` の純粋エイリアスで新規能力ゼロ。API 表面を増やさない（minimal-change）。 |
 | `useFakeTimers` オプション | 既存を可変に変更 / 別名 `useFakeTimersWith` 追加 | 別名追加 | 既存 `useFakeTimers: unit => unit` を壊さず、オプション版を共存させる（後方互換）。 |
 | `waitFor` オプション | 既存を可変に変更 / 別名追加 | 別名 `waitForWith`/`waitUntilWith` 追加 | 同上。Vitest は `number | options` を取るが record 版に統一。 |
-| カバレッジ閾値 | 固定 100% / 実測ベース | 実測ベース | `vi.mock` 等テスト困難な API があるため 100% は非現実的。実測値の floor をゲートにする。 |
+| カバレッジ閾値 | 固定 100% / 実測ベース / ゲート無し | **ゲート無し（文書化）** | 実測の結果、`external` はコンパイル時に消去され計測可能なランタイムコードがほぼ存在しない（VitestConfig.res.js は完全に空、Vitest/Vi.res.js も空モジュール+spy ラッパー 2 関数のみ）。statement/line % は未テストバインディングを検知できず、しきい値ゲートは無意味かつ誤解を招く。網羅性は「コンパイル（型チェック）+ 各バインディングを呼ぶドッグフードテスト」で担保し文書化する。`test:coverage` はローカル検査用に存置。 |
 | around テストの配置 | 既存ファイルに追加 / 新規 Lifecycle_test.res | 実装時に判断 | ライフサイクルは副作用順序の検証が必要。独立ファイルが読みやすければ新規作成。 |

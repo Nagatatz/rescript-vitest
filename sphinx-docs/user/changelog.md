@@ -5,11 +5,15 @@
 ### Added
 
 - `Vi.setTimerTickModeWithInterval` — the `"interval"` tick mode now accepts its `interval` (ms) argument.
+- `Vitest.aroundAll` / `Vitest.aroundEach` — Vitest 4 lifecycle wrappers; the callback receives a `runSuite` / `runTest` thunk to await.
+- `Vi.useFakeTimersWith` — install fake timers with explicit `FakeTimerInstallOpts` (`now`, `toFake`, `shouldAdvanceTime`, …).
+- `Vi.waitForWith` / `Vi.waitUntilWith` — `waitFor` / `waitUntil` taking an explicit `{interval?, timeout?}` options record.
 
 ### Changed
 
 - **Breaking:** `onTestFailed` / `onTestFinished` (and their `…Async` variants) callbacks now receive the per-test `testContext` value (`testContext => unit`) instead of taking no argument. Update callbacks from `() => …` to `_ctx => …`.
 - **Breaking:** `Vi.doMock` now returns a `Vi.disposable` handle (matching Vitest 4) instead of `unit`.
+- **Breaking:** Closed-set arguments are now polymorphic variants instead of `string`: `toBeTypeOf` (e.g. `#string`), `spyOnAccessor` (`#get` / `#set`) and `coverage.provider` (`#istanbul` / `#v8` / `#custom`). `pool` and `environment` stay `string` (extensible unions). Update call sites from string literals to variant tags.
 
 ### Fixed
 

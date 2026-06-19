@@ -11,12 +11,13 @@ exactly like Vitest itself. The `expect(value)` wrapper carries the type of the
 value under test, so matchers such as `toBe` stay honest at compile time.
 
 - ✅ `describe` / `test` / `it` (+ `.only` / `.skip` / `.todo` / `.each` / `.concurrent` / `.sequential` / `.shuffle` / `.skipIf` / `.runIf` / `.fails` / `.for`)
-- ✅ Lifecycle hooks (`beforeEach` / `afterEach` / `beforeAll` / `afterAll` / `onTestFailed` / `onTestFinished`, sync & async)
+- ✅ Lifecycle hooks (`beforeEach` / `afterEach` / `beforeAll` / `afterAll` / `aroundEach` / `aroundAll` / `onTestFailed` / `onTestFinished`, sync & async)
 - ✅ The full `expect` matcher set (equality, numbers, strings, collections, objects, type/predicate, exceptions, snapshots — inline and file, mock call/return/resolve matchers)
 - ✅ Asymmetric matchers and negations (`Expect.anything` / `arrayContaining` / `objectContaining` / … and `Expect.Not.*`), plus assertion guards (`assertions` / `hasAssertions` / `soft` / `poll`)
 - ✅ Negation (`not_`) and async assertions (`resolves` / `rejects`)
 - ✅ `Vi` — mock functions, spies (incl. getter/setter), module mocking, global/env stubs, and fake timers (sync & async) with `waitFor` / `waitUntil`
 - ✅ `VitestConfig` — minimal `vitest/config` bindings (`defineConfig` / `mergeConfig` / `defineProject` + the common `test` fields)
+- ✅ Closed-set arguments are polymorphic variants, rejecting invalid values at compile time (`toBeTypeOf(#string)`, `spyOnAccessor(…, #get)`, `coverage.provider: #v8`)
 
 ## Why another binding?
 
@@ -115,7 +116,7 @@ test("fake timers", () => {
 `itSequential`, `itSkipIf`, `itRunIf`.
 
 ### Lifecycle
-`beforeAll`, `afterAll`, `beforeEach`, `afterEach`, plus the per-test hooks `onTestFailed`, `onTestFinished` (each with an `…Async` variant).
+`beforeAll`, `afterAll`, `beforeEach`, `afterEach`, the suite/test wrappers `aroundAll`, `aroundEach` (each receives a `runSuite` / `runTest` thunk to await), plus the per-test hooks `onTestFailed`, `onTestFinished` (the `before*`/`after*`/`onTest*` hooks each have an `…Async` variant).
 
 ### `expect` matchers
 - **Equality:** `toBe`, `toEqual`, `toStrictEqual`
@@ -150,10 +151,10 @@ bindings. Use ReScript helper functions instead of fixtures, and a dedicated
 - **Modules:** `mock`, `mockWithFactory`, `unmock`, `doMock`, `doUnmock`, `resetModules`, `importActual`, `importMock`, `mockObject`, `dynamicImportSettled`
 - **Global / env stubs:** `stubGlobal`, `stubEnv`, `unstubAllGlobals`, `unstubAllEnvs`
 - **Global state:** `clearAllMocks`, `resetAllMocks`, `restoreAllMocks`
-- **Timers:** `useFakeTimers`, `useRealTimers`, `runAllTimers`, `runOnlyPendingTimers`, `advanceTimersByTime`, `advanceTimersToNextTimer`, `setSystemTime`, `clearAllTimers`
+- **Timers:** `useFakeTimers` (+ `useFakeTimersWith` for `FakeTimerInstallOpts`), `useRealTimers`, `runAllTimers`, `runAllTicks`, `runOnlyPendingTimers`, `advanceTimersByTime`, `advanceTimersToNextTimer`, `setSystemTime` (+ `…Ms`), `clearAllTimers`
 - **Async timers:** `advanceTimersByTimeAsync`, `runAllTimersAsync`, `runOnlyPendingTimersAsync`, `advanceTimersToNextTimerAsync`, `advanceTimersToNextFrame`
 - **Timer inspection:** `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`, `getRealSystemTime`, `setTimerTickMode` (+ `…WithInterval`)
-- **Waiting:** `waitFor`, `waitUntil`
+- **Waiting:** `waitFor`, `waitUntil` (each with a `…With` variant taking `{interval?, timeout?}`)
 
 ### `VitestConfig` (`vitest/config`)
 
@@ -164,6 +165,9 @@ with optional-record types covering the common `test` fields — `globals`,
 `testTimeout`, `hookTimeout`, `reporters`, `watch`, `projects` — and `coverage`
 (`provider`, `enabled`, `reporter`, `include_`, `exclude`). (`include` is a
 ReScript keyword, so the field is named `include_` and maps to JS `"include"`.)
+`coverage.provider` is a polymorphic variant (`#istanbul` / `#v8` / `#custom`);
+`pool` and `environment` stay `string` because Vitest treats them as extensible
+unions, so custom pools / environment packages remain expressible.
 
 **Scope (intentional):** Vite-level config (`plugins`, `resolve`, `server`,
 `build`) and the long tail of `test` options are **not** bound — write those in a
@@ -193,6 +197,12 @@ pnpm install
 pnpm build        # compile ReScript bindings + tests
 pnpm test         # run the dogfood test suite under Vitest 4
 ```
+
+Binding correctness is verified by **compilation** (the bindings type-check) and
+the **dogfood test suite** (each binding is called against a real Vitest). Code
+coverage is *not* used as a gate: ReScript `external`s are erased at compile time
+and leave almost no instrumentable code, so statement/line coverage cannot detect
+an untested binding. `pnpm test:coverage` remains available for local inspection.
 
 ## License
 
