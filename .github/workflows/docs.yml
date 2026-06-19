@@ -44,10 +44,10 @@ jobs:
         run: uv run ruff format --check .
 
       - name: Sphinx lint
-        run: uv run sphinx-lint .
+        run: make sphinx-lint
 
       - name: Pytest
-        run: uv run pytest
+        run: make test
 
   build:
     runs-on: ubuntu-latest

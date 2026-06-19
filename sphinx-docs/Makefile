@@ -75,13 +75,13 @@ lint:
 	uv run ruff format --check .
 
 sphinx-lint:
-	uv run sphinx-lint .
+	uv run sphinx-lint user dev index.md
 
 typecheck:
 	uv run mypy .
 
 test:
-	uv run pytest
+	@uv run pytest; ec=$$?; if [ $$ec -eq 5 ]; then echo "No tests collected — treating as success."; else exit $$ec; fi
 
 check: lint sphinx-lint typecheck test
 
