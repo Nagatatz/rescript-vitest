@@ -1,5 +1,6 @@
 # @nagatatz/rescript-vitest
 
+[![Docs](https://github.com/Nagatatz/rescript-vitest/actions/workflows/docs.yml/badge.svg)](https://github.com/Nagatatz/rescript-vitest/actions/workflows/docs.yml)
 [![CI](https://github.com/Nagatatz/rescript-vitest/actions/workflows/ci.yml/badge.svg)](https://github.com/Nagatatz/rescript-vitest/actions/workflows/ci.yml)
 [![Sponsor](https://img.shields.io/github/sponsors/Nagatatz?logo=githubsponsors&label=Sponsor)](https://github.com/sponsors/Nagatatz)
 
