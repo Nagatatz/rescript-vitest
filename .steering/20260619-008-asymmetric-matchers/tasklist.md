@@ -1,0 +1,48 @@
+# タスクリスト: Phase 8 — asymmetric matchers
+
+| 項目 | 内容 |
+|---|---|
+| 機能名 | asymmetric matchers (Phase 8) |
+| 作成日 | 2026-06-19 |
+| 進捗 | 0 / 9 完了 |
+
+## フェーズ1: 準備
+
+- [ ] `EnterWorktree` で worktree (`asymmetric-matchers`) を作成し、`git merge main --ff-only` で同期する
+
+## フェーズ2: 実装
+
+- [ ] `module Expect` に `anything` / `any` / `arrayContaining` / `objectContaining` を追加
+- [ ] `module Expect` に `stringContaining` / `stringMatching` / `stringMatchingRegExp` / `closeTo` / `closeToWithPrecision` を追加
+
+## フェーズ3: テスト（= PoC 検証）
+
+- [ ] `toEqual` / `toMatchObject` の期待値位置に埋め込むテストを追加
+- [ ] `toHaveBeenCalledWith` の期待値位置に埋め込むテストを追加
+- [ ] `pnpm build` が型エラーなしで通ることを確認（多相戻り値アプローチの型整合確認）
+- [ ] `pnpm test` が全件パスすることを確認
+
+## フェーズ4: 仕上げ
+
+- [ ] ドキュメント更新（`README.md` に asymmetric matchers / `sphinx-docs/user/changelog.md` Unreleased + 日本語 `.po`、`make build-ja`）
+- [ ] コミット（`✨` プレフィックス）後、main へのマージ可否を確認 → 承認後マージ・worktree クリーンアップ
+
+## 完了条件
+
+- [ ] すべてのタスクが完了していること
+- [ ] ビルドが成功すること
+- [ ] 受け入れ条件をすべて満たしていること
+
+---
+
+## 振り返り
+
+<!-- モード3（/steering review）で記録する -->
+
+### 実装で工夫した点
+
+### 発生した問題と解決策
+
+### 設計変更の理由
+
+### 次回への改善点
