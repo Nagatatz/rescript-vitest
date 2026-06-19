@@ -15,8 +15,8 @@
 Type-safe ReScript bindings for Vitest
 
 - 言語: ReScript
-- ビルドシステム: ReScript compiler + pnpm / Vitest 4
-- 対象プラットフォーム: Node.js (ESM), Vitest 4 (Vite 6/7)
+- ビルドシステム: ReScript compiler + pnpm / Vitest
+- 対象プラットフォーム: Node.js (ESM), Vitest (Vite) — 常に最新版を利用可能にすることを目的とする
 
 ## ビルド・実行コマンド
 
