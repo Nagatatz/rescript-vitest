@@ -14,7 +14,7 @@
 - [ ] コミット ①（vitest5 対応: deps + bindings + tests + lockfile + version）
 
 ## Phase 4: リリースワークフロー
-- [ ] `.github/workflows/release.yml` dist-tag 出し分け
+- [x] `.github/workflows/release.yml` dist-tag 出し分け
 - [ ] コミット ②（release.yml）
 
 ## Phase 5: ドキュメント

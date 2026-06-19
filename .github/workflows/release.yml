@@ -42,5 +42,12 @@ jobs:
       - name: Run tests
         run: pnpm test
 
+      # Prerelease tags (e.g. v0.2.0-beta.5 — any semver containing a `-`)
+      # publish to the `next` dist-tag so stable `latest` (vitest 4) stays put.
       - name: Publish to npm (OIDC trusted publishing)
-        run: npm publish --access public --provenance
+        run: |
+          if [[ "${GITHUB_REF_NAME}" == *-* ]]; then
+            npm publish --access public --provenance --tag next
+          else
+            npm publish --access public --provenance
+          fi
