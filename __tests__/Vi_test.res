@@ -25,6 +25,10 @@ function makeBox(initial) {
 @get external boxValue: 'a => int = "value"
 @set external setBoxValue: ('a, int) => unit = "value"
 
+// Readers for the stub tests: the global / env names that the tests stub.
+@val external stubbedGlobal: int = "__viPhase6Global__"
+@val @scope(("process", "env")) external stubbedEnv: string = "__VI_PHASE6_ENV__"
+
 describe("Vi — mock functions", () => {
   afterEach(() => Vi.clearAllMocks())
 
@@ -283,5 +287,47 @@ describe("Vi — accessor spies", () => {
     setBoxValue(box, 5)
     spy->Vi.MockFn.asAssertion->toHaveBeenCalledWith(5)
     spy->Vi.MockFn.mockRestore->ignore
+  })
+})
+
+describe("Vi — global & environment stubs", () => {
+  test("stubGlobal / unstubAllGlobals", () => {
+    Vi.stubGlobal("__viPhase6Global__", 123)
+    expect(stubbedGlobal)->toBe(123)
+    Vi.unstubAllGlobals()
+  })
+
+  test("stubEnv / unstubAllEnvs", () => {
+    Vi.stubEnv("__VI_PHASE6_ENV__", "hello")
+    expect(stubbedEnv)->toBe("hello")
+    Vi.unstubAllEnvs()
+  })
+})
+
+describe("Vi — module mocking completion", () => {
+  testAsync("importActual loads the real module", async () => {
+    let p: {"sep": string} = await Vi.importActual("node:path")
+    expect(p["sep"]->String.length > 0)->toBeTruthy
+  })
+
+  testAsync("importMock auto-mocks module functions", async () => {
+    let m: {"join": 'a} = await Vi.importMock("node:path")
+    expect(Vi.isMockFunction(m["join"]))->toBeTruthy
+  })
+
+  test("mockObject replaces methods with mocks", () => {
+    let obj = {"compute": () => 1}
+    let mocked = Vi.mockObject(obj)
+    expect(Vi.isMockFunction(mocked["compute"]))->toBeTruthy
+  })
+
+  test("doUnmock is callable", () => {
+    Vi.doUnmock("node:path")
+    expect(true)->toBeTruthy
+  })
+
+  testAsync("dynamicImportSettled resolves", async () => {
+    await Vi.dynamicImportSettled()
+    expect(true)->toBeTruthy
   })
 })

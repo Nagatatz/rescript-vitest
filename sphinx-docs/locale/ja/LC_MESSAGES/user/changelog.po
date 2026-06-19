@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 17:10+0900\n"
+"POT-Creation-Date: 2026-06-19 17:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -92,17 +92,16 @@ msgid ""
 "`runOnlyPendingTimersAsync`, `advanceTimersToNextTimerAsync`, "
 "`advanceTimersToNextFrame`."
 msgstr ""
-"async フェイクタイマー: `advanceTimersByTimeAsync`、`runAllTimersAsync`、"
-"`runOnlyPendingTimersAsync`、`advanceTimersToNextTimerAsync`、"
-"`advanceTimersToNextFrame`。"
+"async フェイクタイマー: "
+"`advanceTimersByTimeAsync`、`runAllTimersAsync`、`runOnlyPendingTimersAsync`、`advanceTimersToNextTimerAsync`、`advanceTimersToNextFrame`。"
 
 #: ../../user/changelog.md:17
 msgid ""
 "Timer inspection: `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`,"
 " `getRealSystemTime`."
 msgstr ""
-"タイマー検査: `isFakeTimers`、`getTimerCount`、`getMockedSystemTime`、"
-"`getRealSystemTime`。"
+"タイマー検査: "
+"`isFakeTimers`、`getTimerCount`、`getMockedSystemTime`、`getRealSystemTime`。"
 
 #: ../../user/changelog.md:18
 msgid "Waiting utilities: `waitFor`, `waitUntil`."
@@ -112,11 +111,27 @@ msgstr "待機ユーティリティ: `waitFor`、`waitUntil`。"
 msgid "Accessor spies: `spyOnGetter`, `spyOnSetter`."
 msgstr "アクセサスパイ: `spyOnGetter`、`spyOnSetter`。"
 
+#: ../../user/changelog.md:20
+msgid ""
+"Global and environment stubs: `stubGlobal`, `stubEnv`, "
+"`unstubAllGlobals`, `unstubAllEnvs`."
+msgstr ""
+"グローバル・環境スタブ: `stubGlobal`、`stubEnv`、"
+"`unstubAllGlobals`、`unstubAllEnvs`。"
+
 #: ../../user/changelog.md:21
+msgid ""
+"Module mocking completion: `importActual`, `importMock`, `doUnmock`, "
+"`mockObject`, `dynamicImportSettled`."
+msgstr ""
+"モジュールモックの補完: `importActual`、`importMock`、`doUnmock`、"
+"`mockObject`、`dynamicImportSettled`。"
+
+#: ../../user/changelog.md:23
 msgid "Changed"
 msgstr "変更"
 
-#: ../../user/changelog.md:25
+#: ../../user/changelog.md:27
 msgid "Fixed"
 msgstr "修正"
 

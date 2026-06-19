@@ -156,8 +156,39 @@ let spyOnSetter = (obj, key) => spyOnAccessor(obj, key, "set")
 /** `vi.doMock("module", factory)` — register a mock without hoisting. */
 @module("vitest") @scope("vi") external doMock: (string, unit => 'a) => unit = "doMock"
 
+/** `vi.doUnmock("module")` — undo a `doMock` for the module. */
+@module("vitest") @scope("vi") external doUnmock: string => unit = "doUnmock"
+
 /** Reset the module registry so subsequent imports re-evaluate. */
 @module("vitest") @scope("vi") external resetModules: unit => unit = "resetModules"
+
+/** Import the real (unmocked) module by specifier. Annotate the result type. */
+@module("vitest") @scope("vi") external importActual: string => promise<'a> = "importActual"
+
+/** Import a module with all of its exports auto-mocked. Annotate the result type. */
+@module("vitest") @scope("vi") external importMock: string => promise<'a> = "importMock"
+
+/** Return a deep copy of `value` with its functions replaced by mocks. */
+@module("vitest") @scope("vi") external mockObject: 'a => 'a = "mockObject"
+
+/** Resolve once all pending dynamic imports have settled. */
+@module("vitest") @scope("vi") external dynamicImportSettled: unit => promise<unit> = "dynamicImportSettled"
+
+// ============================================================================
+// Global / environment stubs
+// ============================================================================
+
+/** Replace a global (e.g. `"fetch"`) until `unstubAllGlobals`. */
+@module("vitest") @scope("vi") external stubGlobal: (string, 'a) => unit = "stubGlobal"
+
+/** Replace an environment variable until `unstubAllEnvs`. */
+@module("vitest") @scope("vi") external stubEnv: (string, string) => unit = "stubEnv"
+
+/** Restore every global replaced with `stubGlobal`. */
+@module("vitest") @scope("vi") external unstubAllGlobals: unit => unit = "unstubAllGlobals"
+
+/** Restore every environment variable replaced with `stubEnv`. */
+@module("vitest") @scope("vi") external unstubAllEnvs: unit => unit = "unstubAllEnvs"
 
 // ============================================================================
 // Global mock state
