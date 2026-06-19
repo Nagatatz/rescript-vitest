@@ -6,6 +6,22 @@
 
 ### Added
 
+-
+
+### Changed
+
+-
+
+### Fixed
+
+-
+
+## 0.1.0 (2026-06-19)
+
+Initial release: type-safe ReScript bindings covering the Vitest 4 surface.
+
+### Added
+
 - Mock call-argument matchers: `toHaveBeenCalledWith`, `toHaveBeenLastCalledWith`, `toHaveBeenNthCalledWith`, `toHaveBeenCalledExactlyOnceWith` (each with a two-argument `…With2` variant).
 - Mock return-value matchers: `toHaveReturnedTimes`, `toHaveReturnedWith`, `toHaveLastReturnedWith`, `toHaveNthReturnedWith`.
 - `Vi.MockFn` lifecycle helpers: `mockResolvedValueOnce`, `mockRejectedValueOnce`, `mockReturnThis`, `getMockName`, `mockName`, `getMockImplementation`, `withImplementation`.
@@ -29,14 +45,6 @@
 - `it` modifiers: `itTodo`, `itConcurrent`, `itEach`, `itFails`, `itSequential`, `itSkipIf`, `itRunIf`.
 - Async-body conditional tests: `testSkipIfAsync`, `testRunIfAsync`.
 - Fake-timer tick mode: `setTimerTickMode`.
-
-### Changed
-
--
-
-### Fixed
-
--
 
 <!-- Template for new releases:
 
