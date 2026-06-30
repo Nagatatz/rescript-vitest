@@ -1,0 +1,10 @@
+#!/bin/sh
+# 非 ReScript の手書き JS/JSON のフォーマット崩れ・lint 違反を含むコミットを防ぐ。
+# 修正するには `pnpm format`（整形）/ `pnpm lint`（lint 詳細）を実行する。
+set -e
+
+echo "[pre-commit] oxfmt --check"
+pnpm exec oxfmt --check '**/*.{js,mjs,cjs,json}'
+
+echo "[pre-commit] oxlint"
+pnpm exec oxlint

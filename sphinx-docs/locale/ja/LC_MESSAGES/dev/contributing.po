@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 22:34+0900\n"
+"POT-Creation-Date: 2026-06-30 23:25+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -201,38 +201,62 @@ msgid "**Format:** `<emoji> <verb> <concise description>`"
 msgstr "**フォーマット:** `<emoji> <verb> <concise description>`"
 
 #: ../../dev/contributing.md:51
+msgid "Code Style"
+msgstr "コードスタイル"
+
+#: ../../dev/contributing.md:53
+msgid ""
+"Hand-written non-ReScript files (`vitest.config.js` and JSON configs) are"
+" formatted with [oxfmt](https://oxc.rs) and linted with "
+"[oxlint](https://oxc.rs). Generated `*.res.js` output is excluded via "
+"`.gitignore`."
+msgstr ""
+"手書きの非 ReScript ファイル（`vitest.config.js` と JSON 設定）は "
+"[oxfmt](https://oxc.rs) で整形し、[oxlint](https://oxc.rs) で lint します。"
+"生成された `*.res.js` は `.gitignore` により対象外です。"
+
+#: ../../dev/contributing.md:63
+msgid ""
+"A pre-commit hook runs `format:check` + `lint`; it is activated "
+"automatically by the `prepare` script (which sets `git config "
+"core.hooksPath .githooks`) on `pnpm install`."
+msgstr ""
+"pre-commit hook が `format:check` + `lint` を実行します。これは `pnpm install` 時に "
+"`prepare` スクリプト（`git config core.hooksPath .githooks` を設定）によって自動で有効化されます。"
+
+#: ../../dev/contributing.md:67
 msgid "Submitting Changes"
 msgstr "変更の提出"
 
-#: ../../dev/contributing.md:53
+#: ../../dev/contributing.md:69
 msgid "Ensure all tests pass"
 msgstr "すべてのテストがパスすることを確認します"
 
-#: ../../dev/contributing.md:54
+#: ../../dev/contributing.md:70
 msgid "Ensure code style checks pass"
 msgstr "コードスタイルチェックがパスすることを確認します"
 
-#: ../../dev/contributing.md:55
+#: ../../dev/contributing.md:71
 msgid "Build the project"
 msgstr "プロジェクトをビルドします"
 
-#: ../../dev/contributing.md:56
+#: ../../dev/contributing.md:72
 msgid "Push your branch and create a Pull Request"
 msgstr "ブランチを push してプルリクエストを作成します"
 
-#: ../../dev/contributing.md:58
+#: ../../dev/contributing.md:74
 msgid "PR Guidelines"
 msgstr "PR ガイドライン"
 
-#: ../../dev/contributing.md:60
+#: ../../dev/contributing.md:76
 msgid "Keep PRs focused on a single feature or fix"
 msgstr "PR は単一の機能または修正に集中させます"
 
-#: ../../dev/contributing.md:61
+#: ../../dev/contributing.md:77
 msgid "Write a clear description of what changed and why"
 msgstr "何をなぜ変更したのかを明確に説明します"
 
-#: ../../dev/contributing.md:62
+#: ../../dev/contributing.md:78
 msgid "Reference related issues if applicable"
 msgstr "該当する場合は関連する Issue を参照します"
 

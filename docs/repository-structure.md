@@ -7,6 +7,8 @@
 ```
 rescript-vitest/
 ├── CLAUDE.md                   # Claude Code の常時ロードコンテキスト
+├── .githooks/
+│   └── pre-commit              # コミット前に format:check + lint を実行（core.hooksPath で有効化）
 ├── .claude/
 │   ├── agents/                 # サブエージェント定義
 │   ├── commands/               # スラッシュコマンド
@@ -29,6 +31,8 @@ rescript-vitest/
 │   └── VitestConfig_test.res   # vitest/config バインディングのドッグフードテスト
 ├── rescript.json               # ReScript ビルド設定（in-source, .res.js 出力）
 ├── vitest.config.js            # Vitest 設定（__tests__/**/*_test.res.js を対象）
+├── .oxfmtrc.json               # oxfmt 設定（手書き JS/JSON の整形）
+├── .oxlintrc.json              # oxlint 設定（手書き JS の lint, correctness 中心）
 └── package.json                # パッケージ定義 / npm スクリプト
 ```
 
