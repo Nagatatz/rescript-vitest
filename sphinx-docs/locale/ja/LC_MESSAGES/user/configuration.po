@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 19:47+0900\n"
+"POT-Creation-Date: 2026-06-19 23:30+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -153,40 +153,55 @@ msgid ""
 "maintenance cost."
 msgstr ""
 "上記の Vitest 設定は、`VitestConfig` バインディング（`vitest/config`）を使って ReScript "
-"で書くこともできます。範囲は意図的に最小限で、`defineConfig`・`defineConfigFn`（関数フォーム）・"
-"`mergeConfig`・`defineProject` と `test` の主要フィールドを型付けし、Vite "
-"レベルのオプション（`plugins`・`resolve` など）や `test` の末端オプションは素の JS "
-"設定ファイルに委ねます。設定オブジェクトは一度書いたら放置する write-once "
+"で書くこともできます。範囲は意図的に最小限で、`defineConfig`・`defineConfigFn`（関数フォーム）・`mergeConfig`・`defineProject`"
+" と `test` の主要フィールドを型付けし、Vite レベルのオプション（`plugins`・`resolve` など）や `test` "
+"の末端オプションは素の JS 設定ファイルに委ねます。設定オブジェクトは一度書いたら放置する write-once "
 "のデータで、面が広くバージョン毎に変化するため、全網羅は保守コストに見合いません。"
 
-#: ../../user/configuration.md:75
+#: ../../user/configuration.md:76
+msgid ""
+"`coverage.provider` is a polymorphic variant (`#istanbul` / `#v8` / "
+"`#custom`), so an invalid engine name is a compile error. `pool` and "
+"`environment` stay plain `string` because Vitest treats them as "
+"extensible unions — custom pools and environment packages remain "
+"expressible."
+msgstr ""
+"`coverage.provider` は多相バリアント（`#istanbul` / `#v8` / `#custom`）のため、"
+"無効なエンジン名はコンパイルエラーになります。`pool` と `environment` は、Vitest が"
+"拡張可能な union として扱うため素の `string` のままです — カスタム pool や "
+"environment パッケージも引き続き表現できます。"
+
+#: ../../user/configuration.md:82
 msgid ""
 "ReScript does not emit `export default`, so re-export the value through a"
 " thin JS shim that Vitest can load:"
-msgstr ""
-"ReScript は `export default` を出力しないため、Vitest が読み込める薄い JS "
-"シムから値を再エクスポートします:"
+msgstr "ReScript は `export default` を出力しないため、Vitest が読み込める薄い JS シムから値を再エクスポートします:"
 
-#: ../../user/configuration.md:85
+#: ../../user/configuration.md:92
 msgid ""
 "`include` is a ReScript keyword, so the field is named `include_` and "
 "maps to JS `\"include\"` at runtime."
 msgstr ""
-"`include` は ReScript の予約語のため、フィールド名は `include_` "
-"とし、実行時に JS の `\"include\"` へマッピングされます。"
+"`include` は ReScript の予約語のため、フィールド名は `include_` とし、実行時に JS の "
+"`\"include\"` へマッピングされます。"
 
-#: ../../user/configuration.md:89
+#: ../../user/configuration.md:96
 msgid "Fake timers"
 msgstr "フェイクタイマー"
 
-#: ../../user/configuration.md:91
+#: ../../user/configuration.md:98
+#, python-brace-format
 msgid ""
 "Fake-timer behaviour (used by `Vi.useFakeTimers`) is Vitest's own "
 "configuration; see the [Vitest fake timers "
-"guide](https://vitest.dev/guide/mocking.html#timers)."
+"guide](https://vitest.dev/guide/mocking.html#timers). To install fake "
+"timers with explicit options (`FakeTimerInstallOpts` — `now`, `toFake`, "
+"`shouldAdvanceTime`, …), use `Vi.useFakeTimersWith({now: 0.0, …})`."
 msgstr ""
 "フェイクタイマーの挙動（`Vi.useFakeTimers` が利用）は Vitest 自体の設定です。[Vitest "
 "フェイクタイマーガイド](https://vitest.dev/guide/mocking.html#timers) を参照してください。"
+"明示的なオプション（`FakeTimerInstallOpts` — `now`、`toFake`、`shouldAdvanceTime`、…）で"
+"フェイクタイマーをインストールするには `Vi.useFakeTimersWith({now: 0.0, …})` を使います。"
 
 #~ msgid "Settings"
 #~ msgstr "設定項目"

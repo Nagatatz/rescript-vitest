@@ -6,10 +6,7 @@
     "chromeLaunchConfig": {
       "args": ["--no-sandbox", "--disable-dev-shm-usage"]
     },
-    "ignore": [
-      "color-contrast",
-      "region"
-    ]
+    "ignore": ["color-contrast", "region"]
   },
   "urls": [
     "http://127.0.0.1:8765/en/",

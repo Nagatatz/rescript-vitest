@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expect — snapshots > toMatchSnapshot stores a structural snapshot 1`] = `
+{
+  "id": 1,
+  "name": "a",
+}
+`;
+
+exports[`Expect — snapshots > toMatchSnapshotWithName stores a named snapshot > a sample array 1`] = `
+[
+  1,
+  2,
+  3,
+]
+`;
+
+exports[`Expect — snapshots > toThrowErrorMatchingSnapshot snapshots a thrown error 1`] = `[Error: snap boom]`;

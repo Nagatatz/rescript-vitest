@@ -189,6 +189,20 @@ external itEach: array<'a> => (string, 'a => unit) => unit = "each"
 @module("vitest") external afterEach: (unit => unit) => unit = "afterEach"
 @module("vitest") external afterEachAsync: (unit => promise<unit>) => unit = "afterEach"
 
+// `aroundAll` / `aroundEach` (Vitest 4) wrap a suite / test: the callback
+// receives a `runSuite` / `runTest` thunk it must `await` to execute the wrapped
+// body, so setup before the call and teardown after it bracket the run. The
+// listener also receives a context and the suite, but they are omitted here —
+// JavaScript ignores the extra arguments — until a concrete need arises.
+
+/** Wrap the whole suite: `await runSuite()` runs it, code around it brackets it. */
+@module("vitest")
+external aroundAll: ((unit => promise<unit>) => promise<unit>) => unit = "aroundAll"
+
+/** Wrap each test in the suite: `await runTest()` runs it, code around it brackets it. */
+@module("vitest")
+external aroundEach: ((unit => promise<unit>) => promise<unit>) => unit = "aroundEach"
+
 // Per-test hooks, registered from inside a test body (not at suite level).
 
 /**
@@ -266,8 +280,24 @@ type asyncAssertion<'a>
 // Type & predicate matchers
 // ----------------------------------------------------------------------------
 
-/** Match the `typeof` of the value (`"string"`, `"number"`, `"function"`, …). */
-@send external toBeTypeOf: (assertion<'a>, string) => unit = "toBeTypeOf"
+/**
+ * The closed set of results JavaScript's `typeof` can produce. Bound as a
+ * polymorphic variant so invalid type names are rejected at compile time; each
+ * argument-less tag compiles to its own string at runtime (`#number` → `"number"`).
+ */
+type typeOf = [
+  | #bigint
+  | #boolean
+  | #"function"
+  | #number
+  | #object
+  | #string
+  | #symbol
+  | #undefined
+]
+
+/** Match the `typeof` of the value (`#string`, `#number`, `#"function"`, …). */
+@send external toBeTypeOf: (assertion<'a>, typeOf) => unit = "toBeTypeOf"
 
 /** Match an `instanceof` check against a constructor / class. */
 @send external toBeInstanceOf: (assertion<'a>, 'b) => unit = "toBeInstanceOf"

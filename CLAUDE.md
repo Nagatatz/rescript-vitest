@@ -29,7 +29,14 @@ pnpm clean && pnpm build
 
 # テスト
 pnpm test
+
+# 整形・lint（非 ReScript の手書き JS/JSON のみ。生成 .res.js は対象外）
+pnpm format          # oxfmt で整形
+pnpm format:check    # 整形差分の検査（pre-commit hook と同じ）
+pnpm lint            # oxlint で lint
 ```
+
+> 整形・lint は `oxfmt` / `oxlint` で行う。対象は `**/*.{js,mjs,cjs,json}`（`.gitignore` 尊重で生成物 `.res.js` / `lib/` は自動除外）。`pnpm install` 時に `prepare` が `core.hooksPath` を `.githooks` に設定し、pre-commit で `format:check` + `lint` が走る。
 
 ## Sphinx ドキュメント
 
