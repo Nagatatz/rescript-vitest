@@ -1,19 +1,29 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 (2026-06-19)
 
 ### Added
 
 - `Vi.setTimerTickModeWithInterval` — the `"interval"` tick mode now accepts its `interval` (ms) argument.
+- `Vitest.aroundAll` / `Vitest.aroundEach` — Vitest 4 lifecycle wrappers; the callback receives a `runSuite` / `runTest` thunk to await.
+- `Vi.useFakeTimersWith` — install fake timers with explicit `FakeTimerInstallOpts` (`now`, `toFake`, `shouldAdvanceTime`, …).
+- `Vi.waitForWith` / `Vi.waitUntilWith` — `waitFor` / `waitUntil` taking an explicit `{interval?, timeout?}` options record.
 
 ### Changed
 
 - **Breaking:** `onTestFailed` / `onTestFinished` (and their `…Async` variants) callbacks now receive the per-test `testContext` value (`testContext => unit`) instead of taking no argument. Update callbacks from `() => …` to `_ctx => …`.
 - **Breaking:** `Vi.doMock` now returns a `Vi.disposable` handle (matching Vitest 4) instead of `unit`.
+- **Breaking:** Closed-set arguments are now polymorphic variants instead of `string`: `toBeTypeOf` (e.g. `#string`), `spyOnAccessor` (`#get` / `#set`) and `coverage.provider` (`#istanbul` / `#v8` / `#custom`). `pool` and `environment` stay `string` (extensible unions). Update call sites from string literals to variant tags.
 
-### Fixed
+## 0.2.0-beta.6 (2026-07-10)
 
--
+Prerelease tracking Vitest 5 beta, published to the npm `next` dist-tag. The
+stable `latest` line keeps targeting Vitest 4.
+
+### Changed
+
+- Bumped the Vitest 5 beta target from `5.0.0-beta.5` to `5.0.0-beta.6`; the dogfood suite runs on Vitest `5.0.0-beta.6`.
+- Synced the stable-line bindings, oxfmt/oxlint tooling and docs from `main`.
 
 ## 0.2.0-beta.5 (2026-06-19)
 
