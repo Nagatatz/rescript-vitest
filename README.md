@@ -196,7 +196,14 @@ export default config
 pnpm install
 pnpm build        # compile ReScript bindings + tests
 pnpm test         # run the dogfood test suite under Vitest 4
+pnpm format       # format hand-written JS/JSON with oxfmt
+pnpm lint         # lint hand-written JS with oxlint
 ```
+
+Non-ReScript hand-written files (`vitest.config.js`, JSON configs) are formatted
+with [oxfmt](https://oxc.rs) and linted with [oxlint](https://oxc.rs); generated
+`*.res.js` output is excluded via `.gitignore`. A pre-commit hook (activated by
+the `prepare` script setting `core.hooksPath`) runs `format:check` + `lint`.
 
 Binding correctness is verified by **compilation** (the bindings type-check) and
 the **dogfood test suite** (each binding is called against a real Vitest). Code

@@ -48,6 +48,22 @@ When several apply, pick the highest in the list above (✨ wins).
 
 **Format:** `<emoji> <verb> <concise description>`
 
+### Code Style
+
+Hand-written non-ReScript files (`vitest.config.js` and JSON configs) are
+formatted with [oxfmt](https://oxc.rs) and linted with [oxlint](https://oxc.rs).
+Generated `*.res.js` output is excluded via `.gitignore`.
+
+```bash
+pnpm format        # format JS/JSON in place
+pnpm format:check  # check formatting (same as the pre-commit hook)
+pnpm lint          # lint JS with oxlint
+```
+
+A pre-commit hook runs `format:check` + `lint`; it is activated automatically by
+the `prepare` script (which sets `git config core.hooksPath .githooks`) on
+`pnpm install`.
+
 ## Submitting Changes
 
 1. Ensure all tests pass
