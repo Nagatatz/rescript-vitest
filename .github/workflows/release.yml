@@ -30,9 +30,15 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
-      # Trusted publishing requires npm >= 11.5.1.
-      - name: Update npm
-        run: npm install -g npm@latest
+      # Trusted publishing requires npm >= 11.5.1. Node 24's bundled npm already
+      # satisfies this, so only self-update when it is too old — a global
+      # `npm install -g npm@latest` otherwise leaves `--provenance` unable to
+      # resolve its bundled `sigstore` dependency (npm/cli self-update bug).
+      - name: Ensure npm >= 11.5.1 for trusted publishing
+        run: |
+          if [ "$(printf '%s\n' "11.5.1" "$(npm -v)" | sort -V | head -1)" != "11.5.1" ]; then
+            npm install -g npm@latest
+          fi
 
       - run: pnpm install --frozen-lockfile
 
