@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | レビュー指摘の一括修正と 0.2.0 リリース |
 | 作成日 | 2026-08-30 |
-| 進捗 | 5 / 36 完了 |
+| 進捗 | 7 / 36 完了 |
 
 ## フェーズ1: 準備
 
@@ -16,11 +16,11 @@
 - [x] `Vi.MockFn.calls` を `array<array<'arg>>` に修正 → 検証: `Vi_test.res` で `calls[0][0]` の値を検証
 - [x] `Vi.MockFn.results` を `array<mockResult<'ret>>` に修正（`mockResultType` / `mockResult` 型追加）→ 検証: `results[0].type_ == #return` と `value`
 - [x] `Vi.setTimerTickMode` を polymorphic variant 化、`setTimerTickModeWithInterval` を `@as("interval") _` に → 検証: `Vi_test.res` で `#manual` / interval 呼び出しがフェイクタイマー下で動作
-- [ ] `describeEach2/3`, `testEach2/3`, `itEach2/3` を追加、既存 `*Each` のコメント更新 → 検証: `Expect_test.res` でタプルケースの全カラムが届く
+- [x] `describeEach2/3`, `testEach2/3`, `itEach2/3` を追加、既存 `*Each` のコメント更新 → 検証: `Expect_test.res` でタプルケースの全カラムが届く
 
 ## フェーズ3: テスト追加
 
-- [ ] `describeEach` / `testEach` / `testConcurrent` / `describeSkip` / `testSkip` / `itSkip` のテスト（`Expect_test.res`）
+- [x] `describeEach` / `testEach` / `testConcurrent` / `describeSkip` / `testSkip` / `itSkip` のテスト（`Expect_test.res`）
 - [ ] `onTestFailedAsync` / `onTestFinishedAsync` のテスト（`Lifecycle_test.res`）
 - [ ] `spyOnAccessor` 直接呼び出しのテスト（`Vi_test.res`）
 - [ ] `__tests__/Only_test.res` を新規作成（`describeOnly` / `testOnly` / `testOnlyAsync` / `itOnly`）

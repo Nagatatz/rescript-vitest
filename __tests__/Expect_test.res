@@ -375,6 +375,44 @@ describe("Expect — negated asymmetric matchers", () => {
   })
 })
 
+describe("Vitest — parameterized suites and tests", () => {
+  // Scalar cases: Vitest passes the case itself as the single argument.
+  describeEach([1, 2])("describe-each suite %i", n => {
+    test("case is positive", () => expect(n > 0)->toBeTruthy)
+  })
+  testEach(["a", "b"])("test-each case %s is non-empty", s =>
+    expect(s->String.length)->toBe(1)
+  )
+  // Tuple cases: Vitest spreads the row, so every column must reach the
+  // callback — a 1-arg binding would silently drop the second column.
+  describeEach2([(1, "one"), (2, "two")])("describe-each2 %i = %s", (n, name) => {
+    test("both columns arrive", () => expect(name->String.length > n - 1)->toBeTruthy)
+  })
+  testEach2([(1, 2), (2, 3)])("test-each2 %i + 1 = %i", (a, b) => expect(a + 1)->toBe(b))
+  itEach2([("x", 1), ("y", 2)])("it-each2 %s -> %i", (s, n) =>
+    expect(s->String.length + n)->toBe(n + 1)
+  )
+  describeEach3([(1, 2, 3)])("describe-each3 %i + %i = %i", (a, b, c) => {
+    test("three columns arrive", () => expect(a + b)->toBe(c))
+  })
+  testEach3([(1, 2, 3), (2, 3, 5)])("test-each3 %i + %i = %i", (a, b, c) =>
+    expect(a + b)->toBe(c)
+  )
+  itEach3([("a", "b", "ab")])("it-each3 %s ++ %s = %s", (a, b, ab) =>
+    expect(a ++ b)->toBe(ab)
+  )
+})
+
+describe("Vitest — skip and concurrent modifiers", () => {
+  // The skipped bodies would fail if they ran; the report shows them as skipped.
+  describeSkip("describe.skip is not run", () => {
+    test("never runs", () => expect(1)->toBe(2))
+  })
+  testSkip("test.skip is not run", () => expect(1)->toBe(2))
+  itSkip("it.skip is not run", () => expect(1)->toBe(2))
+  testConcurrent("test.concurrent runs", async () => expect(1)->toBe(1))
+})
+
 describe("Vitest — it modifiers", () => {
   itEach([1, 2])("it-each case %i is positive", n => expect(n > 0)->toBeTruthy)
   itFails("it.fails passes because the body fails", () => expect(1)->toBe(2))
