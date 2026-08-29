@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | レビュー指摘の一括修正と 0.2.0 リリース |
 | 作成日 | 2026-08-30 |
-| 進捗 | 15 / 36 完了 |
+| 進捗 | 26 / 36 完了 |
 
 ## フェーズ1: 準備
 
@@ -36,17 +36,17 @@
 
 ## フェーズ5: ドキュメント
 
-- [ ] `README.md`: API 表（`testOnlyAsync`, `spyOnAccessor`, `*Each2/3`）、Install / Requirements に peer 反映
-- [ ] `sphinx-docs/user/installation.md`: 同上
-- [ ] `sphinx-docs/user/changelog.md`: 0.2.0 エントリ（Breaking 明記）
-- [ ] `sphinx-docs/dev/setup.md`: 日本語混入を英語化
-- [ ] `sphinx-docs/dev/project-structure.md`: `__tests__` 実ファイル反映、「各 src モジュールに対応テスト」の記述修正
-- [ ] `sphinx-docs/conf.py`: `version` / `release` を `package.json` から読む
-- [ ] `make update-po` → `.po` の `msgstr` を日本語で記入 → `make html` / `make build-ja` 成功
-- [ ] `docs/repository-structure.md`: ツリー更新
-- [ ] `docs/quality-measurement.md`: `typescript-conventions` 除去
-- [ ] `CLAUDE.md`: README 参照修正、skills 表を抜粋と明記
-- [ ] `.steering/` 013 / 014 / 016 の `tasklist.md` 未チェック項目を実績確認のうえ `[x]`
+- [x] `README.md`: API 表（`testOnlyAsync`, `spyOnAccessor`, `*Each2/3`）、Install / Requirements に peer 反映
+- [x] `sphinx-docs/user/installation.md`: 同上
+- [x] `sphinx-docs/user/changelog.md`: 0.2.0 エントリ（Breaking 明記）
+- [x] `sphinx-docs/dev/setup.md`: 日本語混入を英語化
+- [x] `sphinx-docs/dev/project-structure.md`: `__tests__` 実ファイル反映、「各 src モジュールに対応テスト」の記述修正
+- [x] `sphinx-docs/conf.py`: `version` / `release` を `package.json` から読む
+- [x] `make update-po` → `.po` の `msgstr` を日本語で記入 → `make html` / `make build-ja` 成功
+- [x] `docs/repository-structure.md`: ツリー更新
+- [x] `docs/quality-measurement.md`: `typescript-conventions` 除去
+- [x] `CLAUDE.md`: README 参照修正、skills 表を抜粋と明記
+- [x] `.steering/` 013 / 014 / 016 の `tasklist.md` 未チェック項目を実績確認のうえ `[x]`
 
 ## フェーズ6: リリース
 

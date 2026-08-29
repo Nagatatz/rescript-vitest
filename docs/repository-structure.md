@@ -7,6 +7,12 @@
 ```
 rescript-vitest/
 ├── CLAUDE.md                   # Claude Code の常時ロードコンテキスト
+├── .devcontainer/              # Dev Container 定義
+├── .env.example                # Claude Code 用環境変数のテンプレート（`.env` にコピーして使う）
+├── .mcp.json.template          # MCP サーバー設定のテンプレート（`.mcp.json` にコピーして使う）
+├── .github/
+│   ├── dependabot.yml          # 依存関係の自動更新
+│   └── workflows/              # CI（format/lint/build/test）/ docs / release（タグ push で npm publish）
 ├── .githooks/
 │   └── pre-commit              # コミット前に format:check + lint を実行（core.hooksPath で有効化）
 ├── .claude/
@@ -21,16 +27,23 @@ rescript-vitest/
 │   └── statusline.sh           # statusLine コマンド
 ├── docs/                       # 永続的設計ドキュメント
 ├── sphinx-docs/                # 外部公開ドキュメント（日英対応 / Sphinx）
+├── scripts/
+│   └── evaluate-skills.sh      # skill 品質測定スクリプト（→ docs/quality-measurement.md）
+├── quality-datasets/           # skill 品質測定用データセット
 ├── src/
 │   ├── Vitest.res              # describe / test / expect マッチャーのバインディング
 │   ├── Vi.res                  # Vi — モック / スパイ / モジュールモック / フェイクタイマー
 │   └── VitestConfig.res        # vitest/config — defineConfig / mergeConfig / test 設定（最小）
 ├── __tests__/
-│   ├── Expect_test.res         # expect マッチャーのドッグフードテスト
+│   ├── Expect_test.res         # expect マッチャー / test・describe 修飾子のドッグフードテスト
+│   ├── Lifecycle_test.res      # ライフサイクルフック / per-test フックのドッグフードテスト
+│   ├── Only_test.res           # `.only` 修飾子のドッグフードテスト（`.only` はファイル単位のため専用ファイル）
+│   ├── ModuleMock_test.res     # `vi.mock`（factory）/ `vi.unmock` のドッグフードテスト
 │   ├── Vi_test.res             # Vi モック/タイマーのドッグフードテスト
 │   └── VitestConfig_test.res   # vitest/config バインディングのドッグフードテスト
 ├── rescript.json               # ReScript ビルド設定（in-source, .res.js 出力）
-├── vitest.config.js            # Vitest 設定（__tests__/**/*_test.res.js を対象）
+├── vitest.config.js            # Vitest 設定（__tests__/**/*_test.res.js を対象、allowOnly）
+├── pnpm-workspace.yaml         # pnpm 設定（onlyBuiltDependencies）
 ├── .oxfmtrc.json               # oxfmt 設定（手書き JS/JSON の整形）
 ├── .oxlintrc.json              # oxlint 設定（手書き JS の lint, correctness 中心）
 └── package.json                # パッケージ定義 / npm スクリプト
@@ -43,7 +56,7 @@ rescript-vitest/
 - **`src/Vitest.res`** — テスト構造（`describe` / `test` / `it` とその変種）、ライフサイクルフック、`expect` マッチャー一式、`not_` / `resolves` / `rejects` モディファイア。マッチャーは Vitest 本体と同様に副作用を持ち、失敗時に例外を投げる *faithful* な設計。
 - **`src/Vi.res`** — `Vi` 名前空間。モック関数・スパイ・モジュールモック・グローバル状態操作・フェイクタイマー。
 - **`src/VitestConfig.res`** — `vitest/config` の設定側バインディング。`defineConfig` / `defineConfigFn` / `mergeConfig` / `defineProject` と `test` 主要フィールドの optional record 型。**最小範囲**（Vite レベル設定やフィールドの末端は非対象。フル設定は JS の config ファイルで記述）。
-- **`__tests__/`** — バインディング自身を Vitest 4 上で検証するドッグフードテスト。バインディング追加・変更時は対応するテストを必ず併設する（→ Verification-first）。
+- **`__tests__/`** — バインディング自身を Vitest 4 上で検証するドッグフードテスト。テストファイルはモジュール 1:1 ではなくトピック別に分割する。バインディング追加・変更時は対応するテストを必ず併設する（→ Verification-first）。
 
 ## ビルドフロー
 

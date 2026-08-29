@@ -63,7 +63,7 @@ make build-ja                   # 日本語 HTML ビルド
 
 - パッケージ: @nagatatz/rescript-vitest
 
-> `.claude/` 配下の rule / skill / agent / command の役割分担と新規追加判断基準は README.md「規約とスキルの住み分け」セクション参照。
+> `.claude/` 配下の役割分担: rules = 常時 `@import`（短く保つ）/ skills = 状況発火の手順 / agents = コンテキスト分離が必要な委譲 / commands = 手動起動。新規追加の判断は `.claude/rules/claude-md-hygiene.md` の「3 つの自問」に従う。
 
 ### 常時適用される規約 (rules)
 
@@ -90,7 +90,7 @@ make build-ja                   # 日本語 HTML ビルド
 
 ### 状況発火型の知識 (skills)
 
-以下は `.claude/skills/` に配置されており、該当状況になると Claude が自動でロードする。手動呼び出しは不要。
+以下は `.claude/skills/` に配置されており、該当状況になると Claude が自動でロードする。手動呼び出しは不要。表は常時意識すべきものの抜粋で、全 skill は `.claude/skills/` を参照。
 
 | スキル | 発火タイミング |
 |------|--------------|

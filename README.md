@@ -31,14 +31,18 @@ This package targets Vitest 4 (Vite 6/7) directly.
 
 | Tool | Version |
 |------|---------|
-| ReScript | `^12.0.0` |
+| ReScript (`rescript`) | `^12.0.0-0` (12.x, prereleases allowed) |
+| `@rescript/runtime` | `^12.0.0-0` (same major as ReScript) |
 | Vitest | `^4.0.0` |
 | Vite | `^6` or `^7` (Vitest 4 peer) |
+
+`rescript`, `@rescript/runtime` and `vitest` are peer dependencies — install
+them alongside the bindings.
 
 ## Install
 
 ```bash
-pnpm add -D @nagatatz/rescript-vitest vitest vite
+pnpm add -D @nagatatz/rescript-vitest rescript @rescript/runtime vitest vite
 ```
 
 Add the package to your `rescript.json` dependencies so ReScript compiles the
@@ -106,13 +110,13 @@ test("fake timers", () => {
 ## API cheat sheet
 
 ### Test structure (`Vitest`)
-`describe`, `describeAsync`, `describeOnly`, `describeSkip`, `describeEach`,
+`describe`, `describeAsync`, `describeOnly`, `describeSkip`, `describeEach` (+ `…2` / `…3` for tuple cases),
 `describeTodo`, `describeConcurrent`, `describeSequential`, `describeShuffle`,
 `describeSkipIf`, `describeRunIf`, `describeFor`,
-`test`, `testAsync`, `testOnly`, `testSkip`, `testTodo`, `testConcurrent`,
-`testEach`, `testFor`, `testSkipIf`, `testSkipIfAsync`, `testRunIf`, `testRunIfAsync`,
+`test`, `testAsync`, `testOnly`, `testOnlyAsync`, `testSkip`, `testTodo`, `testConcurrent`,
+`testEach` (+ `…2` / `…3`), `testFor`, `testSkipIf`, `testSkipIfAsync`, `testRunIf`, `testRunIfAsync`,
 `testFails`, `testFailsAsync`, `testSequential`, `testSequentialAsync`,
-`it`, `itAsync`, `itOnly`, `itSkip`, `itTodo`, `itConcurrent`, `itEach`, `itFails`,
+`it`, `itAsync`, `itOnly`, `itSkip`, `itTodo`, `itConcurrent`, `itEach` (+ `…2` / `…3`), `itFails`,
 `itSequential`, `itSkipIf`, `itRunIf`.
 
 ### Lifecycle
@@ -145,8 +149,8 @@ bindings. Use ReScript helper functions instead of fixtures, and a dedicated
 `@send` external if you must call a project-specific custom matcher.
 
 ### `Vi`
-- **Create:** `fn`, `fnWith`, `fn0`, `fn1`, `fn2`, `spyOn`, `spyOnGetter`, `spyOnSetter`
-- **`MockFn`:** `asFn`, `asAssertion`, `calls`, `results`, `mockClear`, `mockReset`, `mockRestore`, `mockImplementation`, `mockImplementationOnce`, `mockReturnValue`, `mockReturnValueOnce`, `mockResolvedValue`, `mockResolvedValueOnce`, `mockRejectedValue`, `mockRejectedValueOnce`, `mockReturnThis`, `getMockName`, `mockName`, `getMockImplementation`, `withImplementation`
+- **Create:** `fn`, `fnWith`, `fn0`, `fn1`, `fn2`, `spyOn`, `spyOnAccessor` (`#get` / `#set`), `spyOnGetter`, `spyOnSetter`
+- **`MockFn`:** `asFn`, `asAssertion`, `calls` (one argument list per call), `results` (`{type_, value}` records), `mockClear`, `mockReset`, `mockRestore`, `mockImplementation`, `mockImplementationOnce`, `mockReturnValue`, `mockReturnValueOnce`, `mockResolvedValue`, `mockResolvedValueOnce`, `mockRejectedValue`, `mockRejectedValueOnce`, `mockReturnThis`, `getMockName`, `mockName`, `getMockImplementation`, `withImplementation`
 - **Inspection / hoisting:** `mocked`, `isMockFunction`, `hoisted`
 - **Modules:** `mock`, `mockWithFactory`, `unmock`, `doMock`, `doUnmock`, `resetModules`, `importActual`, `importMock`, `mockObject`, `dynamicImportSettled`
 - **Global / env stubs:** `stubGlobal`, `stubEnv`, `unstubAllGlobals`, `unstubAllEnvs`
