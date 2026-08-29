@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | レビュー指摘の一括修正と 0.2.0 リリース |
 | 作成日 | 2026-08-30 |
-| 進捗 | 11 / 36 完了 |
+| 進捗 | 15 / 36 完了 |
 
 ## フェーズ1: 準備
 
@@ -29,10 +29,10 @@
 
 ## フェーズ4: CI / 設定
 
-- [ ] `ci.yml` に `pnpm lint` / `pnpm format:check` を追加
-- [ ] `pnpm-workspace.yaml` を追加し `package.json` の `pnpm` フィールドを削除 → 検証: `pnpm install --frozen-lockfile` で警告が出ない
-- [ ] `pnpm update` で devDeps 更新 → 検証: build / test / lint / format:check 全件パス
-- [ ] `.gitignore` に `CLAUDE.local.md` / `quality-reports/` 追加
+- [x] `ci.yml` に `pnpm lint` / `pnpm format:check` を追加
+- [x] `pnpm-workspace.yaml` を追加し `package.json` の `pnpm` フィールドを削除 → 検証: `pnpm install --frozen-lockfile` で警告が出ない
+- [x] `pnpm update` で devDeps 更新 → 検証: build / test / lint / format:check 全件パス
+- [x] `.gitignore` に `CLAUDE.local.md` / `quality-reports/` 追加
 
 ## フェーズ5: ドキュメント
 

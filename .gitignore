@@ -10,3 +10,5 @@ coverage/
 .idea/
 .env
 .claude/settings.local.json
+CLAUDE.local.md
+quality-reports/
