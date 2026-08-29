@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | レビュー指摘の一括修正と 0.2.0 リリース |
 | 作成日 | 2026-08-30 |
-| 進捗 | 28 / 36 完了 |
+| 進捗 | 30 / 36 完了 |
 
 ## フェーズ1: 準備
 
@@ -52,8 +52,8 @@
 
 - [x] `package.json` version を 0.2.0 に更新
 - [x] 適切な粒度でコミット（🐛 バインディング修正 / ✨ Each2/3 追加 / ✅ テスト / 🔧 CI・設定 / 📝 ドキュメント / 🔧 version bump）
-- [ ] `AskUserQuestion` で main へのマージと `v0.2.0` タグ push（= npm publish）の可否を確認
-- [ ] main へマージ、push、`v0.2.0` タグ push
+- [x] `AskUserQuestion` で main へのマージと `v0.2.0` タグ push（= npm publish）の可否を確認
+- [x] main へマージ、push、`v0.2.0` タグ push
 - [ ] `release.yml` の成功と `npm view @nagatatz/rescript-vitest version` = 0.2.0 を確認
 - [ ] worktree / ブランチのクリーンアップ
 
