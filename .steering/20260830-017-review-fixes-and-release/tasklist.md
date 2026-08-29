@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | レビュー指摘の一括修正と 0.2.0 リリース |
 | 作成日 | 2026-08-30 |
-| 進捗 | 7 / 36 完了 |
+| 進捗 | 11 / 36 完了 |
 
 ## フェーズ1: 準備
 
@@ -22,10 +22,10 @@
 
 - [x] `describeEach` / `testEach` / `testConcurrent` / `describeSkip` / `testSkip` / `itSkip` のテスト（`Expect_test.res`）
 - [ ] `onTestFailedAsync` / `onTestFinishedAsync` のテスト（`Lifecycle_test.res`）
-- [ ] `spyOnAccessor` 直接呼び出しのテスト（`Vi_test.res`）
-- [ ] `__tests__/Only_test.res` を新規作成（`describeOnly` / `testOnly` / `testOnlyAsync` / `itOnly`）
-- [ ] `__tests__/ModuleMock_test.res` を新規作成（`mockWithFactory` / `unmock`）。成立しない場合はこの行に理由を追記し省略する
-- [ ] `pnpm build && pnpm test` 全件パス
+- [x] `spyOnAccessor` 直接呼び出しのテスト（`Vi_test.res`）
+- [x] `__tests__/Only_test.res` を新規作成（`describeOnly` / `testOnly` / `testOnlyAsync` / `itOnly`）
+- [x] `__tests__/ModuleMock_test.res` を新規作成（`mockWithFactory` / `unmock`）。成立しない場合はこの行に理由を追記し省略する
+- [x] `pnpm build && pnpm test` 全件パス
 
 ## フェーズ4: CI / 設定
 
