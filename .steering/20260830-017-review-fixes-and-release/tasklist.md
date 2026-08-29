@@ -4,18 +4,18 @@
 |---|---|
 | 機能名 | レビュー指摘の一括修正と 0.2.0 リリース |
 | 作成日 | 2026-08-30 |
-| 進捗 | 0 / 33 完了 |
+| 進捗 | 5 / 36 完了 |
 
 ## フェーズ1: 準備
 
-- [ ] `EnterWorktree` で worktree を作成する
-- [ ] `pnpm install` して現状のビルド・テストが通ることを確認する（ベースライン: 146 passed）
+- [x] `EnterWorktree` で worktree を作成する
+- [x] `pnpm install` して現状のビルド・テストが通ることを確認する（ベースライン: 146 passed）
 
 ## フェーズ2: バインディング修正（各項目: テストを先に書き Red → 実装 → Green）
 
-- [ ] `Vi.MockFn.calls` を `array<array<'arg>>` に修正 → 検証: `Vi_test.res` で `calls[0][0]` の値を検証
-- [ ] `Vi.MockFn.results` を `array<mockResult<'ret>>` に修正（`mockResultType` / `mockResult` 型追加）→ 検証: `results[0].type_ == #return` と `value`
-- [ ] `Vi.setTimerTickMode` を polymorphic variant 化、`setTimerTickModeWithInterval` を `@as("interval") _` に → 検証: `Vi_test.res` で `#manual` / interval 呼び出しがフェイクタイマー下で動作
+- [x] `Vi.MockFn.calls` を `array<array<'arg>>` に修正 → 検証: `Vi_test.res` で `calls[0][0]` の値を検証
+- [x] `Vi.MockFn.results` を `array<mockResult<'ret>>` に修正（`mockResultType` / `mockResult` 型追加）→ 検証: `results[0].type_ == #return` と `value`
+- [x] `Vi.setTimerTickMode` を polymorphic variant 化、`setTimerTickModeWithInterval` を `@as("interval") _` に → 検証: `Vi_test.res` で `#manual` / interval 呼び出しがフェイクタイマー下で動作
 - [ ] `describeEach2/3`, `testEach2/3`, `itEach2/3` を追加、既存 `*Each` のコメント更新 → 検証: `Expect_test.res` でタプルケースの全カラムが届く
 
 ## フェーズ3: テスト追加
