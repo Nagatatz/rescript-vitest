@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | レビュー指摘の一括修正と 0.2.0 リリース |
 | 作成日 | 2026-08-30 |
-| ステータス | 計画中 |
+| ステータス | 完了（v0.2.0 公開済み） |
 
 ## 1. 背景と目的
 
@@ -67,12 +67,12 @@
 
 ## 4. 受け入れ条件
 
-- [ ] `pnpm build` / `pnpm test` / `pnpm lint` / `pnpm format:check` が全件成功する
-- [ ] `calls` / `results` / `*Each2` / `*Each3` / `setTimerTickMode` のリグレッションテストが要素の中身を検証している
-- [ ] `ci.yml` が lint / format:check を実行する
-- [ ] `pnpm` コマンドで `onlyBuiltDependencies` の警告が出ない
-- [ ] `sphinx-docs`: `make html` / `make build-ja` が成功し、更新した英語ソースに対応する `.po` の `msgstr` が埋まっている
-- [ ] `npm view @nagatatz/rescript-vitest version` が `0.2.0` を返す
+- [x] `pnpm build` / `pnpm test` / `pnpm lint` / `pnpm format:check` が全件成功する
+- [x] `calls` / `results` / `*Each2` / `*Each3` / `setTimerTickMode` のリグレッションテストが要素の中身を検証している
+- [x] `ci.yml` が lint / format:check を実行する
+- [x] `pnpm` コマンドで `onlyBuiltDependencies` の警告が出ない
+- [x] `sphinx-docs`: `make html` / `make build-ja` が成功し、更新した英語ソースに対応する `.po` の `msgstr` が埋まっている
+- [x] `npm view @nagatatz/rescript-vitest version` が `0.2.0` を返す
 
 ## 5. 制約事項
 
