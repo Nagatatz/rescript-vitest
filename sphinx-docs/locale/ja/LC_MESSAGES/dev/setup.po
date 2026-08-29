@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 22:34+0900\n"
+"POT-Creation-Date: 2026-08-30 01:53+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -29,8 +29,8 @@ msgid ""
 "This page covers two separate setups: building the **ReScript bindings** "
 "(the library itself) and building this **documentation site**."
 msgstr ""
-"このページでは、**ReScript バインディング**（ライブラリ本体）のビルドと、この"
-"**ドキュメントサイト**のビルドという 2 つの独立したセットアップを扱います。"
+"このページでは、**ReScript バインディング**（ライブラリ本体）のビルドと、この**ドキュメントサイト**のビルドという 2 "
+"つの独立したセットアップを扱います。"
 
 #: ../../dev/setup.md:6
 msgid "Building the Library"
@@ -88,9 +88,7 @@ msgstr "ドキュメントサイトのビルド"
 msgid ""
 "The remaining steps below are only needed to work on this Sphinx "
 "documentation site, not the library."
-msgstr ""
-"以下の残りの手順は、ライブラリではなく、この Sphinx ドキュメントサイトの作業に"
-"のみ必要です。"
+msgstr "以下の残りの手順は、ライブラリではなく、この Sphinx ドキュメントサイトの作業にのみ必要です。"
 
 #: ../../dev/setup.md:30
 msgid "Prerequisites"
@@ -105,7 +103,8 @@ msgid "0.5+"
 msgstr ""
 
 #: ../../dev/setup.md
-msgid "Python パッケージ管理・仮想環境"
+msgid "Python package manager and virtual environments"
+msgstr "Python パッケージ管理・仮想環境"
 msgstr "Python パッケージ管理・仮想環境"
 
 #: ../../dev/setup.md
@@ -117,15 +116,18 @@ msgid "3.12+"
 msgstr ""
 
 #: ../../dev/setup.md
-msgid "uv が自動インストール"
+msgid "Installed automatically by uv"
+msgstr "uv が自動インストール"
 msgstr "uv が自動インストール"
 
 #: ../../dev/setup.md
-msgid "Pagefind 検索インデックス生成に使用"
+msgid "Used to build the Pagefind search index"
+msgstr "Pagefind 検索インデックス生成に使用"
 msgstr "Pagefind 検索インデックス生成に使用"
 
 #: ../../dev/setup.md:38
-msgid "uv のインストール"
+msgid "Installing uv"
+msgstr "uv のインストール"
 msgstr "uv のインストール"
 
 #: ../../dev/setup.md:51
@@ -139,4 +141,16 @@ msgstr "依存関係のインストール"
 #: ../../dev/setup.md:65
 msgid "Verify the Setup"
 msgstr "セットアップの確認"
+
+#~ msgid "Python パッケージ管理・仮想環境"
+#~ msgstr "Python パッケージ管理・仮想環境"
+
+#~ msgid "uv が自動インストール"
+#~ msgstr "uv が自動インストール"
+
+#~ msgid "Pagefind 検索インデックス生成に使用"
+#~ msgstr "Pagefind 検索インデックス生成に使用"
+
+#~ msgid "uv のインストール"
+#~ msgstr "uv のインストール"
 

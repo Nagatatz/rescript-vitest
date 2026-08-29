@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 23:42+0900\n"
+"POT-Creation-Date: 2026-08-30 01:53+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -25,14 +25,75 @@ msgid "Changelog"
 msgstr "変更履歴"
 
 #: ../../user/changelog.md:3
-msgid "0.1.1 (2026-06-19)"
+msgid "0.2.0 (2026-08-30)"
 msgstr ""
 
-#: ../../user/changelog.md:5 ../../user/changelog.md:22
+#: ../../user/changelog.md:5 ../../user/changelog.md:23
+#: ../../user/changelog.md:40
 msgid "Added"
 msgstr "追加"
 
 #: ../../user/changelog.md:7
+msgid ""
+"`describeEach2` / `describeEach3`, `testEach2` / `testEach3`, `itEach2` /"
+" `itEach3` — parameterized suites and tests over tuple cases. Vitest "
+"spreads array cases into positional arguments, so the 1-arg `*Each` "
+"bindings silently dropped every column after the first; use these for "
+"`(a, b)` / `(a, b, c)` cases."
+msgstr "`describeEach2` / `describeEach3`、`testEach2` / `testEach3`、`itEach2` / `itEach3` — タプルケースに対するパラメータ化スイート / テスト。Vitest は配列ケースを位置引数に展開するため、1 引数の `*Each` バインディングでは 2 列目以降が黙って捨てられていました。`(a, b)` / `(a, b, c)` 形式のケースにはこれらを使ってください。"
+
+#: ../../user/changelog.md:8
+#, python-brace-format
+msgid ""
+"`Vi.MockFn.mockResult` / `Vi.MockFn.mockResultType` — the `{type_, "
+"value}` shape of `mock.results` entries."
+msgstr "`Vi.MockFn.mockResult` / `Vi.MockFn.mockResultType` — `mock.results` の要素の `{type_, value}` 形状。"
+
+#: ../../user/changelog.md:9
+msgid "`Vi.timerTickMode` — the closed set of fake-timer tick modes."
+msgstr "`Vi.timerTickMode` — フェイクタイマーのティックモードの閉じた集合。"
+
+#: ../../user/changelog.md:11 ../../user/changelog.md:30
+msgid "Changed"
+msgstr "変更"
+
+#: ../../user/changelog.md:13
+msgid ""
+"**Breaking:** `Vi.MockFn.calls` now returns `array<array<'arg>>` (one "
+"argument list per call), matching `mock.calls`. It was typed "
+"`array<'args>`, which never matched the runtime shape for 1-arg mocks."
+msgstr "**Breaking:** `Vi.MockFn.calls` は `mock.calls` に合わせて `array<array<'arg>>`（呼び出しごとの引数リスト）を返すようになりました。従来の `array<'args>` は 1 引数モックの実行時の形状と一致していませんでした。"
+
+#: ../../user/changelog.md:14
+#, python-brace-format
+msgid ""
+"**Breaking:** `Vi.MockFn.results` now returns "
+"`array<Vi.MockFn.mockResult<'ret>>` (`{type_: #return | #throw | "
+"#incomplete, value}`) instead of `array<'ret>`. Read `.value` for the raw"
+" return value."
+msgstr "**Breaking:** `Vi.MockFn.results` は `array<'ret>` ではなく `array<Vi.MockFn.mockResult<'ret>>`（`{type_: #return | #throw | #incomplete, value}`）を返すようになりました。生の戻り値は `.value` から取得してください。"
+
+#: ../../user/changelog.md:15
+msgid ""
+"**Breaking:** `Vi.setTimerTickMode` takes `#manual` / `#nextTimerAsync` /"
+" `#interval` instead of a `string`; `Vi.setTimerTickModeWithInterval` now"
+" takes only the interval (`int`) and supplies the `\"interval\"` mode "
+"itself."
+msgstr "**Breaking:** `Vi.setTimerTickMode` は `string` ではなく `#manual` / `#nextTimerAsync` / `#interval` を受け取ります。`Vi.setTimerTickModeWithInterval` は interval（`int`）のみを受け取り、`\"interval\"` モードはバインディング側が渡します。"
+
+#: ../../user/changelog.md:17
+msgid "Fixed"
+msgstr "修正"
+
+#: ../../user/changelog.md:19
+msgid "CI now runs `oxfmt --check` and `oxlint` alongside build and test."
+msgstr "CI で build / test に加えて `oxfmt --check` と `oxlint` を実行するようになりました。"
+
+#: ../../user/changelog.md:21
+msgid "0.1.1 (2026-06-19)"
+msgstr ""
+
+#: ../../user/changelog.md:25
 msgid ""
 "`Vi.setTimerTickModeWithInterval` — the `\"interval\"` tick mode now "
 "accepts its `interval` (ms) argument."
@@ -40,7 +101,7 @@ msgstr ""
 "`Vi.setTimerTickModeWithInterval` — `\"interval\"` ティックモードで "
 "`interval`（ミリ秒）引数を渡せるようになりました。"
 
-#: ../../user/changelog.md:8
+#: ../../user/changelog.md:26
 msgid ""
 "`Vitest.aroundAll` / `Vitest.aroundEach` — Vitest 4 lifecycle wrappers; "
 "the callback receives a `runSuite` / `runTest` thunk to await."
@@ -48,7 +109,7 @@ msgstr ""
 "`Vitest.aroundAll` / `Vitest.aroundEach` — Vitest 4 のライフサイクルラッパー。コールバックは "
 "await すべき `runSuite` / `runTest` サンクを受け取ります。"
 
-#: ../../user/changelog.md:9
+#: ../../user/changelog.md:27
 msgid ""
 "`Vi.useFakeTimersWith` — install fake timers with explicit "
 "`FakeTimerInstallOpts` (`now`, `toFake`, `shouldAdvanceTime`, …)."
@@ -56,7 +117,7 @@ msgstr ""
 "`Vi.useFakeTimersWith` — "
 "`FakeTimerInstallOpts`（`now`、`toFake`、`shouldAdvanceTime`、…）を明示してフェイクタイマーをインストールします。"
 
-#: ../../user/changelog.md:10
+#: ../../user/changelog.md:28
 #, python-brace-format
 msgid ""
 "`Vi.waitForWith` / `Vi.waitUntilWith` — `waitFor` / `waitUntil` taking an"
@@ -65,11 +126,7 @@ msgstr ""
 "`Vi.waitForWith` / `Vi.waitUntilWith` — `waitFor` / `waitUntil` に明示的な "
 "`{interval?, timeout?}` オプションレコードを渡せます。"
 
-#: ../../user/changelog.md:12
-msgid "Changed"
-msgstr "変更"
-
-#: ../../user/changelog.md:14
+#: ../../user/changelog.md:32
 msgid ""
 "**Breaking:** `onTestFailed` / `onTestFinished` (and their `…Async` "
 "variants) callbacks now receive the per-test `testContext` value "
@@ -80,7 +137,7 @@ msgstr ""
 "バリアント）のコールバックは、引数なしではなくテスト単位の `testContext` 値（`testContext => "
 "unit`）を受け取るようになりました。コールバックを `() => …` から `_ctx => …` に更新してください。"
 
-#: ../../user/changelog.md:15
+#: ../../user/changelog.md:33
 msgid ""
 "**Breaking:** `Vi.doMock` now returns a `Vi.disposable` handle (matching "
 "Vitest 4) instead of `unit`."
@@ -88,7 +145,7 @@ msgstr ""
 "**破壊的変更:** `Vi.doMock` は `unit` ではなく（Vitest 4 に合わせて）`Vi.disposable` "
 "ハンドルを返すようになりました。"
 
-#: ../../user/changelog.md:16
+#: ../../user/changelog.md:34
 msgid ""
 "**Breaking:** Closed-set arguments are now polymorphic variants instead "
 "of `string`: `toBeTypeOf` (e.g. `#string`), `spyOnAccessor` (`#get` / "
@@ -102,17 +159,17 @@ msgstr ""
 "`environment` は（拡張可能な union のため）`string` "
 "のままです。呼び出し箇所を文字列リテラルからバリアントタグに更新してください。"
 
-#: ../../user/changelog.md:18
+#: ../../user/changelog.md:36
 msgid "0.1.0 (2026-06-19)"
 msgstr ""
 
-#: ../../user/changelog.md:20
+#: ../../user/changelog.md:38
 msgid ""
 "Initial release: type-safe ReScript bindings covering the Vitest 4 "
 "surface."
 msgstr "初回リリース: Vitest 4 のサーフェスを網羅した型安全な ReScript バインディング。"
 
-#: ../../user/changelog.md:24
+#: ../../user/changelog.md:42
 msgid ""
 "Mock call-argument matchers: `toHaveBeenCalledWith`, "
 "`toHaveBeenLastCalledWith`, `toHaveBeenNthCalledWith`, "
@@ -123,7 +180,7 @@ msgstr ""
 "`toHaveBeenCalledWith`、`toHaveBeenLastCalledWith`、`toHaveBeenNthCalledWith`、`toHaveBeenCalledExactlyOnceWith`（それぞれ"
 " 2 引数版 `…With2` を含む）。"
 
-#: ../../user/changelog.md:25
+#: ../../user/changelog.md:43
 msgid ""
 "Mock return-value matchers: `toHaveReturnedTimes`, `toHaveReturnedWith`, "
 "`toHaveLastReturnedWith`, `toHaveNthReturnedWith`."
@@ -131,7 +188,7 @@ msgstr ""
 "モックの返り値マッチャー: "
 "`toHaveReturnedTimes`、`toHaveReturnedWith`、`toHaveLastReturnedWith`、`toHaveNthReturnedWith`。"
 
-#: ../../user/changelog.md:26
+#: ../../user/changelog.md:44
 msgid ""
 "`Vi.MockFn` lifecycle helpers: `mockResolvedValueOnce`, "
 "`mockRejectedValueOnce`, `mockReturnThis`, `getMockName`, `mockName`, "
@@ -140,25 +197,25 @@ msgstr ""
 "`Vi.MockFn` のライフサイクルヘルパー: "
 "`mockResolvedValueOnce`、`mockRejectedValueOnce`、`mockReturnThis`、`getMockName`、`mockName`、`getMockImplementation`、`withImplementation`。"
 
-#: ../../user/changelog.md:27
+#: ../../user/changelog.md:45
 msgid ""
 "`Vi` mock inspection and hoisting helpers: `mocked`, `isMockFunction`, "
 "`hoisted`."
 msgstr "`Vi` のモック検査・ホイストヘルパー: `mocked`、`isMockFunction`、`hoisted`。"
 
-#: ../../user/changelog.md:28
+#: ../../user/changelog.md:46
 msgid ""
 "Per-test lifecycle hooks: `onTestFailed`, `onTestFinished` (each with an "
 "`…Async` variant)."
 msgstr "テスト単位のライフサイクルフック: `onTestFailed`、`onTestFinished`（それぞれ `…Async` バリアントを含む）。"
 
-#: ../../user/changelog.md:29
+#: ../../user/changelog.md:47
 msgid ""
 "Type and predicate matchers: `toBeTypeOf`, `toBeInstanceOf`, `toBeOneOf`,"
 " `toSatisfy`."
 msgstr "型・述語マッチャー: `toBeTypeOf`、`toBeInstanceOf`、`toBeOneOf`、`toSatisfy`。"
 
-#: ../../user/changelog.md:30
+#: ../../user/changelog.md:48
 msgid ""
 "Async-mock resolve matchers: `toHaveResolved`, `toHaveResolvedTimes`, "
 "`toHaveResolvedWith`, `toHaveLastResolvedWith`, `toHaveNthResolvedWith`."
@@ -166,7 +223,7 @@ msgstr ""
 "async モックの resolve マッチャー: "
 "`toHaveResolved`、`toHaveResolvedTimes`、`toHaveResolvedWith`、`toHaveLastResolvedWith`、`toHaveNthResolvedWith`。"
 
-#: ../../user/changelog.md:31
+#: ../../user/changelog.md:49
 msgid ""
 "Async fake timers: `advanceTimersByTimeAsync`, `runAllTimersAsync`, "
 "`runOnlyPendingTimersAsync`, `advanceTimersToNextTimerAsync`, "
@@ -175,7 +232,7 @@ msgstr ""
 "async フェイクタイマー: "
 "`advanceTimersByTimeAsync`、`runAllTimersAsync`、`runOnlyPendingTimersAsync`、`advanceTimersToNextTimerAsync`、`advanceTimersToNextFrame`。"
 
-#: ../../user/changelog.md:32
+#: ../../user/changelog.md:50
 msgid ""
 "Timer inspection: `isFakeTimers`, `getTimerCount`, `getMockedSystemTime`,"
 " `getRealSystemTime`."
@@ -183,21 +240,21 @@ msgstr ""
 "タイマー検査: "
 "`isFakeTimers`、`getTimerCount`、`getMockedSystemTime`、`getRealSystemTime`。"
 
-#: ../../user/changelog.md:33
+#: ../../user/changelog.md:51
 msgid "Waiting utilities: `waitFor`, `waitUntil`."
 msgstr "待機ユーティリティ: `waitFor`、`waitUntil`。"
 
-#: ../../user/changelog.md:34
+#: ../../user/changelog.md:52
 msgid "Accessor spies: `spyOnGetter`, `spyOnSetter`."
 msgstr "アクセサスパイ: `spyOnGetter`、`spyOnSetter`。"
 
-#: ../../user/changelog.md:35
+#: ../../user/changelog.md:53
 msgid ""
 "Global and environment stubs: `stubGlobal`, `stubEnv`, "
 "`unstubAllGlobals`, `unstubAllEnvs`."
 msgstr "グローバル・環境スタブ: `stubGlobal`、`stubEnv`、`unstubAllGlobals`、`unstubAllEnvs`。"
 
-#: ../../user/changelog.md:36
+#: ../../user/changelog.md:54
 msgid ""
 "Module mocking completion: `importActual`, `importMock`, `doUnmock`, "
 "`mockObject`, `dynamicImportSettled`."
@@ -205,7 +262,7 @@ msgstr ""
 "モジュールモックの補完: "
 "`importActual`、`importMock`、`doUnmock`、`mockObject`、`dynamicImportSettled`。"
 
-#: ../../user/changelog.md:37
+#: ../../user/changelog.md:55
 msgid ""
 "Test modifiers: `testSkipIf`, `testRunIf`, `testFails`, `testFailsAsync`,"
 " `testSequential`, `testSequentialAsync`."
@@ -213,7 +270,7 @@ msgstr ""
 "test 修飾子: "
 "`testSkipIf`、`testRunIf`、`testFails`、`testFailsAsync`、`testSequential`、`testSequentialAsync`。"
 
-#: ../../user/changelog.md:38
+#: ../../user/changelog.md:56
 msgid ""
 "Describe modifiers: `describeTodo`, `describeConcurrent`, "
 "`describeSequential`, `describeShuffle`, `describeSkipIf`, "
@@ -222,7 +279,7 @@ msgstr ""
 "describe 修飾子: "
 "`describeTodo`、`describeConcurrent`、`describeSequential`、`describeShuffle`、`describeSkipIf`、`describeRunIf`、`describeFor`。"
 
-#: ../../user/changelog.md:39
+#: ../../user/changelog.md:57
 msgid ""
 "Asymmetric matchers (`Expect` module): `anything`, `any`, "
 "`arrayContaining`, `objectContaining`, `stringContaining`, "
@@ -232,11 +289,11 @@ msgstr ""
 "非対称マッチャー（`Expect` モジュール）: "
 "`anything`、`any`、`arrayContaining`、`objectContaining`、`stringContaining`、`stringMatching`、`stringMatchingRegExp`、`closeTo`、`closeToWithPrecision`。"
 
-#: ../../user/changelog.md:40
+#: ../../user/changelog.md:58
 msgid "Parameterized test `testFor` (`test.for`)."
 msgstr "パラメータ化テスト `testFor`（`test.for`）。"
 
-#: ../../user/changelog.md:41
+#: ../../user/changelog.md:59
 msgid ""
 "Assertion guards and special assertions (`Expect` module): `assertions`, "
 "`hasAssertions`, `soft`, `poll`, `unreachable`, `unreachableWithMessage`."
@@ -244,11 +301,11 @@ msgstr ""
 "アサーションガードと特殊アサーション（`Expect` モジュール）: "
 "`assertions`、`hasAssertions`、`soft`、`poll`、`unreachable`、`unreachableWithMessage`。"
 
-#: ../../user/changelog.md:42
+#: ../../user/changelog.md:60
 msgid "File snapshot matcher: `toMatchFileSnapshot`."
 msgstr "ファイルスナップショットマッチャー: `toMatchFileSnapshot`。"
 
-#: ../../user/changelog.md:43
+#: ../../user/changelog.md:61
 msgid ""
 "Negated asymmetric matchers (`Expect.Not` module): `arrayContaining`, "
 "`objectContaining`, `stringContaining`, `stringMatching`, "
@@ -257,7 +314,7 @@ msgstr ""
 "否定 asymmetric マッチャー（`Expect.Not` モジュール）: "
 "`arrayContaining`、`objectContaining`、`stringContaining`、`stringMatching`、`stringMatchingRegExp`、`closeTo`、`closeToWithPrecision`。"
 
-#: ../../user/changelog.md:44
+#: ../../user/changelog.md:62
 msgid ""
 "`it` modifiers: `itTodo`, `itConcurrent`, `itEach`, `itFails`, "
 "`itSequential`, `itSkipIf`, `itRunIf`."
@@ -265,11 +322,11 @@ msgstr ""
 "`it` 修飾子: "
 "`itTodo`、`itConcurrent`、`itEach`、`itFails`、`itSequential`、`itSkipIf`、`itRunIf`。"
 
-#: ../../user/changelog.md:45
+#: ../../user/changelog.md:63
 msgid "Async-body conditional tests: `testSkipIfAsync`, `testRunIfAsync`."
 msgstr "async body の条件付きテスト: `testSkipIfAsync`、`testRunIfAsync`。"
 
-#: ../../user/changelog.md:46
+#: ../../user/changelog.md:64
 msgid "Fake-timer tick mode: `setTimerTickMode`."
 msgstr "フェイクタイマーの tick モード: `setTimerTickMode`。"
 
