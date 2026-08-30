@@ -186,7 +186,8 @@ tasklist.md の末尾にある「振り返り」セクションに、以下の�
 1. メインリポジトリでステアリングドキュメントを作成・承認（main ブランチ上）
 2. `EnterWorktree` ツール（または `claude --worktree <機能名>`）で worktree を作成
    - worktree は `.claude/worktrees/<機能名>/` に作成される
-   - ブランチ `worktree-<機能名>` が HEAD から自動生成される
+   - ブランチ `worktree-<機能名>` は既定（`worktree.baseRef: fresh`）で **`origin/main` から**作成される。手順 1 のステアリングコミットを未 push のまま進めると worktree に含まれないため、先に `git push origin main` するか、worktree 内で `git merge --ff-only main` で取り込む
+   - worktree には `node_modules` が無いため、最初に `pnpm install --frozen-lockfile --offline` を実行する（pre-commit hook の `oxfmt` / `oxlint` が見つからずコミットに失敗する）
 3. worktree 内で実装・ビルド確認・コミット
 4. セッション終了時に Claude Code が自動クリーンアップを提案する
    - 変更なし: 自動削除
