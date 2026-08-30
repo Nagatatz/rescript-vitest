@@ -47,7 +47,9 @@ cd sphinx-docs && make install  # 依存関係インストール (uv 必須)
 make html                       # 英語 HTML ビルド
 make build-all                  # 全言語ビルド (en/ja) + Pagefind
 make serve                      # ローカルサーバーで確認
-make check                      # 品質チェック (lint + test)
+make check                      # 品質チェック (ruff + sphinx-lint + mypy + pytest)
+make check-po                   # 日本語 .po の構文検査 (pofilter)
+make a11y                       # アクセシビリティ検査 (pa11y-ci, WCAG2AA)
 
 # 日本語翻訳ワークフロー
 make gettext                    # ソースから .pot 抽出

@@ -67,3 +67,8 @@ def is_prose(msgid: str) -> bool:
 | a11y の失敗扱い | (a) blocking (b) `continue-on-error` | ローカル / CI 初回の結果で決定 | 既存違反が多数なら (b) から始めて別途是正。違反ゼロなら (a) |
 | Makefile `test` の exit 5 吸収 | 撤去 | 撤去 | テストが存在する以上、収集 0 は異常 |
 | `.po` 未訳判定 | (a) 全 msgid (b) プロースのみ | (b) | documentation.md の例外（コード・コマンド・固有名詞は英語フォールバック可）に一致させる |
+
+## 6. 実装時の追記
+
+- **a11y の失敗扱い（2026-08-30）**: ローカル（WSL）では `npx pa11y-ci` の Chromium 取得が完了せず判定できなかったため、CI では **blocking**（`continue-on-error` なし）で配置し、PR の docs CI で実際の違反有無を確認する。違反があれば同 PR 内で是正するか、是正が大きい場合のみ `continue-on-error: true` に切り替えて別 steering で扱う。
+- a11y ステップは `Build site` と同じ `SPHINX_SITE_PREFIX` で `make a11y` を実行する。`build-all` が再実行されるが同一設定なので `_build/site` の内容は変わらず、直後の Pages artifact に影響しない。

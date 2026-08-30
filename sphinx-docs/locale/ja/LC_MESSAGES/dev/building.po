@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 22:34+0900\n"
+"POT-Creation-Date: 2026-08-30 11:31+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -60,9 +60,7 @@ msgstr ""
 msgid ""
 "Run the dogfood tests with `vitest run` against the compiled "
 "`__tests__/**/*_test.res.js`"
-msgstr ""
-"コンパイル済みの `__tests__/**/*_test.res.js` に対して `vitest run` でドッグフー"
-"ドテストを実行する"
+msgstr "コンパイル済みの `__tests__/**/*_test.res.js` に対して `vitest run` でドッグフードテストを実行する"
 
 #: ../../dev/building.md:11
 msgid "Output"
@@ -76,9 +74,8 @@ msgid ""
 "`.gitignore`-d."
 msgstr ""
 "ReScript コンパイラはインソースで出力します。各 `src/Foo.res` は隣接する "
-"`src/Foo.res.js`（ESM）を生成します。コンパイラの中間生成物は `lib/` 配下に置か"
-"れます。`*.res.js` と `lib/` はいずれもビルド成果物であり、`.gitignore` 対象で"
-"す。"
+"`src/Foo.res.js`（ESM）を生成します。コンパイラの中間生成物は `lib/` 配下に置かれます。`*.res.js` と "
+"`lib/` はいずれもビルド成果物であり、`.gitignore` 対象です。"
 
 #: ../../dev/building.md:17
 msgid "Build Flow"
@@ -89,24 +86,22 @@ msgid ""
 "`pnpm build` → `rescript build` compiles `src/**/*.res` and "
 "`__tests__/**/*.res` to in-source `.res.js`."
 msgstr ""
-"`pnpm build` → `rescript build` が `src/**/*.res` と `__tests__/**/*.res` をイン"
-"ソースの `.res.js` にコンパイルします。"
+"`pnpm build` → `rescript build` が `src/**/*.res` と `__tests__/**/*.res` "
+"をインソースの `.res.js` にコンパイルします。"
 
 #: ../../dev/building.md:21
 msgid ""
 "`pnpm test` → `vitest run` executes the compiled "
 "`__tests__/**/*_test.res.js`."
-msgstr ""
-"`pnpm test` → `vitest run` がコンパイル済みの `__tests__/**/*_test.res.js` を実"
-"行します。"
+msgstr "`pnpm test` → `vitest run` がコンパイル済みの `__tests__/**/*_test.res.js` を実行します。"
 
 #: ../../dev/building.md:23
 msgid ""
 "Tests run against compiled JavaScript, so a build must precede the test "
 "run (`pnpm test` assumes the latest `pnpm build`)."
 msgstr ""
-"テストはコンパイル済みの JavaScript に対して実行されるため、テスト実行の前にビ"
-"ルドが必要です（`pnpm test` は最新の `pnpm build` を前提とします）。"
+"テストはコンパイル済みの JavaScript に対して実行されるため、テスト実行の前にビルドが必要です（`pnpm test` は最新の "
+"`pnpm build` を前提とします）。"
 
 #: ../../dev/building.md:26
 msgid "CI Pipeline"
@@ -118,14 +113,77 @@ msgid ""
 "suite on every push and pull request, ensuring the bindings stay faithful"
 " to the Vitest 4 API. See the workflows under `.github/workflows/`."
 msgstr ""
-"継続的インテグレーションは、push とプルリクエストのたびにバインディングをビルド"
-"し、ドッグフードテストスイートを実行することで、バインディングが Vitest 4 API "
-"に faithful であり続けることを保証します。`.github/workflows/` 配下のワークフ"
-"ローを参照してください。"
+"継続的インテグレーションは、push "
+"とプルリクエストのたびにバインディングをビルドし、ドッグフードテストスイートを実行することで、バインディングが Vitest 4 API に "
+"faithful であり続けることを保証します。`.github/workflows/` 配下のワークフローを参照してください。"
+
+#: ../../dev/building.md:32
+msgid "Documentation Checks"
+msgstr "ドキュメントのチェック"
+
+#: ../../dev/building.md:34
+msgid ""
+"The Sphinx site under `sphinx-docs/` has its own quality gates, all run "
+"by the `Docs` workflow on every change to `sphinx-docs/**`:"
+msgstr "`sphinx-docs/` 配下の Sphinx サイトには独自の品質ゲートがあり、`sphinx-docs/**` の変更ごとに `Docs` ワークフローがすべて実行します:"
+
+#: ../../dev/building.md
+msgid "`make check`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`ruff` lint + format check, `sphinx-lint`, `mypy` and `pytest`"
+msgstr "`ruff` の lint + フォーマット検査、`sphinx-lint`、`mypy`、`pytest`"
+
+#: ../../dev/building.md
+msgid "`make test`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid ""
+"The `pytest` part alone: every Japanese `.po` entry is well-formed, every"
+" prose `msgid` has a Japanese `msgstr`, each source page has a catalogue,"
+" and `conf.py` reports the `package.json` version"
+msgstr "`pytest` のみを実行: 日本語 `.po` の全エントリが整形式であること、プロースの `msgid` すべてに日本語の `msgstr` があること、各ソースページにカタログがあること、`conf.py` が `package.json` のバージョンを報告することを検証します"
+
+#: ../../dev/building.md
+msgid "`make check-po`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`pofilter` syntax and placeholder checks on the Japanese `.po` files"
+msgstr "日本語 `.po` ファイルに対する `pofilter` の構文・プレースホルダ検査"
+
+#: ../../dev/building.md
+msgid "`make a11y`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid ""
+"Builds the site and runs `pa11y-ci` (WCAG 2 AA) against the pages listed "
+"in `.pa11yci.json`"
+msgstr "サイトをビルドし、`.pa11yci.json` に列挙したページに対して `pa11y-ci`（WCAG 2 AA）を実行します"
+
+#: ../../dev/building.md:44
+msgid ""
+"`make test` fails when an English source changes without its Japanese "
+"translation, so update the catalogues in the same change: `make update-"
+"po`, fill in the new `msgstr` entries under `locale/ja/LC_MESSAGES/`, "
+"then `make build-ja`."
+msgstr "英語ソースを日本語訳なしで変更すると `make test` が失敗するため、同じ変更の中でカタログを更新してください: `make update-po` を実行し、`locale/ja/LC_MESSAGES/` 配下の新しい `msgstr` を記入し、`make build-ja` を実行します。"
 
 #~ msgid "<!-- e.g. `npm run build` -->"
 #~ msgstr "<!-- 例: `npm run build` -->"
 
 #~ msgid "<!-- Build the project -->"
 #~ msgstr "<!-- プロジェクトをビルドする -->"
+
+#~ msgid ""
+#~ "`make test` fails when an English "
+#~ "source changes without its Japanese "
+#~ "translation, so update the `.po` files"
+#~ " in the same change (see the "
+#~ "translation workflow in the contributing "
+#~ "guide)."
+#~ msgstr ""
 

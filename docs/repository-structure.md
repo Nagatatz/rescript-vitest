@@ -27,6 +27,7 @@ rescript-vitest/
 │   └── statusline.sh           # statusLine コマンド
 ├── docs/                       # 永続的設計ドキュメント
 ├── sphinx-docs/                # 外部公開ドキュメント（日英対応 / Sphinx）
+│   └── tests/                  # docs 品質テスト（.po 整合性 / 翻訳網羅 / version 同期）
 ├── scripts/
 │   └── evaluate-skills.sh      # skill 品質測定スクリプト（→ docs/quality-measurement.md）
 ├── quality-datasets/           # skill 品質測定用データセット
