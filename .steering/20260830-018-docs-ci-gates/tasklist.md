@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | Sphinx ドキュメント CI ゲートの補完 |
 | 作成日 | 2026-08-30 |
-| 進捗 | 18 / 24 完了 |
+| 進捗 | 20 / 24 完了 |
 
 ## フェーズ1: 準備
 
@@ -38,8 +38,8 @@
 - [x] ruff（`make lint`）/ `make sphinx-lint` / `make check` が exit 0
 - [x] 適切な粒度でコミット（🐛 `.po` 修正 / ✅ pytest 追加 / 🔧 CI・dependabot / 📝 ドキュメント）
 - [x] PR を作成し docs CI（typecheck / check-po / pytest / a11y）が green であることを確認
-- [ ] `AskUserQuestion` で main へのマージ可否を確認
-- [ ] main へマージ
+- [x] `AskUserQuestion` で main へのマージ可否を確認
+- [x] main へマージ
 - [ ] worktree / ブランチのクリーンアップと検証
 
 ## 完了条件
