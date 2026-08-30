@@ -1362,15 +1362,15 @@ wheels = [
 
 [[package]]
 name = "translate-toolkit"
-version = "3.19.11"
+version = "3.19.18"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "lxml" },
     { name = "unicode-segmentation-rs" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/73/72/5a2de371d9d06817108957b5aa8f3405090c65502b876a9ed70dfe02e63b/translate_toolkit-3.19.11.tar.gz", hash = "sha256:e0b6139ce84053a820f3b78782dd889263da97be2715f101fad698b254b54be6", size = 584907, upload-time = "2026-05-28T12:07:20.995Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bc/1b/2824215bc282e52bd6ee4b699e931fa7d64ea30fd8831529fdd0920f5969/translate_toolkit-3.19.18.tar.gz", hash = "sha256:ef1496e9e0d6d5f9647cd7365f91be161c3197104704e81f3a0017ccc7f4f5b9", size = 625661, upload-time = "2026-08-19T15:01:12.459Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/96/a4/a71e94f25c57bac43de061a4b757fbb4b2bd081685b32f3c9bf68f204d26/translate_toolkit-3.19.11-py3-none-any.whl", hash = "sha256:cbece9244fddddf5720e41254daa339ce3bfeb7b5008c15778d5bb043aa692f7", size = 805557, upload-time = "2026-05-28T12:07:19.417Z" },
+    { url = "https://files.pythonhosted.org/packages/33/6b/5ee7fab140e1bea5d09b0096fb7f6cf0cb84a56ef0d91c45992a0f557b46/translate_toolkit-3.19.18-py3-none-any.whl", hash = "sha256:fd454595230c158e46017c446ab6359a2f50246345f821ca4e90fe0855e7f48e", size = 854549, upload-time = "2026-08-19T15:01:10.588Z" },
 ]
 
 [[package]]
