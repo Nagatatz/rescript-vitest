@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | Sphinx ドキュメント CI ゲートの補完 |
 | 作成日 | 2026-08-30 |
-| 進捗 | 10 / 24 完了 |
+| 進捗 | 15 / 24 完了 |
 
 ## フェーズ1: 準備
 
@@ -24,18 +24,18 @@
 ## フェーズ3: CI / Dependabot
 
 - [x] `docs.yml` `lint-and-test` に `make typecheck` と `make check-po` を追加
-- [ ] `docs.yml` `build` に a11y ステップを追加（フェーズ 1 の結果で blocking / continue-on-error を決定し、design.md に追記）
+- [x] `docs.yml` `build` に a11y ステップを追加（フェーズ 1 の結果で blocking / continue-on-error を決定し、design.md に追記）
 - [x] `dependabot.yml` に `uv`（`/sphinx-docs`）と `npm`（`/sphinx-docs`）を追加
 
 ## フェーズ4: ドキュメント
 
-- [ ] `sphinx-docs/dev/` の該当ページ（contributing / building）に pytest・check-po・a11y のゲートを記載（既存記述を確認し必要箇所のみ）
-- [ ] `make update-po` → 追加 msgid の日本語訳 → `make build-ja` 成功
-- [ ] `docs/repository-structure.md` に `sphinx-docs/tests/` を反映
+- [x] `sphinx-docs/dev/` の該当ページ（contributing / building）に pytest・check-po・a11y のゲートを記載（既存記述を確認し必要箇所のみ）
+- [x] `make update-po` → 追加 msgid の日本語訳 → `make build-ja` 成功
+- [x] `docs/repository-structure.md` に `sphinx-docs/tests/` を反映
 
 ## フェーズ5: 仕上げ
 
-- [ ] ruff（`make lint`）/ `make sphinx-lint` / `make check` が exit 0
+- [x] ruff（`make lint`）/ `make sphinx-lint` / `make check` が exit 0
 - [ ] 適切な粒度でコミット（🐛 `.po` 修正 / ✅ pytest 追加 / 🔧 CI・dependabot / 📝 ドキュメント）
 - [ ] PR を作成し docs CI（typecheck / check-po / pytest / a11y）が green であることを確認
 - [ ] `AskUserQuestion` で main へのマージ可否を確認
