@@ -115,11 +115,14 @@ check-po:
 		echo "No translation quality issues found."; \
 	fi
 
+# The "[h]ttp.server" pattern keeps pkill from matching (and terminating) the
+# shell running the pkill command itself, which made this target exit 2 even
+# after pa11y-ci passed.
 a11y: build-all
 	@echo "Starting local HTTP server for pa11y..."
 	@cd $(BUILDDIR)/site && (uv run python -m http.server 8765 &) && sleep 2
-	npx --yes pa11y-ci --config .pa11yci.json || (pkill -f "http.server 8765" || true; exit 1)
-	@pkill -f "http.server 8765" || true
+	npx --yes pa11y-ci --config .pa11yci.json || (pkill -f "[h]ttp.server 8765" || true; exit 1)
+	@pkill -f "[h]ttp.server 8765" || true
 
 build-versions:
 	uv run sphinx-multiversion $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/versions
