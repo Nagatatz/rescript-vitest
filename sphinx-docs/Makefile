@@ -81,7 +81,7 @@ typecheck:
 	uv run mypy .
 
 test:
-	@uv run pytest; ec=$$?; if [ $$ec -eq 5 ]; then echo "No tests collected — treating as success."; else exit $$ec; fi
+	uv run pytest
 
 check: lint sphinx-lint typecheck test
 
