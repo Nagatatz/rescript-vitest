@@ -46,6 +46,12 @@ jobs:
       - name: Sphinx lint
         run: make sphinx-lint
 
+      - name: Typecheck (mypy)
+        run: make typecheck
+
+      - name: Check translations (pofilter)
+        run: make check-po
+
       - name: Pytest
         run: make test
 
@@ -74,6 +80,13 @@ jobs:
 
       - name: Build site
         run: make build-all
+        env:
+          SPHINX_SITE_PREFIX: /${{ github.event.repository.name }}
+
+      # `make a11y` rebuilds (incrementally) and serves _build/site, then runs
+      # pa11y-ci (WCAG 2 AA) against the pages in .pa11yci.json.
+      - name: Accessibility check (pa11y-ci)
+        run: make a11y
         env:
           SPHINX_SITE_PREFIX: /${{ github.event.repository.name }}
 

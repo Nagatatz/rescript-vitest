@@ -105,7 +105,6 @@ msgstr ""
 #: ../../dev/setup.md
 msgid "Python package manager and virtual environments"
 msgstr "Python パッケージ管理・仮想環境"
-msgstr "Python パッケージ管理・仮想環境"
 
 #: ../../dev/setup.md
 msgid "Python"
@@ -118,16 +117,13 @@ msgstr ""
 #: ../../dev/setup.md
 msgid "Installed automatically by uv"
 msgstr "uv が自動インストール"
-msgstr "uv が自動インストール"
 
 #: ../../dev/setup.md
 msgid "Used to build the Pagefind search index"
 msgstr "Pagefind 検索インデックス生成に使用"
-msgstr "Pagefind 検索インデックス生成に使用"
 
 #: ../../dev/setup.md:38
 msgid "Installing uv"
-msgstr "uv のインストール"
 msgstr "uv のインストール"
 
 #: ../../dev/setup.md:51

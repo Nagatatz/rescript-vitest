@@ -39,11 +39,9 @@ msgstr "バージョン"
 #: ../../user/installation.md
 msgid "ReScript (`rescript`)"
 msgstr "ReScript（`rescript`）"
-msgstr "ReScript（`rescript`）"
 
 #: ../../user/installation.md
 msgid "`^12.0.0-0` (12.x, prereleases allowed)"
-msgstr "`^12.0.0-0`（12.x、プレリリース可）"
 msgstr "`^12.0.0-0`（12.x、プレリリース可）"
 
 #: ../../user/installation.md
@@ -52,7 +50,6 @@ msgstr ""
 
 #: ../../user/installation.md
 msgid "`^12.0.0-0` (same major as ReScript)"
-msgstr "`^12.0.0-0`（ReScript と同じメジャー）"
 msgstr "`^12.0.0-0`（ReScript と同じメジャー）"
 
 #: ../../user/installation.md
@@ -75,7 +72,6 @@ msgstr "`^6` または `^7`（Vitest 4 の peer）"
 msgid ""
 "`rescript`, `@rescript/runtime` and `vitest` are peer dependencies — "
 "install them alongside the bindings."
-msgstr "`rescript`、`@rescript/runtime`、`vitest` は peer dependency です。バインディングと一緒にインストールしてください。"
 msgstr "`rescript`、`@rescript/runtime`、`vitest` は peer dependency です。バインディングと一緒にインストールしてください。"
 
 #: ../../user/installation.md:15
