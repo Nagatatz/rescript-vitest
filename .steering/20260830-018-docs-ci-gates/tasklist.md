@@ -4,28 +4,28 @@
 |---|---|
 | 機能名 | Sphinx ドキュメント CI ゲートの補完 |
 | 作成日 | 2026-08-30 |
-| 進捗 | 0 / 21 完了 |
+| 進捗 | 10 / 24 完了 |
 
 ## フェーズ1: 準備
 
-- [ ] `EnterWorktree` で worktree を作成し、`make install` で Sphinx 依存を用意する
+- [x] `EnterWorktree` で worktree を作成し、`make install` で Sphinx 依存を用意する
 - [ ] ローカルで `make a11y` を試行し、Chromium が動くか / 既存違反の有無を把握する（CI 配置の blocking 可否判断）
 
 ## フェーズ2: pytest 追加（Red → Green）
 
-- [ ] `tests/_po.py` の最小 `.po` パーサを実装する
-- [ ] `tests/test_po_translations.py` を作成 → 検証: 現状の重複 `msgstr` で **Red**、プロース未訳チェックは既存の空 msgstr（識別子のみ）を誤検出しない
-- [ ] `.po` 3 ファイルの重複 `msgstr` 行を除去 → 検証: 上記テストと `make check-po` が **Green**
-- [ ] 一時的にプロース msgstr を空にして未訳チェックが Red になることを確認し、元に戻す
-- [ ] `tests/test_po_coverage.py` を作成 → 検証: 全ソースに `.po` があり Green
-- [ ] `tests/test_conf.py` を作成 → 検証: `release == package.json version` で Green
-- [ ] `Makefile` `test` の exit 5 吸収を撤去 → 検証: `make test` / `make typecheck`（tests/ を含む）/ `make check` が exit 0
+- [x] `tests/_po.py` の最小 `.po` パーサを実装する
+- [x] `tests/test_po_translations.py` を作成 → 検証: 現状の重複 `msgstr` で **Red**、プロース未訳チェックは既存の空 msgstr（識別子のみ）を誤検出しない
+- [x] `.po` 3 ファイルの重複 `msgstr` 行を除去 → 検証: 上記テストと `make check-po` が **Green**
+- [x] 一時的にプロース msgstr を空にして未訳チェックが Red になることを確認し、元に戻す
+- [x] `tests/test_po_coverage.py` を作成 → 検証: 全ソースに `.po` があり Green
+- [x] `tests/test_conf.py` を作成 → 検証: `release == package.json version` で Green
+- [x] `Makefile` `test` の exit 5 吸収を撤去 → 検証: `make test` / `make typecheck`（tests/ を含む）/ `make check` が exit 0
 
 ## フェーズ3: CI / Dependabot
 
-- [ ] `docs.yml` `lint-and-test` に `make typecheck` と `make check-po` を追加
+- [x] `docs.yml` `lint-and-test` に `make typecheck` と `make check-po` を追加
 - [ ] `docs.yml` `build` に a11y ステップを追加（フェーズ 1 の結果で blocking / continue-on-error を決定し、design.md に追記）
-- [ ] `dependabot.yml` に `uv`（`/sphinx-docs`）と `npm`（`/sphinx-docs`）を追加
+- [x] `dependabot.yml` に `uv`（`/sphinx-docs`）と `npm`（`/sphinx-docs`）を追加
 
 ## フェーズ4: ドキュメント
 

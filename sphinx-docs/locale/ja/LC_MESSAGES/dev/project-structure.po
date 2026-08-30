@@ -40,5 +40,4 @@ msgid ""
 " in `__tests__/`; the test files are split by topic rather than one-to-"
 "one by module."
 msgstr "ReScript はインソースでコンパイルされるため、各 `src/Foo.res` は隣接する `src/Foo.res.js`（ESM）を生成します。`*.res.js` と `lib/` は `.gitignore` 対象のビルド成果物です。`src/` のエクスポートされた全バインディングは `__tests__/` のドッグフードテストで検証されます。テストファイルはモジュール 1:1 ではなくトピック別に分割しています。"
-msgstr "ReScript はインソースでコンパイルされるため、各 `src/Foo.res` は隣接する `src/Foo.res.js`（ESM）を生成します。`*.res.js` と `lib/` は `.gitignore` 対象のビルド成果物です。`src/` のエクスポートされた全バインディングは `__tests__/` のドッグフードテストで検証されます。テストファイルはモジュール 1:1 ではなくトピック別に分割しています。"
 
