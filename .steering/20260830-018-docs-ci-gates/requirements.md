@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | Sphinx ドキュメント CI ゲートの補完 |
 | 作成日 | 2026-08-30 |
-| ステータス | 計画中 |
+| ステータス | 完了（PR #27 マージ済み） |
 
 ## 1. 背景と目的
 
@@ -45,11 +45,11 @@ Makefile に定義済みの品質ゲートをすべて CI で実行し、`.po` �
 
 ## 4. 受け入れ条件
 
-- [ ] `make check-po` がローカルで exit 0（pofilter の Syntax error なし）
-- [ ] `make typecheck` / `make test` / `make check` がローカルで exit 0 で、pytest がテストを収集・実行している
-- [ ] `docs.yml` に typecheck / check-po / a11y のステップがあり、PR の docs CI が green
-- [ ] `dependabot.yml` に `uv` と `npm`（`/sphinx-docs`）のエントリがある
-- [ ] 追加した pytest が「未訳のプロース msgid」を実際に検出する（一時的に msgstr を空にして Red を確認）
+- [x] `make check-po` がローカルで exit 0（pofilter の Syntax error なし）
+- [x] `make typecheck` / `make test` / `make check` がローカルで exit 0 で、pytest がテストを収集・実行している
+- [x] `docs.yml` に typecheck / check-po / a11y のステップがあり、PR の docs CI が green
+- [x] `dependabot.yml` に `uv` と `npm`（`/sphinx-docs`）のエントリがある
+- [x] 追加した pytest が「未訳のプロース msgid」を実際に検出する（一時的に msgstr を空にして Red を確認）
 
 ## 5. 制約事項
 
