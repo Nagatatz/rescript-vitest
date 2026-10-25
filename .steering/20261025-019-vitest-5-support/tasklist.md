@@ -4,7 +4,7 @@
 |---|---|
 | 機能名 | Vitest 5 対応 |
 | 作成日 | 2026-10-25 |
-| 進捗 | 10 / 12 完了 |
+| 進捗 | 11 / 12 完了 |
 
 ## フェーズ1: 準備
 
@@ -24,7 +24,7 @@
 
 - [x] README / CLAUDE.md / docs/repository-structure.md
 - [x] Sphinx 英語ページと CHANGELOG（Unreleased）
-- [ ] `make update-po` → 日本語 `msgstr` 記入 → `make check-po` / `make build-ja`
+- [x] `make update-po` → 日本語 `msgstr` 記入 → `make check-po` / `make build-ja`
 
 ## フェーズ4: PR
 
