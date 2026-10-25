@@ -20,6 +20,12 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Check formatting (oxfmt)
+        run: pnpm format:check
+
+      - name: Lint (oxlint)
+        run: pnpm lint
+
       - name: Build ReScript bindings
         run: pnpm build
 

@@ -29,11 +29,29 @@ module MockFn = {
   @module("vitest")
   external asAssertion: t<'fn> => Vitest.assertion<t<'fn>> = "expect"
 
-  /** The arguments of every recorded call. */
-  @get @scope("mock") external calls: t<'fn> => array<'args> = "calls"
+  /**
+   * The arguments of every recorded call, one argument list per call
+   * (`mock.calls: Args[][]`): a 1-arg mock called with `1` then `2` yields
+   * `[[1], [2]]`. For mixed-type argument lists pick a common `'arg` (e.g.
+   * `JSON.t`) or coerce per element.
+   */
+  @get @scope("mock") external calls: t<'fn> => array<array<'arg>> = "calls"
 
-  /** The return values of every recorded call. */
-  @get @scope("mock") external results: t<'fn> => array<'ret> = "results"
+  /** How a recorded call ended (`mock.results[i].type`). */
+  type mockResultType = [#return | #throw | #incomplete]
+
+  /**
+   * One entry of `mock.results`. `value` is the return value for `#return`,
+   * the thrown error (as `'ret`, coerce before use) for `#throw`, and absent
+   * for `#incomplete` (the call has not settled yet).
+   */
+  type mockResult<'ret> = {
+    @as("type") type_: mockResultType,
+    value: 'ret,
+  }
+
+  /** The outcome of every recorded call (`mock.results: MockResult[]`). */
+  @get @scope("mock") external results: t<'fn> => array<mockResult<'ret>> = "results"
 
   /** Reset recorded calls and results (keeps the implementation). */
   @send external mockClear: t<'fn> => t<'fn> = "mockClear"
@@ -279,12 +297,24 @@ external getMockedSystemTime: unit => option<Date.t> = "getMockedSystemTime"
 /** The real wall-clock time in epoch milliseconds, ignoring fake timers. */
 @module("vitest") @scope("vi") external getRealSystemTime: unit => float = "getRealSystemTime"
 
-/** Set how fake timers advance: `"manual"`, `"nextTimerAsync"`, or `"interval"`. */
-@module("vitest") @scope("vi") external setTimerTickMode: string => unit = "setTimerTickMode"
+/**
+ * How fake timers advance (`vi.setTimerTickMode`). A polymorphic variant so
+ * only the three modes Vitest accepts compile; each tag is its own string at
+ * runtime (`#nextTimerAsync` → `"nextTimerAsync"`).
+ */
+type timerTickMode = [#manual | #nextTimerAsync | #interval]
 
-/** `setTimerTickMode("interval", interval)` — advance on a fixed interval (ms). */
+/** Set how fake timers advance: `#manual`, `#nextTimerAsync`, or `#interval`. */
 @module("vitest") @scope("vi")
-external setTimerTickModeWithInterval: (string, int) => unit = "setTimerTickMode"
+external setTimerTickMode: timerTickMode => unit = "setTimerTickMode"
+
+/**
+ * `setTimerTickMode("interval", interval)` — advance on a fixed interval (ms).
+ * The `"interval"` mode string is supplied by the binding (`@as("interval") _`),
+ * so only the interval is passed.
+ */
+@module("vitest") @scope("vi")
+external setTimerTickModeWithInterval: (@as("interval") _, int) => unit = "setTimerTickMode"
 
 // ============================================================================
 // Waiting

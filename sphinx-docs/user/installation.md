@@ -4,14 +4,18 @@
 
 | Tool | Version |
 |------|---------|
-| ReScript | `^12.0.0` |
+| ReScript (`rescript`) | `^12.0.0-0` (12.x, prereleases allowed) |
+| `@rescript/runtime` | `^12.0.0-0` (same major as ReScript) |
 | Vitest | `^4.0.0` |
 | Vite | `^6` or `^7` (Vitest 4 peer) |
+
+`rescript`, `@rescript/runtime` and `vitest` are peer dependencies — install
+them alongside the bindings.
 
 ## Install
 
 ```bash
-pnpm add -D @nagatatz/rescript-vitest vitest vite
+pnpm add -D @nagatatz/rescript-vitest rescript @rescript/runtime vitest vite
 ```
 
 Add the package to your `rescript.json` dependencies so ReScript compiles the

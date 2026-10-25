@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.2.0 (2026-08-30)
+
+### Added
+
+- `describeEach2` / `describeEach3`, `testEach2` / `testEach3`, `itEach2` / `itEach3` — parameterized suites and tests over tuple cases. Vitest spreads array cases into positional arguments, so the 1-arg `*Each` bindings silently dropped every column after the first; use these for `(a, b)` / `(a, b, c)` cases.
+- `Vi.MockFn.mockResult` / `Vi.MockFn.mockResultType` — the `{type_, value}` shape of `mock.results` entries.
+- `Vi.timerTickMode` — the closed set of fake-timer tick modes.
+
+### Changed
+
+- **Breaking:** `Vi.MockFn.calls` now returns `array<array<'arg>>` (one argument list per call), matching `mock.calls`. It was typed `array<'args>`, which never matched the runtime shape for 1-arg mocks.
+- **Breaking:** `Vi.MockFn.results` now returns `array<Vi.MockFn.mockResult<'ret>>` (`{type_: #return | #throw | #incomplete, value}`) instead of `array<'ret>`. Read `.value` for the raw return value.
+- **Breaking:** `Vi.setTimerTickMode` takes `#manual` / `#nextTimerAsync` / `#interval` instead of a `string`; `Vi.setTimerTickModeWithInterval` now takes only the interval (`int`) and supplies the `"interval"` mode itself.
+
+### Fixed
+
+- CI now runs `oxfmt --check` and `oxlint` alongside build and test.
+
 ## 0.1.1 (2026-06-19)
 
 ### Added

@@ -48,9 +48,21 @@ external describeOnly: (string, unit => unit, ~timeout: int=?) => unit = "only"
 @module("vitest") @scope("describe")
 external describeSkip: (string, unit => unit, ~timeout: int=?) => unit = "skip"
 
-/** Register a parameterized suite: `describeEach(cases)("name %i", case => ...)`. */
+/**
+ * Register a parameterized suite: `describeEach(cases)("name %i", case => ...)`.
+ * For scalar / record cases only — Vitest spreads array (tuple) cases into
+ * positional arguments, so use `describeEach2` / `describeEach3` for those.
+ */
 @module("vitest") @scope("describe")
 external describeEach: array<'a> => (string, 'a => unit) => unit = "each"
+
+/** `describeEach` for 2-column tuple cases: `describeEach2([(1, "a")])("%i %s", (n, s) => ...)`. */
+@module("vitest") @scope("describe")
+external describeEach2: array<('a, 'b)> => (string, ('a, 'b) => unit) => unit = "each"
+
+/** `describeEach` for 3-column tuple cases. */
+@module("vitest") @scope("describe")
+external describeEach3: array<('a, 'b, 'c)> => (string, ('a, 'b, 'c) => unit) => unit = "each"
 
 /** Mark a suite as not-yet-implemented (shown as todo in the report). */
 @module("vitest") @scope("describe")
@@ -112,9 +124,21 @@ external testTodo: string => unit = "todo"
 @module("vitest") @scope("test")
 external testConcurrent: (string, unit => promise<unit>, ~timeout: int=?) => unit = "concurrent"
 
-/** Register a parameterized test: `testEach(cases)("name %i", case => ...)`. */
+/**
+ * Register a parameterized test: `testEach(cases)("name %i", case => ...)`.
+ * For scalar / record cases only — Vitest spreads array (tuple) cases into
+ * positional arguments, so use `testEach2` / `testEach3` for those.
+ */
 @module("vitest") @scope("test")
 external testEach: array<'a> => (string, 'a => unit) => unit = "each"
+
+/** `testEach` for 2-column tuple cases: `testEach2([(1, "a")])("%i %s", (n, s) => ...)`. */
+@module("vitest") @scope("test")
+external testEach2: array<('a, 'b)> => (string, ('a, 'b) => unit) => unit = "each"
+
+/** `testEach` for 3-column tuple cases. */
+@module("vitest") @scope("test")
+external testEach3: array<('a, 'b, 'c)> => (string, ('a, 'b, 'c) => unit) => unit = "each"
 
 /** Parameterized test, `for`-style: `testFor(cases)("name %i", case => ...)`. */
 @module("vitest") @scope("test")
@@ -175,9 +199,20 @@ external itOnly: (string, unit => unit, ~timeout: int=?) => unit = "only"
 @module("vitest") @scope("it")
 external itConcurrent: (string, unit => promise<unit>, ~timeout: int=?) => unit = "concurrent"
 
-/** Parameterized `it`: `itEach(cases)("name %i", case => ...)`. */
+/**
+ * Parameterized `it`: `itEach(cases)("name %i", case => ...)`. For scalar /
+ * record cases only — use `itEach2` / `itEach3` for tuple cases (see `testEach`).
+ */
 @module("vitest") @scope("it")
 external itEach: array<'a> => (string, 'a => unit) => unit = "each"
+
+/** `itEach` for 2-column tuple cases. */
+@module("vitest") @scope("it")
+external itEach2: array<('a, 'b)> => (string, ('a, 'b) => unit) => unit = "each"
+
+/** `itEach` for 3-column tuple cases. */
+@module("vitest") @scope("it")
+external itEach3: array<('a, 'b, 'c)> => (string, ('a, 'b, 'c) => unit) => unit = "each"
 
 /** Expect this `it` case to fail; it passes if the body throws. */
 @module("vitest") @scope("it") external itFails: (string, unit => unit) => unit = "fails"

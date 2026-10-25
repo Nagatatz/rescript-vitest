@@ -181,11 +181,14 @@ git diff main...HEAD --stat
 
 #### 4. リモートへの push
 
-PR 作成前にリモートへ push する（ユーザーに確認後）:
+PR 作成前にリモートへ push する（ユーザーに確認後）。**リモートブランチ名を必ず明示する**:
 
 ```bash
-git push -u origin <ブランチ名>
+git push -u origin HEAD:<リモートブランチ名>   # 例: HEAD:fix/login-redirect-loop
+git status -sb                                # 先頭行が `[ahead N]` でないこと（= push 完了）を確認
 ```
+
+worktree で作業している場合、ローカルブランチ名は `worktree-<機能名>` でリモート側は命名規則に従った別名になる。この状態で引数なしの `git push` を実行すると、`push.default=simple` が「upstream 名がローカル名と一致しない」として拒否し、エラーが `tail` 等で切り捨てられると **push されていないことに気づかないまま PR をマージしてしまう**。追加コミット後の再 push も同じ `git push origin HEAD:<リモートブランチ名>` 形式を使うこと。
 
 #### 5. PR 作成
 

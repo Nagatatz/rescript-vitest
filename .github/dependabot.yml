@@ -28,3 +28,30 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - dependencies
+
+  # Sphinx docs: Python deps managed by uv (pyproject.toml + uv.lock)
+  - package-ecosystem: uv
+    directory: /sphinx-docs
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    groups:
+      sphinx:
+        patterns:
+          - sphinx*
+          - furo
+          - myst-parser
+          - atsphinx-*
+
+  # Sphinx docs: Node tooling (pa11y-ci)
+  - package-ecosystem: npm
+    directory: /sphinx-docs
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies

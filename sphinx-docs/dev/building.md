@@ -28,3 +28,20 @@ Tests run against compiled JavaScript, so a build must precede the test run
 Continuous integration builds the bindings and runs the dogfood test suite on
 every push and pull request, ensuring the bindings stay faithful to the Vitest 4
 API. See the workflows under `.github/workflows/`.
+
+## Documentation Checks
+
+The Sphinx site under `sphinx-docs/` has its own quality gates, all run by the
+`Docs` workflow on every change to `sphinx-docs/**`:
+
+| Command | Description |
+|---------|-------------|
+| `make check` | `ruff` lint + format check, `sphinx-lint`, `mypy` and `pytest` |
+| `make test` | The `pytest` part alone: every Japanese `.po` entry is well-formed, every prose `msgid` has a Japanese `msgstr`, each source page has a catalogue, and `conf.py` reports the `package.json` version |
+| `make check-po` | `pofilter` syntax and placeholder checks on the Japanese `.po` files |
+| `make a11y` | Builds the site and runs `pa11y-ci` (WCAG 2 AA) against the pages listed in `.pa11yci.json` |
+
+`make test` fails when an English source changes without its Japanese
+translation, so update the catalogues in the same change: `make update-po`,
+fill in the new `msgstr` entries under `locale/ja/LC_MESSAGES/`, then
+`make build-ja`.

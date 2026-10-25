@@ -5,6 +5,9 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   test: {
     include: ["__tests__/**/*_test.res.js"],
+    // `__tests__/Only_test.res` dogfoods the `.only` modifiers; Vitest rejects
+    // `.only` in CI unless this is set.
+    allowOnly: true,
     coverage: {
       provider: "v8",
       include: ["src/**/*.res.js"],

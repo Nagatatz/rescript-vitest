@@ -69,3 +69,20 @@ describe("Vitest — suite-level hooks (sync & async)", () => {
     expect(log->Array.includes("afterEachAsync"))->toBeTruthy
   })
 })
+
+// Module-level flag set by an `onTestFinishedAsync` callback; a later test in
+// the same suite observes it (the hook runs after its own test ends).
+let asyncFinishedRan = ref(false)
+
+describe("Vitest — async per-test hooks", () => {
+  test("registers onTestFinishedAsync and onTestFailedAsync", () => {
+    onTestFinishedAsync(async _ctx => asyncFinishedRan := true)
+    // Smoke check: registering onTestFailedAsync in a passing test must not throw.
+    onTestFailedAsync(async _ctx => ())
+    expect(1)->toBe(1)
+  })
+
+  test("onTestFinishedAsync callback ran after the previous test", () => {
+    expect(asyncFinishedRan.contents)->toBeTruthy
+  })
+})

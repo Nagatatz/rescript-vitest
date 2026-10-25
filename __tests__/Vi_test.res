@@ -66,8 +66,31 @@ describe("Vi — mock functions", () => {
     let f = m->Vi.MockFn.asFn
     f(1)->ignore
     f(2)->ignore
-    expect((m->Vi.MockFn.calls)->Array.length)->toBe(2)
-    expect((m->Vi.MockFn.results)->Array.length)->toBe(2)
+    // `mock.calls` is an array of per-call argument lists, so a 1-arg mock
+    // called with `1` records `[1]`, not `1`.
+    expect(m->Vi.MockFn.calls)->toEqual([[1], [2]])
+    // `mock.results` entries are `{type, value}` records, not raw return values.
+    let results = m->Vi.MockFn.results
+    expect(results->Array.length)->toBe(2)
+    expect((results[0]->Option.getOrThrow).type_)->toBe(#return)
+    expect((results[0]->Option.getOrThrow).value)->toBe(2)
+    expect((results[1]->Option.getOrThrow).value)->toBe(3)
+  })
+
+  test("results record a thrown error as #throw", () => {
+    let m = Vi.fn1()
+    m->Vi.MockFn.mockImplementation(_ => JsError.throwWithMessage("boom"))->ignore
+    let f = m->Vi.MockFn.asFn
+    expect(() => f(1))->toThrow
+    let results: array<Vi.MockFn.mockResult<'a>> = m->Vi.MockFn.results
+    expect((results[0]->Option.getOrThrow).type_)->toBe(#throw)
+  })
+
+  test("calls of a 2-arg mock record both arguments per call", () => {
+    let m = Vi.fn2()
+    let f = m->Vi.MockFn.asFn
+    f("a", "b")->ignore
+    expect(m->Vi.MockFn.calls)->toEqual([["a", "b"]])
   })
 
   test("fn creates an untyped mock (annotated at the use site)", () => {
@@ -228,6 +251,7 @@ describe("Vi — mock inspection & hoisting", () => {
 })
 
 describe("Vi — fake timers", () => {
+
   test("advanceTimersByTime fires pending timers", () => {
     Vi.useFakeTimers()
     let fired = ref(false)
@@ -441,6 +465,15 @@ describe("Vi — async timers & inspection", () => {
 })
 
 describe("Vi — accessor spies", () => {
+  test("spyOnAccessor takes the raw #get / #set accessor tag", () => {
+    let obj = {"size": 1}
+    let spy = Vi.spyOnAccessor(obj, "size", #get)
+    spy->Vi.MockFn.mockReturnValue(99)->ignore
+    expect(obj["size"])->toBe(99)
+    spy->Vi.MockFn.mockRestore->ignore
+    expect(obj["size"])->toBe(1)
+  })
+
   test("spyOnGetter intercepts property reads", () => {
     let box = makeBox(1)
     let spy = Vi.spyOnGetter(box, "value")
@@ -520,14 +553,16 @@ describe("Vi — timer tick mode", () => {
 
   test("setTimerTickMode is callable under fake timers", () => {
     Vi.useFakeTimers()
-    Vi.setTimerTickMode("manual")
+    // `#manual` compiles to the string "manual"; a typo would be a compile error.
+    Vi.setTimerTickMode(#manual)
     expect(Vi.isFakeTimers())->toBeTruthy
   })
 
   test("setTimerTickModeWithInterval accepts an interval argument", () => {
-    // Regression: the "interval" mode takes a second `interval` (ms) argument.
+    // Regression: the "interval" mode takes an `interval` (ms) argument; the
+    // binding supplies the "interval" mode string itself.
     Vi.useFakeTimers()
-    Vi.setTimerTickModeWithInterval("interval", 50)
+    Vi.setTimerTickModeWithInterval(50)
     expect(Vi.isFakeTimers())->toBeTruthy
   })
 })

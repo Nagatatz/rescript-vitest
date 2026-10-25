@@ -31,11 +31,11 @@ site, not the library.
 
 | Requirement | Version | Note |
 |-------------|---------|------|
-| [uv](https://docs.astral.sh/uv/) | 0.5+ | Python パッケージ管理・仮想環境 |
-| Python | 3.12+ | uv が自動インストール |
-| Node.js | 24+ | Pagefind 検索インデックス生成に使用 |
+| [uv](https://docs.astral.sh/uv/) | 0.5+ | Python package manager and virtual environments |
+| Python | 3.12+ | Installed automatically by uv |
+| Node.js | 24+ | Used to build the Pagefind search index |
 
-### uv のインストール
+### Installing uv
 
 ```bash
 # macOS / Linux
@@ -59,12 +59,12 @@ cd rescript-vitest
 
 ```bash
 cd sphinx-docs
-make install    # uv sync で依存関係をインストール
+make install    # installs the dependencies via uv sync
 ```
 
 ## Verify the Setup
 
 ```bash
-make html       # 英語 HTML ビルド
-make serve      # localhost:8000 で確認
+make html       # builds the English HTML
+make serve      # serves the site on localhost:8000
 ```

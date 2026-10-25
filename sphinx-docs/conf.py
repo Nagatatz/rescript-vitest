@@ -1,11 +1,17 @@
 # Configuration file for the Sphinx documentation builder.
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import json
 import os
 
 project = "rescript-vitest"
 copyright = "2026, Nagatatz"
 author = "Nagatatz"
+
+# Single source of truth for the version is the npm package manifest.
+with open(os.path.join(os.path.dirname(__file__), "..", "package.json"), encoding="utf-8") as _f:
+    release = json.load(_f)["version"]
+version = ".".join(release.split(".")[:2])
 
 # -- General configuration ---------------------------------------------------
 
