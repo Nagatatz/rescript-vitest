@@ -159,6 +159,8 @@ let spyOnSetter = (obj, key) => spyOnAccessor(obj, key, #set)
 /**
  * `vi.hoisted(factory)` — run `factory` before the file's imports are evaluated
  * and return its result. Use for values that mock factories need at hoist time.
+ * Call it at the top level of the file: Vitest 5 throws when `hoisted` (or
+ * `mock` / `unmock`) is nested inside a function or `describe` / `test` body.
  */
 @module("vitest") @scope("vi") external hoisted: (unit => 'a) => 'a = "hoisted"
 
@@ -166,7 +168,10 @@ let spyOnSetter = (obj, key) => spyOnAccessor(obj, key, #set)
 // Module mocking
 // ============================================================================
 
-/** `vi.mock("module")` — auto-mock a module by specifier. */
+/**
+ * `vi.mock("module")` — auto-mock a module by specifier. Hoisted, so call it at
+ * the top level (Vitest 5 throws on nested calls); use `doMock` inside tests.
+ */
 @module("vitest") @scope("vi") external mock: string => unit = "mock"
 
 /** `vi.mock("module", factory)` — replace a module with a factory result. */
