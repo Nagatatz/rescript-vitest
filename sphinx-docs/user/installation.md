@@ -6,11 +6,29 @@
 |------|---------|
 | ReScript (`rescript`) | `^12.0.0-0` (12.x, prereleases allowed) |
 | `@rescript/runtime` | `^12.0.0-0` (same major as ReScript) |
-| Vitest | `^4.0.0` |
-| Vite | `^6` or `^7` (Vitest 4 peer) |
+| Vitest | `^4.0.0 \|\| ^5.0.0` |
+| Vite | `^6`, `^7` or `^8` (Vitest 5 needs `>=6.4`) |
+| Node.js | Whatever your Vitest major needs (Vitest 5: `^22.12.0`, `^24` or `>=26`) |
 
 `rescript`, `@rescript/runtime` and `vitest` are peer dependencies — install
 them alongside the bindings.
+
+## Vitest 5 notes
+
+The bindings work unchanged on Vitest 4 and 5. Two things to know when you
+upgrade Vitest itself:
+
+- Vitest 5 removed `describe.sequential` / `test.sequential` / `it.sequential`.
+  `describeSequential`, `testSequential`, `testSequentialAsync` and
+  `itSequential` keep their names and signatures but now compile to the
+  `{concurrent: false}` option (e.g. `describe(name, {concurrent: false}, body)`),
+  which both majors support.
+- Vitest 5 changes some runtime behavior the bindings pass straight through:
+  `clearMocks` defaults to `true`; `Vi.mock` / `Vi.unmock` / `Vi.hoisted` must be
+  called at the top level of a file (nested calls throw); `Expect.poll` fails
+  when it times out; unawaited `resolves` / `rejects` assertions fail the test;
+  and `toThrowWithMessage("")` matches any message. See the
+  [Vitest 5 migration guide](https://vitest.dev/guide/migration.html).
 
 ## Install
 

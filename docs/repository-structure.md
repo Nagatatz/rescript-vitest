@@ -1,6 +1,6 @@
 # リポジトリ構造定義書
 
-`@nagatatz/rescript-vitest` — Vitest 4 向けの型安全な ReScript バインディング。
+`@nagatatz/rescript-vitest` — Vitest 4 / 5 向けの型安全な ReScript バインディング。
 
 ## プロジェクト構成
 
@@ -57,7 +57,7 @@ rescript-vitest/
 - **`src/Vitest.res`** — テスト構造（`describe` / `test` / `it` とその変種）、ライフサイクルフック、`expect` マッチャー一式、`not_` / `resolves` / `rejects` モディファイア。マッチャーは Vitest 本体と同様に副作用を持ち、失敗時に例外を投げる *faithful* な設計。
 - **`src/Vi.res`** — `Vi` 名前空間。モック関数・スパイ・モジュールモック・グローバル状態操作・フェイクタイマー。
 - **`src/VitestConfig.res`** — `vitest/config` の設定側バインディング。`defineConfig` / `defineConfigFn` / `mergeConfig` / `defineProject` と `test` 主要フィールドの optional record 型。**最小範囲**（Vite レベル設定やフィールドの末端は非対象。フル設定は JS の config ファイルで記述）。
-- **`__tests__/`** — バインディング自身を Vitest 4 上で検証するドッグフードテスト。テストファイルはモジュール 1:1 ではなくトピック別に分割する。バインディング追加・変更時は対応するテストを必ず併設する（→ Verification-first）。
+- **`__tests__/`** — バインディング自身を Vitest 上で検証する（ローカルは Vitest 5、CI では Vitest 4 でも実行）ドッグフードテスト。テストファイルはモジュール 1:1 ではなくトピック別に分割する。バインディング追加・変更時は対応するテストを必ず併設する（→ Verification-first）。
 
 ## ビルドフロー
 

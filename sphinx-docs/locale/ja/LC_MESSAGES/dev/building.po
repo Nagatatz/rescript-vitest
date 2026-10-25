@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-30 11:31+0900\n"
+"POT-Creation-Date: 2026-10-25 21:53+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -111,21 +111,28 @@ msgstr "CI パイプライン"
 msgid ""
 "Continuous integration builds the bindings and runs the dogfood test "
 "suite on every push and pull request, ensuring the bindings stay faithful"
-" to the Vitest 4 API. See the workflows under `.github/workflows/`."
+" to the Vitest API. The `build-and-test` job uses the locked Vitest 5; "
+"the `test-vitest-4` job swaps in the latest Vitest 4 and reruns the "
+"suite, covering the whole `^4.0.0 || ^5.0.0` peer range. See the "
+"workflows under `.github/workflows/`."
 msgstr ""
 "継続的インテグレーションは、push "
-"とプルリクエストのたびにバインディングをビルドし、ドッグフードテストスイートを実行することで、バインディングが Vitest 4 API に "
-"faithful であり続けることを保証します。`.github/workflows/` 配下のワークフローを参照してください。"
+"とプルリクエストのたびにバインディングをビルドし、ドッグフードテストスイートを実行することで、バインディングが Vitest API に "
+"faithful であり続けることを保証します。`build-and-test` ジョブはロックファイルで固定された Vitest 5 を使い"
+"、`test-vitest-4` ジョブは最新の Vitest 4 に差し替えて同じスイートを再実行することで、peer 範囲 `^4.0.0 "
+"|| ^5.0.0` 全体をカバーします。`.github/workflows/` 配下のワークフローを参照してください。"
 
-#: ../../dev/building.md:32
+#: ../../dev/building.md:34
 msgid "Documentation Checks"
 msgstr "ドキュメントのチェック"
 
-#: ../../dev/building.md:34
+#: ../../dev/building.md:36
 msgid ""
 "The Sphinx site under `sphinx-docs/` has its own quality gates, all run "
 "by the `Docs` workflow on every change to `sphinx-docs/**`:"
-msgstr "`sphinx-docs/` 配下の Sphinx サイトには独自の品質ゲートがあり、`sphinx-docs/**` の変更ごとに `Docs` ワークフローがすべて実行します:"
+msgstr ""
+"`sphinx-docs/` 配下の Sphinx サイトには独自の品質ゲートがあり、`sphinx-docs/**` の変更ごとに `Docs`"
+" ワークフローがすべて実行します:"
 
 #: ../../dev/building.md
 msgid "`make check`"
@@ -144,7 +151,9 @@ msgid ""
 "The `pytest` part alone: every Japanese `.po` entry is well-formed, every"
 " prose `msgid` has a Japanese `msgstr`, each source page has a catalogue,"
 " and `conf.py` reports the `package.json` version"
-msgstr "`pytest` のみを実行: 日本語 `.po` の全エントリが整形式であること、プロースの `msgid` すべてに日本語の `msgstr` があること、各ソースページにカタログがあること、`conf.py` が `package.json` のバージョンを報告することを検証します"
+msgstr ""
+"`pytest` のみを実行: 日本語 `.po` の全エントリが整形式であること、プロースの `msgid` すべてに日本語の `msgstr`"
+" があること、各ソースページにカタログがあること、`conf.py` が `package.json` のバージョンを報告することを検証します"
 
 #: ../../dev/building.md
 msgid "`make check-po`"
@@ -164,13 +173,16 @@ msgid ""
 "in `.pa11yci.json`"
 msgstr "サイトをビルドし、`.pa11yci.json` に列挙したページに対して `pa11y-ci`（WCAG 2 AA）を実行します"
 
-#: ../../dev/building.md:44
+#: ../../dev/building.md:46
 msgid ""
 "`make test` fails when an English source changes without its Japanese "
 "translation, so update the catalogues in the same change: `make update-"
 "po`, fill in the new `msgstr` entries under `locale/ja/LC_MESSAGES/`, "
 "then `make build-ja`."
-msgstr "英語ソースを日本語訳なしで変更すると `make test` が失敗するため、同じ変更の中でカタログを更新してください: `make update-po` を実行し、`locale/ja/LC_MESSAGES/` 配下の新しい `msgstr` を記入し、`make build-ja` を実行します。"
+msgstr ""
+"英語ソースを日本語訳なしで変更すると `make test` が失敗するため、同じ変更の中でカタログを更新してください: `make "
+"update-po` を実行し、`locale/ja/LC_MESSAGES/` 配下の新しい `msgstr` を記入し、`make "
+"build-ja` を実行します。"
 
 #~ msgid "<!-- e.g. `npm run build` -->"
 #~ msgstr "<!-- 例: `npm run build` -->"

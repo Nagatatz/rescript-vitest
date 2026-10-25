@@ -257,8 +257,40 @@ describeConcurrent("Vitest — describe.concurrent", () => {
   test("runs inside a concurrent suite", () => expect(1)->toBe(1))
 })
 
-describeSequential("Vitest — describe.sequential", () => {
+describeSequential("Vitest — describeSequential", () => {
   test("runs inside a sequential suite", () => expect(1)->toBe(1))
+})
+
+// Resolves after `ms` real milliseconds, so concurrently scheduled tests would
+// overlap and the ordering checks below would observe it.
+let sleep = ms => Promise.make((resolve, _) => setTimeout(() => resolve(), ms)->ignore)
+
+// The sequential helpers bind to the `{concurrent: false}` option (Vitest 5
+// removed `.sequential`). These suites prove the option really opts out of an
+// enclosing `describe.concurrent`: if the tests ran concurrently, the second
+// would start before the first set its flag.
+describeConcurrent("Vitest — testSequential inside a concurrent suite", () => {
+  let firstDone = ref(false)
+  testSequentialAsync("first sequential test finishes before the next starts", async () => {
+    await sleep(20)
+    firstDone := true
+  })
+  testSequentialAsync("second sequential test sees the first one finished", async () =>
+    expect(firstDone.contents)->toBe(true)
+  )
+})
+
+describeConcurrent("Vitest — describeSequential inside a concurrent suite", () => {
+  describeSequential("sequential inner suite", () => {
+    let firstDone = ref(false)
+    testAsync("first test finishes before the next starts", async () => {
+      await sleep(20)
+      firstDone := true
+    })
+    testAsync("second test sees the first one finished", async () =>
+      expect(firstDone.contents)->toBe(true)
+    )
+  })
 })
 
 describeShuffle("Vitest — describe.shuffle", () => {

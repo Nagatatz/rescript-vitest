@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Vitest 5 support. The `vitest` peer dependency is now `^4.0.0 || ^5.0.0`, and CI runs the test suite on both majors.
+
+### Changed
+
+- `describeSequential`, `testSequential`, `testSequentialAsync` and `itSequential` now compile to `describe` / `test` / `it` with the `{concurrent: false}` option instead of the `.sequential` modifier, which Vitest 5 removed. Their ReScript signatures are unchanged and the behavior is the same on Vitest 4.
+- Doc comments on `Vi.mock` / `Vi.hoisted`, `Expect.poll` and `toThrowWithMessage` note the Vitest 5 behavior changes (top-level hoisted calls, poll timeouts, empty-string messages).
+
 ## 0.2.0 (2026-08-30)
 
 ### Added

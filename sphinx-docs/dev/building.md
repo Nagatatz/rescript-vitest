@@ -26,8 +26,10 @@ Tests run against compiled JavaScript, so a build must precede the test run
 ## CI Pipeline
 
 Continuous integration builds the bindings and runs the dogfood test suite on
-every push and pull request, ensuring the bindings stay faithful to the Vitest 4
-API. See the workflows under `.github/workflows/`.
+every push and pull request, ensuring the bindings stay faithful to the Vitest
+API. The `build-and-test` job uses the locked Vitest 5; the `test-vitest-4` job
+swaps in the latest Vitest 4 and reruns the suite, covering the whole
+`^4.0.0 || ^5.0.0` peer range. See the workflows under `.github/workflows/`.
 
 ## Documentation Checks
 

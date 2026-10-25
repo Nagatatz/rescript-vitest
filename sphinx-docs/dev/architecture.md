@@ -4,7 +4,7 @@
 
 `@nagatatz/rescript-vitest` is a thin FFI binding layer — it has no application
 runtime of its own. Every binding is a ReScript `external` mapping directly onto
-a Vitest 4 export, so calling a binding *is* calling Vitest. There is no wrapper
+a Vitest export (Vitest 4 and 5), so calling a binding *is* calling Vitest. There is no wrapper
 logic, no state, and no abstraction over the underlying API.
 
 The bindings are *faithful*: matchers behave exactly like their Vitest
@@ -19,7 +19,7 @@ closely as ReScript's type system allows.
 | `src/Vitest.res` | Test structure (`describe` / `test` / `it` and variants), lifecycle hooks, the full `expect` matcher set, and the `not_` / `resolves` / `rejects` modifiers (with the `Async` matcher module). |
 | `src/Vi.res` | The `Vi` namespace: mock functions and spies, module mocking, global/environment stubs, and fake timers. |
 | `src/VitestConfig.res` | The `vitest/config` side: `defineConfig` / `defineConfigFn` / `mergeConfig` / `defineProject` and an optional-record type for the main `test` config fields (intentionally a minimal subset). |
-| `__tests__/` | Dogfood tests that exercise the bindings on Vitest 4 itself. Every binding change ships with a corresponding test (verification-first). |
+| `__tests__/` | Dogfood tests that exercise the bindings on Vitest itself (Vitest 5, plus a Vitest 4 job in CI). Every binding change ships with a corresponding test (verification-first). |
 
 ## Design Principles
 
@@ -32,7 +32,7 @@ closely as ReScript's type system allows.
 3. **Minimal config surface** — `VitestConfig` covers the common `test` fields
    only; full Vite-level configuration belongs in a JavaScript config file.
 4. **Verification-first** — the binding layer is validated by dogfooding it
-   against Vitest 4; no binding ships without a test that runs it.
+   against Vitest 5 and 4; no binding ships without a test that runs it.
 
 ## Output Shape
 

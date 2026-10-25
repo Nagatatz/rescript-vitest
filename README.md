@@ -10,7 +10,7 @@ The bindings are *faithful*: matchers are side-effecting and throw on failure,
 exactly like Vitest itself. The `expect(value)` wrapper carries the type of the
 value under test, so matchers such as `toBe` stay honest at compile time.
 
-- ✅ `describe` / `test` / `it` (+ `.only` / `.skip` / `.todo` / `.each` / `.concurrent` / `.sequential` / `.shuffle` / `.skipIf` / `.runIf` / `.fails` / `.for`)
+- ✅ `describe` / `test` / `it` (+ `.only` / `.skip` / `.todo` / `.each` / `.concurrent` / sequential (`{concurrent: false}`) / `.shuffle` / `.skipIf` / `.runIf` / `.fails` / `.for`)
 - ✅ Lifecycle hooks (`beforeEach` / `afterEach` / `beforeAll` / `afterAll` / `aroundEach` / `aroundAll` / `onTestFailed` / `onTestFinished`, sync & async)
 - ✅ The full `expect` matcher set (equality, numbers, strings, collections, objects, type/predicate, exceptions, snapshots — inline and file, mock call/return/resolve matchers)
 - ✅ Asymmetric matchers and negations (`Expect.anything` / `arrayContaining` / `objectContaining` / … and `Expect.Not.*`), plus assertion guards (`assertions` / `hasAssertions` / `soft` / `poll`)
@@ -25,7 +25,7 @@ value under test, so matchers such as `toBe` stay honest at compile time.
 [`@greenfinity/rescript-vitest`](https://www.npmjs.com/package/@greenfinity/rescript-vitest)
 both target Vitest 2/3 and pin the dependency tree to Vite 5. Vitest **4.1+**
 requires `vite/module-runner` (Vite 6+), so those bindings block the upgrade.
-This package targets Vitest 4 (Vite 6/7) directly.
+This package targets Vitest 4 and 5 (Vite 6+) directly.
 
 ## Requirements
 
@@ -33,11 +33,29 @@ This package targets Vitest 4 (Vite 6/7) directly.
 |------|---------|
 | ReScript (`rescript`) | `^12.0.0-0` (12.x, prereleases allowed) |
 | `@rescript/runtime` | `^12.0.0-0` (same major as ReScript) |
-| Vitest | `^4.0.0` |
-| Vite | `^6` or `^7` (Vitest 4 peer) |
+| Vitest | `^4.0.0 \|\| ^5.0.0` |
+| Vite | `^6`, `^7` or `^8` (Vitest 5 needs `>=6.4`) |
+| Node.js | Whatever your Vitest major needs (Vitest 5: `^22.12.0`, `^24` or `>=26`) |
 
 `rescript`, `@rescript/runtime` and `vitest` are peer dependencies — install
 them alongside the bindings.
+
+### Vitest 5 notes
+
+The bindings work unchanged on Vitest 4 and 5. Two things to know when you
+upgrade Vitest itself:
+
+- Vitest 5 removed `describe.sequential` / `test.sequential` / `it.sequential`.
+  `describeSequential`, `testSequential`, `testSequentialAsync` and
+  `itSequential` keep their names and signatures but now compile to the
+  `{concurrent: false}` option (e.g. `describe(name, {concurrent: false}, body)`),
+  which both majors support.
+- Vitest 5 changes some runtime behavior the bindings pass straight through:
+  `clearMocks` defaults to `true`; `Vi.mock` / `Vi.unmock` / `Vi.hoisted` must be
+  called at the top level of a file (nested calls throw); `Expect.poll` fails
+  when it times out; unawaited `resolves` / `rejects` assertions fail the test;
+  and `toThrowWithMessage("")` matches any message. See the
+  [Vitest 5 migration guide](https://vitest.dev/guide/migration.html).
 
 ## Install
 
@@ -199,7 +217,7 @@ export default config
 ```bash
 pnpm install
 pnpm build        # compile ReScript bindings + tests
-pnpm test         # run the dogfood test suite under Vitest 4
+pnpm test         # run the dogfood test suite (Vitest 5; CI also runs it on Vitest 4)
 pnpm format       # format hand-written JS/JSON with oxfmt
 pnpm lint         # lint hand-written JS with oxlint
 ```

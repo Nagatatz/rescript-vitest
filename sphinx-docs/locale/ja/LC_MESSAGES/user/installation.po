@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-30 01:53+0900\n"
+"POT-Creation-Date: 2026-10-25 21:53+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -57,7 +57,7 @@ msgid "Vitest"
 msgstr ""
 
 #: ../../user/installation.md
-msgid "`^4.0.0`"
+msgid "`^4.0.0 || ^5.0.0`"
 msgstr ""
 
 #: ../../user/installation.md
@@ -65,44 +65,97 @@ msgid "Vite"
 msgstr ""
 
 #: ../../user/installation.md
-msgid "`^6` or `^7` (Vitest 4 peer)"
-msgstr "`^6` または `^7`（Vitest 4 の peer）"
+msgid "`^6`, `^7` or `^8` (Vitest 5 needs `>=6.4`)"
+msgstr "`^6`、`^7` または `^8`（Vitest 5 は `>=6.4` が必要）"
 
-#: ../../user/installation.md:12
+#: ../../user/installation.md
+msgid "Node.js"
+msgstr ""
+
+#: ../../user/installation.md
+msgid "Whatever your Vitest major needs (Vitest 5: `^22.12.0`, `^24` or `>=26`)"
+msgstr "使用する Vitest のメジャーバージョンが要求するもの（Vitest 5: `^22.12.0`、`^24` または `>=26`）"
+
+#: ../../user/installation.md:13
 msgid ""
 "`rescript`, `@rescript/runtime` and `vitest` are peer dependencies — "
 "install them alongside the bindings."
-msgstr "`rescript`、`@rescript/runtime`、`vitest` は peer dependency です。バインディングと一緒にインストールしてください。"
+msgstr ""
+"`rescript`、`@rescript/runtime`、`vitest` は peer dependency "
+"です。バインディングと一緒にインストールしてください。"
 
-#: ../../user/installation.md:15
+#: ../../user/installation.md:16
+msgid "Vitest 5 notes"
+msgstr "Vitest 5 に関する注意"
+
+#: ../../user/installation.md:18
+msgid ""
+"The bindings work unchanged on Vitest 4 and 5. Two things to know when "
+"you upgrade Vitest itself:"
+msgstr ""
+"バインディングは Vitest 4 と 5 のどちらでもそのまま動作します。Vitest 本体をアップグレードする際に知っておくべき点が 2 "
+"つあります:"
+
+#: ../../user/installation.md:21
+#, python-brace-format
+msgid ""
+"Vitest 5 removed `describe.sequential` / `test.sequential` / "
+"`it.sequential`. `describeSequential`, `testSequential`, "
+"`testSequentialAsync` and `itSequential` keep their names and signatures "
+"but now compile to the `{concurrent: false}` option (e.g. `describe(name,"
+" {concurrent: false}, body)`), which both majors support."
+msgstr ""
+"Vitest 5 は `describe.sequential` / `test.sequential` / `it.sequential` "
+"を削除しました。`describeSequential`、`testSequential`、`testSequentialAsync`、`itSequential`"
+" は名前とシグネチャを維持したまま、両メジャーバージョンが対応する `{concurrent: false}` オプション（例: "
+"`describe(name, {concurrent: false}, body)`）にコンパイルされるようになりました。"
+
+#: ../../user/installation.md:26
+msgid ""
+"Vitest 5 changes some runtime behavior the bindings pass straight "
+"through: `clearMocks` defaults to `true`; `Vi.mock` / `Vi.unmock` / "
+"`Vi.hoisted` must be called at the top level of a file (nested calls "
+"throw); `Expect.poll` fails when it times out; unawaited `resolves` / "
+"`rejects` assertions fail the test; and `toThrowWithMessage(\"\")` "
+"matches any message. See the [Vitest 5 migration "
+"guide](https://vitest.dev/guide/migration.html)."
+msgstr ""
+"Vitest 5 では、バインディングがそのまま透過する実行時の挙動がいくつか変わっています: `clearMocks` のデフォルトが "
+"`true` になった。`Vi.mock` / `Vi.unmock` / `Vi.hoisted` "
+"はファイルのトップレベルで呼び出す必要がある（ネストした呼び出しは例外を投げる）。`Expect.poll` "
+"はタイムアウト時に失敗する。await されていない `resolves` / `rejects` "
+"アサーションはテストを失敗させる。`toThrowWithMessage(\"\")` は任意のメッセージにマッチする。詳しくは [Vitest "
+"5 移行ガイド](https://vitest.dev/guide/migration.html) を参照してください。"
+
+#: ../../user/installation.md:33
 msgid "Install"
 msgstr "インストール"
 
-#: ../../user/installation.md:21
+#: ../../user/installation.md:39
 msgid ""
 "Add the package to your `rescript.json` dependencies so ReScript compiles"
 " the bindings:"
 msgstr "ReScript がバインディングをコンパイルできるよう、`rescript.json` の dependencies にパッケージを追加します:"
 
-#: ../../user/installation.md:30
+#: ../../user/installation.md:48
 msgid "Verify"
 msgstr "検証"
 
-#: ../../user/installation.md:32
+#: ../../user/installation.md:50
 msgid ""
 "After installing, build your ReScript sources and run a test to confirm "
 "the bindings resolve:"
 msgstr "インストール後、ReScript ソースをビルドしてテストを実行し、バインディングが解決されることを確認します:"
 
-#: ../../user/installation.md:40
+#: ../../user/installation.md:58
 msgid "A minimal smoke test:"
 msgstr "最小限のスモークテスト:"
 
-#: ../../user/installation.md:50
+#: ../../user/installation.md:68
 msgid "If this compiles and passes, the bindings are installed correctly."
 msgstr "これがコンパイルされてパスすれば、バインディングは正しくインストールされています。"
 
-#: ../../user/installation.md:52
+#: ../../user/installation.md:70
 msgid "Troubleshooting"
 msgstr "トラブルシューティング"
 
@@ -156,5 +209,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "`^12.0.0`"
+#~ msgstr ""
+
+#~ msgid "`^4.0.0`"
 #~ msgstr ""
 

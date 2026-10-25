@@ -72,9 +72,21 @@ external describeTodo: string => unit = "todo"
 @module("vitest") @scope("describe")
 external describeConcurrent: (string, unit => unit) => unit = "concurrent"
 
-/** Run the tests in this suite sequentially. */
-@module("vitest") @scope("describe")
-external describeSequential: (string, unit => unit) => unit = "sequential"
+// The `*Sequential` helpers below keep their Vitest 4-era names, but bind to the
+// `{concurrent: false}` test/suite option instead of the `.sequential`
+// modifier: Vitest 5 removed `describe.sequential` / `test.sequential` /
+// `it.sequential`, and `{concurrent: false}` is the documented replacement. It
+// has the same effect on Vitest 4, so the bindings work on both majors. The
+// options object is a constant argument supplied by the binding
+// (`@as(json`...`) _`), so callers still pass only the name and body.
+
+/**
+ * Run the tests in this suite sequentially, opting out of inherited or
+ * configured concurrency. Compiles to `describe(name, {concurrent: false}, body)`.
+ */
+@module("vitest")
+external describeSequential: (string, @as(json`{"concurrent": false}`) _, unit => unit) => unit =
+  "describe"
 
 /** Run the tests in this suite in random order. */
 @module("vitest") @scope("describe")
@@ -168,13 +180,21 @@ external testFails: (string, unit => unit) => unit = "fails"
 @module("vitest") @scope("test")
 external testFailsAsync: (string, unit => promise<unit>) => unit = "fails"
 
-/** Force this test to run sequentially (not concurrently). */
-@module("vitest") @scope("test")
-external testSequential: (string, unit => unit) => unit = "sequential"
+/**
+ * Force this test to run sequentially (not concurrently), even inside a
+ * concurrent suite. Compiles to `test(name, {concurrent: false}, body)`; see the
+ * note above `describeSequential`.
+ */
+@module("vitest")
+external testSequential: (string, @as(json`{"concurrent": false}`) _, unit => unit) => unit = "test"
 
 /** Async variant of `testSequential`. */
-@module("vitest") @scope("test")
-external testSequentialAsync: (string, unit => promise<unit>) => unit = "sequential"
+@module("vitest")
+external testSequentialAsync: (
+  string,
+  @as(json`{"concurrent": false}`) _,
+  unit => promise<unit>,
+) => unit = "test"
 
 /** Alias of `test`, reading more naturally inside a `describe` ("it does X"). */
 @module("vitest")
@@ -217,8 +237,12 @@ external itEach3: array<('a, 'b, 'c)> => (string, ('a, 'b, 'c) => unit) => unit 
 /** Expect this `it` case to fail; it passes if the body throws. */
 @module("vitest") @scope("it") external itFails: (string, unit => unit) => unit = "fails"
 
-/** Force this `it` case to run sequentially. */
-@module("vitest") @scope("it") external itSequential: (string, unit => unit) => unit = "sequential"
+/**
+ * Force this `it` case to run sequentially. Compiles to
+ * `it(name, {concurrent: false}, body)`; see the note above `describeSequential`.
+ */
+@module("vitest")
+external itSequential: (string, @as(json`{"concurrent": false}`) _, unit => unit) => unit = "it"
 
 /** Skip this `it` case when the condition is true. */
 @module("vitest") @scope("it") external itSkipIf: bool => (string, unit => unit) => unit = "skipIf"
@@ -239,7 +263,7 @@ external itEach3: array<('a, 'b, 'c)> => (string, ('a, 'b, 'c) => unit) => unit 
 @module("vitest") external afterEach: (unit => unit) => unit = "afterEach"
 @module("vitest") external afterEachAsync: (unit => promise<unit>) => unit = "afterEach"
 
-// `aroundAll` / `aroundEach` (Vitest 4) wrap a suite / test: the callback
+// `aroundAll` / `aroundEach` (Vitest 4+) wrap a suite / test: the callback
 // receives a `runSuite` / `runTest` thunk it must `await` to execute the wrapped
 // body, so setup before the call and teardown after it bracket the run. The
 // listener also receives a context and the suite, but they are omitted here —
@@ -414,6 +438,10 @@ type typeOf = [
 // ----------------------------------------------------------------------------
 
 @send external toThrow: assertion<unit => 'a> => unit = "toThrow"
+/**
+ * Pass when the thrown error's message contains `message` as a substring. On
+ * Vitest 5 an empty string matches any message (Vitest 4 matched only `""`).
+ */
 @send external toThrowWithMessage: (assertion<unit => 'a>, string) => unit = "toThrow"
 @send external toThrowRegExp: (assertion<unit => 'a>, RegExp.t) => unit = "toThrow"
 
@@ -556,7 +584,9 @@ module Expect = {
   /**
    * Poll `callback` until the matcher passes (or it times out). Returns an
    * async assertion, so use the `Async` matchers and `await` the result:
-   * `await Expect.poll(() => value)->Async.toBe(expected)`.
+   * `await Expect.poll(() => value)->Async.toBe(expected)`. On Vitest 5 the
+   * poll rejects if the callback or assertion does not settle within the
+   * timeout (Vitest 4 could still pass on a late result).
    */
   @module("vitest") @scope("expect") external poll: (unit => 'a) => asyncAssertion<'a> = "poll"
 
