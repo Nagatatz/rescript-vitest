@@ -30,6 +30,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:mutation": "rescript build && mutator",
+    "test:mutation:diff": "rescript build && mutator --since origin/main --fail-on-survived",
     "format": "oxfmt '**/*.{js,mjs,cjs,json}'",
     "format:check": "oxfmt --check '**/*.{js,mjs,cjs,json}'",
     "lint": "oxlint",
@@ -37,6 +39,7 @@
     "prepublishOnly": "rescript build && vitest run"
   },
   "devDependencies": {
+    "@mizchi/mutator": "^0.2.0",
     "@rescript/language-server": "^1.74.0",
     "@rescript/runtime": "^12.3.1",
     "@vitest/coverage-v8": "^5.0.0",
