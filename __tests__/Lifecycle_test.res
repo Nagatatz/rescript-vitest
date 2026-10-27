@@ -18,11 +18,12 @@ describe("Vitest — aroundEach", () => {
   })
 
   test("the around-before portion ran before this test body", () => {
-    expect(events->Array.includes("before"))->toBeTruthy
+    expect(events)->toEqual(["before"])
   })
 
   test("the around-after portion ran after the previous test", () => {
-    expect(events->Array.includes("after"))->toBeTruthy
+    // Once per test: the previous test's before/after, then this test's before.
+    expect(events)->toEqual(["before", "after", "before"])
   })
 })
 
