@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-vitest \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-25 21:53+0900\n"
+"POT-Creation-Date: 2026-10-29 02:27+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -25,8 +25,8 @@ msgid "Changelog"
 msgstr "変更履歴"
 
 #: ../../user/changelog.md:3
-msgid "Unreleased"
-msgstr "未リリース"
+msgid "0.3.0 (2026-10-29)"
+msgstr ""
 
 #: ../../user/changelog.md:5 ../../user/changelog.md:16
 #: ../../user/changelog.md:34 ../../user/changelog.md:51
