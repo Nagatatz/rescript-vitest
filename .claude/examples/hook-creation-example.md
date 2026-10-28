@@ -4,7 +4,7 @@
 
 ## 仕組み
 
-Hooks は **Claude Code が決定論的に実行するシェルスクリプト**。CLAUDE.md などのルールは LLM への助言だが、hooks は LLM を経由せず必ず実行される。「絶対に毎回必要な処理」「ガードレール」「副作用付きの自動化」に向く。
+Hooks は **Claude Code が決定論的に実行するシェルスクリプト**。AGENTS.md や `.claude/rules/` の規約は LLM への助言だが、hooks は LLM を経由せず必ず実行される。「絶対に毎回必要な処理」「ガードレール」「副作用付きの自動化」に向く。
 
 ## ライフサイクル発火点
 
@@ -118,5 +118,5 @@ echo $?   # 0 (続行) or 非 0 (block) を確認
 ## 関連
 
 - `.claude/settings.json` — 実際の発火点登録
-- `.claude/rules/bash-safety.md` (skill) — validate-bash.sh と連動
+- `.claude/skills/bash-safety/SKILL.md` — validate-bash.sh と連動
 - 公式: [Hooks ガイド](https://code.claude.com/docs/en/hooks-guide)
