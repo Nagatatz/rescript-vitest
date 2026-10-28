@@ -44,3 +44,9 @@
 - 検証で失敗が発生した場合、自律的に原因を特定し修正すること
 - 修正後、再度すべての検証を実行すること
 - 3回修正しても解決しない場合、ユーザーに報告してアプローチを相談すること
+
+## mutation test
+
+テストを書いたら `pnpm test:mutation:diff`（`origin/main` との差分の mutant だけを実行し、生き残りがあれば exit 2）を実行する。行カバレッジではなく mutant を殺せるかで十分性を判断する。
+生き残りは境界値・厳密な assertion で殺す。どの入力でも観測できない等価 mutant だけ `pnpm exec mutator accept <key> --reason "..."` で `mutator.accepted.json` に理由付きで記録する（Node.js 24+ が必要）。
+mutant の対象は生成物 `src/**/*.res.js`（`mutator.config.json`）。`*_test.res` が「collect されない」という警告は、実行されるのが生成された `*_test.res.js` のためで無視してよい。

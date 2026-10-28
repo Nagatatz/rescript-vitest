@@ -1,0 +1,6 @@
+{
+  "mhmg9x3ui7": {
+    "reason": "equivalent: Expect.Not holds only externals, which ReScript inlines at every call site; no compiled consumer reads the runtime record Expect.Not",
+    "where": "src/Vitest.res.js:8:14 { Not: Not } -> {}"
+  }
+}

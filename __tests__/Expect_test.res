@@ -238,27 +238,33 @@ describeAsync("Expect — describeAsync suite", async () => {
   })
 })
 
+// Names of the tests below that must run. A body of `expect(1)->toBe(1)` would
+// also pass if a binding silently skipped its test, so each such test records
+// itself here and the last suite of this file checks the whole list.
+let ran: array<string> = []
+let mark = name => ran->Array.push(name)
+
 describe("Vitest — test modifiers", () => {
   // The skipped branches carry a body that would fail if it ran.
   testSkipIf(true)("skipped when the condition is true", () => expect(1)->toBe(2))
-  testSkipIf(false)("runs when the condition is false", () => expect(1)->toBe(1))
-  testRunIf(true)("runs when the condition is true", () => expect(1)->toBe(1))
+  testSkipIf(false)("runs when the condition is false", () => mark("test.skipIf(false)"))
+  testRunIf(true)("runs when the condition is true", () => mark("test.runIf(true)"))
   testRunIf(false)("skipped when the condition is false", () => expect(1)->toBe(2))
 
   // `fails` inverts the result: these pass *because* the body throws.
   testFails("passes because the body fails", () => expect(1)->toBe(2))
   testFailsAsync("passes because the async body fails", async () => expect(1)->toBe(2))
 
-  testSequential("runs sequentially", () => expect(1)->toBe(1))
-  testSequentialAsync("runs sequentially (async)", async () => expect(1)->toBe(1))
+  testSequential("runs sequentially", () => mark("testSequential"))
+  testSequentialAsync("runs sequentially (async)", async () => mark("testSequentialAsync"))
 })
 
 describeConcurrent("Vitest — describe.concurrent", () => {
-  test("runs inside a concurrent suite", () => expect(1)->toBe(1))
+  test("runs inside a concurrent suite", () => mark("describe.concurrent"))
 })
 
 describeSequential("Vitest — describeSequential", () => {
-  test("runs inside a sequential suite", () => expect(1)->toBe(1))
+  test("runs inside a sequential suite", () => mark("describeSequential"))
 })
 
 // Resolves after `ms` real milliseconds, so concurrently scheduled tests would
@@ -294,7 +300,7 @@ describeConcurrent("Vitest — describeSequential inside a concurrent suite", ()
 })
 
 describeShuffle("Vitest — describe.shuffle", () => {
-  test("runs inside a shuffled suite", () => expect(1)->toBe(1))
+  test("runs inside a shuffled suite", () => mark("describe.shuffle"))
 })
 
 describeTodo("Vitest — describe.todo suite")
@@ -303,18 +309,18 @@ describeSkipIf(true)("Vitest — describe.skipIf (skipped)", () => {
   test("would fail but the suite is skipped", () => expect(1)->toBe(2))
 })
 describeSkipIf(false)("Vitest — describe.skipIf (running)", () => {
-  test("runs", () => expect(1)->toBe(1))
+  test("runs", () => mark("describe.skipIf(false)"))
 })
 
 describeRunIf(true)("Vitest — describe.runIf (running)", () => {
-  test("runs", () => expect(1)->toBe(1))
+  test("runs", () => mark("describe.runIf(true)"))
 })
 describeRunIf(false)("Vitest — describe.runIf (skipped)", () => {
   test("would fail but the suite is skipped", () => expect(1)->toBe(2))
 })
 
 describeFor([1, 2, 3])("Vitest — describe.for case %i", n => {
-  test("the case value is positive", () => expect(n > 0)->toBeTruthy)
+  test("the case value reaches the suite", () => mark(`describe.for ${n->Int.toString}`))
 })
 
 describe("Expect — asymmetric matchers", () => {
@@ -356,7 +362,7 @@ describe("Expect — asymmetric matchers", () => {
 })
 
 describe("Vitest — test.for", () => {
-  testFor([1, 2, 3])("for-case %i is positive", n => expect(n > 0)->toBeTruthy)
+  testFor([1, 2, 3])("for-case %i reaches the body", n => mark(`test.for ${n->Int.toString}`))
 })
 
 describe("Expect — assertion guards, soft, poll, unreachable", () => {
@@ -442,22 +448,24 @@ describe("Vitest — skip and concurrent modifiers", () => {
   })
   testSkip("test.skip is not run", () => expect(1)->toBe(2))
   itSkip("it.skip is not run", () => expect(1)->toBe(2))
-  testConcurrent("test.concurrent runs", async () => expect(1)->toBe(1))
+  testConcurrent("test.concurrent runs", async () => mark("test.concurrent"))
 })
 
 describe("Vitest — it modifiers", () => {
-  itEach([1, 2])("it-each case %i is positive", n => expect(n > 0)->toBeTruthy)
+  itEach([1, 2])("it-each case %i reaches the body", n => mark(`it.each ${n->Int.toString}`))
   itFails("it.fails passes because the body fails", () => expect(1)->toBe(2))
-  itSequential("it.sequential runs", () => expect(1)->toBe(1))
+  itSequential("it.sequential runs", () => mark("itSequential"))
   itSkipIf(true)("it.skipIf skips when true", () => expect(1)->toBe(2))
   itRunIf(false)("it.runIf skips when false", () => expect(1)->toBe(2))
   itTodo("it.todo placeholder")
-  itConcurrent("it.concurrent runs", async () => expect(1)->toBe(1))
+  itConcurrent("it.concurrent runs", async () => mark("it.concurrent"))
 })
 
 describe("Vitest — async conditional tests", () => {
   testSkipIfAsync(true)("async test skipped when condition is true", async () => expect(1)->toBe(2))
-  testRunIfAsync(true)("async test runs when condition is true", async () => expect(1)->toBe(1))
+  testRunIfAsync(true)("async test runs when condition is true", async () =>
+    mark("test.runIfAsync(true)")
+  )
 })
 
 describe("Expect — snapshots", () => {
@@ -489,5 +497,37 @@ describe("Expect — snapshots", () => {
 describe("Expect — file snapshot", () => {
   testAsync("toMatchFileSnapshot writes/compares an external snapshot", async () => {
     await expect("file snapshot content\n")->toMatchFileSnapshot("./__file_snapshots__/sample.txt")
+  })
+})
+
+// Runs last in this file: every test above that must run recorded itself once.
+describe("Vitest — modifiers that must run", () => {
+  test("every test registered to run did run, exactly once", () => {
+    let sorted = names => names->Array.toSorted(String.compare)
+    expect(ran->sorted)->toEqual(
+      [
+        "test.skipIf(false)",
+        "test.runIf(true)",
+        "testSequential",
+        "testSequentialAsync",
+        "describe.concurrent",
+        "describeSequential",
+        "describe.shuffle",
+        "describe.skipIf(false)",
+        "describe.runIf(true)",
+        "describe.for 1",
+        "describe.for 2",
+        "describe.for 3",
+        "test.for 1",
+        "test.for 2",
+        "test.for 3",
+        "test.concurrent",
+        "it.each 1",
+        "it.each 2",
+        "itSequential",
+        "it.concurrent",
+        "test.runIfAsync(true)",
+      ]->sorted,
+    )
   })
 })
