@@ -7,11 +7,12 @@ rescript-vitest/
 ├── src/                  # Source code
 ├── docs/                 # Internal design documents
 ├── sphinx-docs/          # Public documentation (Sphinx)
-├── .steering/            # Steering workflow documents
+├── .steering/            # Past work records (work is now planned in GitHub Issues)
 ├── .github/workflows/    # CI/CD workflows
 ├── scripts/              # Maintenance scripts (skill quality evaluation)
 ├── quality-datasets/     # Datasets for the skill quality evaluation
-└── CLAUDE.md             # Development conventions
+├── AGENTS.md             # Development conventions (agent entry point)
+└── CLAUDE.md             # One line: @AGENTS.md
 ```
 
 ## Source Code Organization

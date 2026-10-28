@@ -1,5 +1,5 @@
 node_modules/
-lib/
+/lib/
 .bsb.lock
 *.res.js
 *.res.mjs
@@ -13,3 +13,4 @@ coverage/
 CLAUDE.local.md
 quality-reports/
 .mutator/
+.claude/worktrees/
