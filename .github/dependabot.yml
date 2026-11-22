@@ -1,57 +1,22 @@
 version: 2
-
 updates:
-  - package-ecosystem: npm
-    directory: /
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: weekly
-      day: monday
-    open-pull-requests-limit: 5
-    labels:
-      - dependencies
-    groups:
-      rescript:
-        patterns:
-          - rescript
-          - "@rescript/*"
-      vitest:
-        patterns:
-          - vitest
-          - "@vitest/*"
-          - vite
-
-  - package-ecosystem: github-actions
-    directory: /
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: weekly
-      day: monday
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
     open-pull-requests-limit: 5
-    labels:
-      - dependencies
-
-  # Sphinx docs: Python deps managed by uv (pyproject.toml + uv.lock)
-  - package-ecosystem: uv
-    directory: /sphinx-docs
-    schedule:
-      interval: weekly
-      day: monday
-    open-pull-requests-limit: 5
-    labels:
-      - dependencies
-    groups:
-      sphinx:
-        patterns:
-          - sphinx*
-          - furo
-          - myst-parser
-          - atsphinx-*
-
-  # Sphinx docs: Node tooling (pa11y-ci)
-  - package-ecosystem: npm
-    directory: /sphinx-docs
-    schedule:
-      interval: weekly
-      day: monday
-    open-pull-requests-limit: 5
-    labels:
-      - dependencies
+    commit-message:
+      prefix: "ci"
