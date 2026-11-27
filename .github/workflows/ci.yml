@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 19 * * 2'
 
 jobs:
   build-and-test:
@@ -50,10 +53,22 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Install Vitest 4
-        run: pnpm add -D vitest@^4.0.0 @vitest/coverage-v8@^4.0.0
+        run: |
+          pnpm add -D vitest@^4.0.0 @vitest/coverage-v8@^4.0.0
+          pnpm exec vitest --version
 
       - name: Build ReScript bindings
         run: pnpm build
 
       - name: Run tests
         run: pnpm test
+
+      # Keep existing required status names unchanged. The periodic probe also
+      # runs the newest supported current major, even if the older tests failed.
+      - name: Probe the newest Vitest 5
+        if: ${{ !cancelled() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+        run: |
+          pnpm add -D vitest@^5.0.0 @vitest/coverage-v8@^5.0.0
+          pnpm exec vitest --version
+          pnpm build
+          pnpm test

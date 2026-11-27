@@ -36,7 +36,8 @@
     "format:check": "oxfmt --check '**/*.{js,mjs,cjs,json}'",
     "lint": "oxlint",
     "prepare": "git config core.hooksPath .githooks || true",
-    "prepublishOnly": "rescript build && vitest run"
+    "prepublishOnly": "rescript build && vitest run",
+    "test:formal": "cd formal && lean ConfigOverlay.lean"
   },
   "devDependencies": {
     "@mizchi/mutator": "^0.2.0",
